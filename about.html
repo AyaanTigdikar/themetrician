@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About – TheMetrician</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-2xl font-bold text-indigo-600">TheMetrician</a>
+      <div class="space-x-6">
+        <a href="index.html" class="hover:text-indigo-600">Home</a>
+        <a href="data.html" class="hover:text-indigo-600">Data</a>
+        <a href="analysis.html" class="hover:text-indigo-600">Analysis</a>
+        <a href="blog.html" class="hover:text-indigo-600">Blog</a>
+        <a href="contact.html" class="hover:text-indigo-600">Contact</a>
+        <a href="about.html" class="font-semibold text-indigo-600">About</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- About Hero -->
+  <section class="bg-white py-16">
+    <div class="container mx-auto px-6 md:flex md:items-center md:space-x-12">
+      <!-- Profile Photo -->
+      <div class="flex-shrink-0 mb-8 md:mb-0">
+        <img src="path/to/your-photo.jpg" alt="Your Name" class="w-48 h-48 object-cover rounded-full shadow-lg"/>
+      </div>
+      <!-- Bio -->
+      <div>
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">Hello, I’m [Your Name]</h1>
+        <p class="text-lg text-gray-700 mb-6">
+          I’m a data scientist and economist specializing in applying cutting-edge AI and statistical models to real-world economic problems. With a background in development economics, international trade, and health policy, I love turning complex datasets into actionable insights that drive better decisions.
+        </p>
+        <a href="assets/YourName_CV.pdf" download class="inline-block bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-indigo-700 transition">
+          Download My CV
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- My Work -->
+  <section id="work" class="py-16 bg-gray-100">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-12">My Work</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Example Project Card -->
+        <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition overflow-hidden">
+          <img src="path/to/project-image-1.jpg" alt="Project 1" class="w-full h-40 object-cover"/>
+          <div class="p-6">
+            <h3 class="text-2xl font-semibold mb-2">Project Title 1</h3>
+            <p class="text-gray-600 mb-4">Short description of what this project accomplished, technologies used, and key insights.</p>
+            <a href="#" class="text-indigo-600 font-semibold hover:underline">View Details →</a>
+          </div>
+        </div>
+
+        <!-- Repeat for each project -->
+        <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition overflow-hidden">
+          <img src="path/to/project-image-2.jpg" alt="Project 2" class="w-full h-40 object-cover"/>
+          <div class="p-6">
+            <h3 class="text-2xl font-semibold mb-2">Project Title 2</h3>
+            <p class="text-gray-600 mb-4">Brief overview of the project, your role, and the outcomes achieved.</p>
+            <a href="#" class="text-indigo-600 font-semibold hover:underline">View Details →</a>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition overflow-hidden">
+          <img src="path/to/project-image-3.jpg" alt="Project 3" class="w-full h-40 object-cover"/>
+          <div class="p-6">
+            <h3 class="text-2xl font-semibold mb-2">Project Title 3</h3>
+            <p class="text-gray-600 mb-4">A quick highlight of the methodologies and impact of this work.</p>
+            <a href="#" class="text-indigo-600 font-semibold hover:underline">View Details →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white py-6">
+    <div class="container mx-auto px-6 text-center text-gray-600">
+      <p>&copy; 2025 TheMetrician. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
