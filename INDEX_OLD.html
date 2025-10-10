@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <title>TheMetrician - Economics & Data Insights</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="text-2xl font-bold text-indigo-600">TheMetrician</a>
+      <div class="space-x-6">
+        <a href="#" class="hover:text-indigo-600">Home</a>
+        <a href="#data" class="hover:text-indigo-600">Data</a>
+        <a href="#analysis" class="hover:text-indigo-600">Analysis</a>
+        <a href="#blog" class="hover:text-indigo-600">Blog</a>
+        <a href="/themetrician/about.html" class="hover:text-indigo-600">About</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section
+    id="hero"
+    class="relative overflow-hidden bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-20"
+  >
+    <!-- Video background -->
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      class="absolute inset-0 w-full h-full object-cover"
+    >
+      <source src="\themetrician\viz\IntroVideo.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <!-- Optional gradient overlay for better contrast -->
+    <div class="absolute inset-0 bg-indigo-600 bg-opacity-60"></div>
+
+    <!-- Content on top -->
+    <div class="relative container mx-auto px-6 text-center">
+      <h1 class="text-5xl font-extrabold mb-4">
+        Experience the Future: Modern Data Science Transforming Economics
+      </h1>
+      <p class="text-xl mb-8">
+        Harness AI-driven models, predictive analytics, and real-time insights to
+        unlock economic breakthroughs
+      </p>
+      <a
+        href="#data"
+        class="bg-white text-indigo-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition"
+        >Explore Models</a
+      >
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="analysis" class="py-16">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-12">Topics</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition">
+          <h3 class="text-xl font-semibold mb-4">Development Economics</h3>
+          <p>blah blah</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition">
+          <h3 class="text-xl font-semibold mb-4">International Trade</h3>
+          <p>blah blah</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition">
+          <h3 class="text-xl font-semibold mb-4">Health Economics</h3>
+          <p>blah blah</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Data Visualization Section -->
+  <section id="data" class="bg-white py-16">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center mb-12"> Freedom House Scores (2025)</h2>
+    <div class="max-w-3xl mx-auto">
+      <!-- this is where your Vega-Lite map will go -->
+      <div id="vis" style="width:100%; height:450px;"></div>
+    </div>
+  </div>
+</section>
+
+  <!-- Blog Preview Section -->
+  <section id="blog" class="py-16">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-12">Latest Articles</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <article class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition">
+          <img src="https://source.unsplash.com/collection/9589142/600x400" alt="Article image" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-2xl font-semibold mb-2">Global GDP Trends 2025</h3>
+            <p class="text-gray-600 mb-4">An overview of economic growth patterns across major economies in 2025.</p>
+            <a href="#" class="text-indigo-600 font-semibold">Read More →</a>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition">
+          <img src="https://source.unsplash.com/collection/9589142/601x401" alt="Article image" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-2xl font-semibold mb-2">Inflation: Causes & Effects</h3>
+            <p class="text-gray-600 mb-4">Exploring the drivers behind inflation and its impact on consumer behavior.</p>
+            <a href="#" class="text-indigo-600 font-semibold">Read More →</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="bg-gray-100 py-16">
+    <div class="container mx-auto px-6 max-w-lg">
+      <h2 class="text-3xl font-bold text-center mb-6">Get in Touch</h2>
+      <form class="bg-white p-8 rounded-2xl shadow-lg">
+        <div class="mb-4">
+          <label class="block text-gray-700 mb-2" for="name">Name</label>
+          <input id="name" type="text" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400" placeholder="Your Name">
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 mb-2" for="email">Email</label>
+          <input id="email" type="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400" placeholder="you@example.com">
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 mb-2" for="message">Message</label>
+          <textarea id="message" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400" placeholder="Your message..."></textarea>
+        </div>
+        <button type="submit" class="w-full bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white py-6">
+    <div class="container mx-auto px-6 text-center text-gray-600">
+      <p>&copy; 2025 TheMetrician. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Chart.js Initialization -->
+  <script>
+    vegaEmbed('#vis', 'freedomhouse2025_map.json', {
+      width: 800,
+      height: 450
+    })
+    .then(result => console.log('Loaded Vega view'))
+    .catch(err => console.error(err));
+  </script>
+
+</body>
+</html>
