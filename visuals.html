@@ -49,17 +49,83 @@
     /* Full height layout */
     .full-height-content {
       height: calc(100vh - 65px);
+      display: flex;
+      flex-direction: column;
+    }
+    
+    /* Map container that adjusts when panel opens */
+    .map-wrapper {
+      display: flex;
+      height: 100%;
+      transition: all 0.3s ease-in-out;
+    }
+    
+    .map-container {
+      flex: 1;
+      position: relative;
+      transition: margin-right 0.3s ease-in-out;
+    }
+    
+    .map-container.panel-open {
+      margin-right: 384px; /* Width of side panel */
     }
     
     /* Side panel styles */
     .side-panel {
+      position: fixed;
+      right: 0;
+      top: 65px;
+      height: calc(100vh - 65px);
+      width: 384px;
       transform: translateX(100%);
       transition: transform 0.3s ease-in-out;
       box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+      background: white;
+      z-index: 30;
     }
     
     .side-panel.open {
       transform: translateX(0);
+    }
+    
+    /* Metric selector dropdown */
+    .metric-selector {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .metric-selector select {
+      appearance: none;
+      background: white;
+      border: 2px solid black;
+      padding: 8px 40px 8px 16px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      border-radius: 4px;
+      min-width: 200px;
+    }
+    
+    .metric-selector::after {
+      content: '▾';
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+    
+    /* Dynamic legend styles */
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .legend-color {
+      width: 16px;
+      height: 16px;
+      border-radius: 2px;
     }
     
     /* Metric styles */
@@ -99,36 +165,6 @@
     .score-fill {
       height: 100%;
       transition: width 0.5s ease-in-out;
-    }
-    
-    /* Map controls */
-    .map-controls {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      z-index: 10;
-    }
-    
-    .control-button {
-      background: white;
-      border: 1px solid #e5e7eb;
-      padding: 8px 16px;
-      border-radius: 4px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: all 0.2s;
-      margin-right: 8px;
-    }
-    
-    .control-button:hover {
-      background: #f9fafb;
-      border-color: #d1d5db;
-    }
-    
-    .control-button.active {
-      background: black;
-      color: white;
-      border-color: black;
     }
   </style>
 </head>
@@ -190,52 +226,40 @@
   </nav>
 
   <!-- Full Screen Map Container -->
-  <div class="full-height-content relative" style="margin-top: 65px;">
+  <div class="full-height-content" style="margin-top: 65px;">
     
-    <!-- Map Header/Title Bar -->
+    <!-- Map Header/Control Bar -->
     <div class="bg-white border-b border-gray-200 px-6 py-4">
       <div class="container mx-auto flex justify-between items-center">
-        <div>
-          <h1 class="text-2xl font-light">
-            <span class="font-semibold">Freedom House Scores</span> 2025
-          </h1>
-          <p class="text-sm text-gray-600 mt-1">Click on any country to explore detailed political and economic indicators</p>
-        </div>
-        <div class="flex items-center space-x-6">
-          <!-- Legend -->
-          <div class="flex items-center space-x-4 text-sm">
-            <div class="flex items-center space-x-2">
-              <div class="w-4 h-4 bg-red-600 rounded"></div>
-              <span class="text-gray-600">Not Free (0-32)</span>
-            </div>
-            <div class="flex items-center space-x-2">
-              <div class="w-4 h-4 bg-yellow-500 rounded"></div>
-              <span class="text-gray-600">Partly Free (33-66)</span>
-            </div>
-            <div class="flex items-center space-x-2">
-              <div class="w-4 h-4 bg-green-600 rounded"></div>
-              <span class="text-gray-600">Free (67-100)</span>
-            </div>
+        <div class="flex items-center gap-6">
+          <!-- Metric Selector Dropdown -->
+          <div class="metric-selector">
+            <select id="metricSelector" onchange="changeMetric(this.value)">
+              <option value="freedom">Freedom House Scores</option>
+              <option value="gdp">GDP per Capita</option>
+              <option value="population">Population</option>
+            </select>
           </div>
+          <p class="text-sm text-gray-600">Click on any country for detailed information</p>
+        </div>
+        
+        <!-- Dynamic Legend -->
+        <div id="legendContainer" class="flex items-center gap-4 text-sm">
+          <!-- Legend will be dynamically updated here -->
         </div>
       </div>
     </div>
     
-    <!-- Map Container -->
-    <div class="relative bg-gray-50" style="height: calc(100% - 80px);">
-      <div id="vis" class="w-full h-full flex items-center justify-center"></div>
-      
-      <!-- Optional: Map Controls (for future features) -->
-      <div class="map-controls">
-        <button class="control-button active" onclick="showFreedomScores()">Freedom Scores</button>
-        <button class="control-button" onclick="showGDP()">GDP per Capita</button>
-        <button class="control-button" onclick="showPopulation()">Population</button>
+    <!-- Map and Panel Container -->
+    <div class="map-wrapper">
+      <div id="mapContainer" class="map-container bg-gray-50">
+        <div id="vis" class="w-full h-full flex items-center justify-center"></div>
       </div>
     </div>
   </div>
 
   <!-- Side Panel for Country Details -->
-  <div id="sidePanel" class="side-panel fixed top-0 right-0 h-full w-96 bg-white z-50 overflow-y-auto" style="margin-top: 65px;">
+  <div id="sidePanel" class="side-panel overflow-y-auto">
     <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4">
       <div class="flex justify-between items-center">
         <h3 class="text-lg font-semibold">Country Details</h3>
