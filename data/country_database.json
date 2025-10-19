@@ -1,0 +1,256 @@
+{
+  "countries": {
+    "840": {
+      "id": "840",
+      "name": "United States",
+      "freedomScore": 84,
+      "region": "Americas",
+      "subregion": "North America",
+      "capital": "Washington, D.C.",
+      "population": 331900000,
+      "gdpPerCapita": 80035,
+      "headOfState": "Donald Trump",
+      "governmentType": "Federal Republic",
+      "flagUrl": "https://flagcdn.com/w320/us.png",
+      "economicData": {
+        "gdp": 25.46,
+        "gdpGrowth": 2.5,
+        "inflation": 3.4,
+        "unemployment": 3.7,
+        "tradeBalance": -945.3,
+        "debtToGDP": 129.1,
+        "exports": 2100,
+        "imports": 3045,
+        "fdi": 285.1
+      },
+      "politicalData": {
+        "politicalRights": 32,
+        "civilLiberties": 52,
+        "pressFreeddom": 71,
+        "corruptionIndex": 69,
+        "democracyIndex": 7.85,
+        "ruleOfLaw": 82,
+        "electoralProcess": 9.17
+      },
+      "socialIndicators": {
+        "hdi": 0.926,
+        "giniCoefficient": 41.5,
+        "literacyRate": 99,
+        "lifeExpectancy": 79.1,
+        "povertyRate": 11.6,
+        "internetPenetration": 91.8,
+        "educationIndex": 0.900
+      },
+      "tradePartners": ["China", "Canada", "Mexico", "Japan", "Germany"],
+      "majorExports": ["Machinery", "Mineral fuels", "Aircraft", "Vehicles", "Medical instruments"],
+      "majorImports": ["Machinery", "Electrical machinery", "Vehicles", "Mineral fuels", "Pharmaceuticals"],
+      "internationalOrganizations": ["UN", "NATO", "OECD", "G7", "G20", "WTO", "IMF", "World Bank"],
+      "lastUpdated": "2025-01-15"
+    },
+    "156": {
+      "id": "156",
+      "name": "China",
+      "freedomScore": 9,
+      "region": "Asia",
+      "subregion": "Eastern Asia",
+      "capital": "Beijing",
+      "population": 1412000000,
+      "gdpPerCapita": 12720,
+      "headOfState": "Xi Jinping",
+      "governmentType": "Communist State",
+      "flagUrl": "https://flagcdn.com/w320/cn.png",
+      "economicData": {
+        "gdp": 17.96,
+        "gdpGrowth": 5.2,
+        "inflation": 0.2,
+        "unemployment": 5.0,
+        "tradeBalance": 823.2,
+        "debtToGDP": 77.1,
+        "exports": 3730,
+        "imports": 2906,
+        "fdi": 163.0
+      },
+      "politicalData": {
+        "politicalRights": 2,
+        "civilLiberties": 7,
+        "pressFreeddom": 23,
+        "corruptionIndex": 45,
+        "democracyIndex": 2.27,
+        "ruleOfLaw": 48,
+        "electoralProcess": 0.00
+      },
+      "socialIndicators": {
+        "hdi": 0.768,
+        "giniCoefficient": 38.2,
+        "literacyRate": 96.8,
+        "lifeExpectancy": 78.2,
+        "povertyRate": 1.7,
+        "internetPenetration": 73.1,
+        "educationIndex": 0.695
+      },
+      "tradePartners": ["United States", "European Union", "ASEAN", "Japan", "South Korea"],
+      "majorExports": ["Electrical machinery", "Machinery", "Furniture", "Textiles", "Plastics"],
+      "majorImports": ["Electrical machinery", "Mineral fuels", "Machinery", "Ores", "Medical instruments"],
+      "internationalOrganizations": ["UN", "WTO", "BRICS", "SCO", "G20", "APEC", "IMF", "World Bank"],
+      "lastUpdated": "2025-01-15"
+    },
+    "826": {
+      "id": "826",
+      "name": "United Kingdom",
+      "freedomScore": 92,
+      "region": "Europe",
+      "subregion": "Northern Europe",
+      "capital": "London",
+      "population": 67500000,
+      "gdpPerCapita": 48913,
+      "headOfState": "King Charles III",
+      "governmentType": "Constitutional Monarchy",
+      "flagUrl": "https://flagcdn.com/w320/gb.png",
+      "economicData": {
+        "gdp": 3.34,
+        "gdpGrowth": 0.1,
+        "inflation": 4.0,
+        "unemployment": 3.9,
+        "tradeBalance": -189.4,
+        "debtToGDP": 101.0,
+        "exports": 840,
+        "imports": 1030,
+        "fdi": 63.0
+      },
+      "politicalData": {
+        "politicalRights": 39,
+        "civilLiberties": 53,
+        "pressFreeddom": 78,
+        "corruptionIndex": 78,
+        "democracyIndex": 8.54,
+        "ruleOfLaw": 85,
+        "electoralProcess": 9.58
+      },
+      "socialIndicators": {
+        "hdi": 0.929,
+        "giniCoefficient": 35.1,
+        "literacyRate": 99,
+        "lifeExpectancy": 81.3,
+        "povertyRate": 20.0,
+        "internetPenetration": 94.8,
+        "educationIndex": 0.914
+      },
+      "tradePartners": ["United States", "Germany", "Netherlands", "France", "China"],
+      "majorExports": ["Machinery", "Vehicles", "Pharmaceuticals", "Gold", "Petroleum"],
+      "majorImports": ["Machinery", "Vehicles", "Petroleum", "Electrical machinery", "Pharmaceuticals"],
+      "internationalOrganizations": ["UN", "NATO", "Commonwealth", "G7", "G20", "WTO", "IMF", "World Bank"],
+      "lastUpdated": "2025-01-15"
+    },
+    "276": {
+      "id": "276",
+      "name": "Germany",
+      "freedomScore": 95,
+      "region": "Europe",
+      "subregion": "Western Europe",
+      "capital": "Berlin",
+      "population": 83200000,
+      "gdpPerCapita": 51203,
+      "headOfState": "Frank-Walter Steinmeier",
+      "governmentType": "Federal Republic",
+      "flagUrl": "https://flagcdn.com/w320/de.png",
+      "economicData": {
+        "gdp": 4.26,
+        "gdpGrowth": -0.3,
+        "inflation": 5.9,
+        "unemployment": 3.0,
+        "tradeBalance": 141.2,
+        "debtToGDP": 66.3,
+        "exports": 1690,
+        "imports": 1549,
+        "fdi": 53.9
+      },
+      "politicalData": {
+        "politicalRights": 39,
+        "civilLiberties": 56,
+        "pressFreeddom": 85,
+        "corruptionIndex": 79,
+        "democracyIndex": 8.68,
+        "ruleOfLaw": 88,
+        "electoralProcess": 9.58
+      },
+      "socialIndicators": {
+        "hdi": 0.947,
+        "giniCoefficient": 31.9,
+        "literacyRate": 99,
+        "lifeExpectancy": 81.0,
+        "povertyRate": 14.8,
+        "internetPenetration": 91.0,
+        "educationIndex": 0.943
+      },
+      "tradePartners": ["United States", "China", "Netherlands", "France", "Poland"],
+      "majorExports": ["Vehicles", "Machinery", "Chemicals", "Electronic equipment", "Pharmaceuticals"],
+      "majorImports": ["Machinery", "Data processing equipment", "Vehicles", "Chemicals", "Oil and gas"],
+      "internationalOrganizations": ["UN", "EU", "NATO", "G7", "G20", "WTO", "IMF", "World Bank"],
+      "lastUpdated": "2025-01-15"
+    },
+    "356": {
+      "id": "356",
+      "name": "India",
+      "freedomScore": 63,
+      "region": "Asia",
+      "subregion": "Southern Asia",
+      "capital": "New Delhi",
+      "population": 1417000000,
+      "gdpPerCapita": 2612,
+      "headOfState": "Droupadi Murmu",
+      "governmentType": "Federal Republic",
+      "flagUrl": "https://flagcdn.com/w320/in.png",
+      "economicData": {
+        "gdp": 3.73,
+        "gdpGrowth": 7.2,
+        "inflation": 5.4,
+        "unemployment": 7.5,
+        "tradeBalance": -267.5,
+        "debtToGDP": 83.1,
+        "exports": 453,
+        "imports": 721,
+        "fdi": 71.0
+      },
+      "politicalData": {
+        "politicalRights": 34,
+        "civilLiberties": 29,
+        "pressFreeddom": 41,
+        "corruptionIndex": 39,
+        "democracyIndex": 6.61,
+        "ruleOfLaw": 53,
+        "electoralProcess": 8.67
+      },
+      "socialIndicators": {
+        "hdi": 0.633,
+        "giniCoefficient": 35.7,
+        "literacyRate": 77.7,
+        "lifeExpectancy": 70.8,
+        "povertyRate": 21.9,
+        "internetPenetration": 48.7,
+        "educationIndex": 0.557
+      },
+      "tradePartners": ["United States", "China", "UAE", "Saudi Arabia", "Singapore"],
+      "majorExports": ["Petroleum products", "Jewelry", "Pharmaceuticals", "Rice", "Textiles"],
+      "majorImports": ["Crude petroleum", "Gold", "Coal", "Diamonds", "Electronic components"],
+      "internationalOrganizations": ["UN", "BRICS", "G20", "Commonwealth", "WTO", "IMF", "World Bank", "SCO"],
+      "lastUpdated": "2025-01-15"
+    }
+  },
+  "metadata": {
+    "version": "1.0",
+    "lastUpdate": "2025-01-15",
+    "sources": {
+      "freedomHouse": "Freedom House Freedom in the World 2025",
+      "worldBank": "World Bank Data 2024",
+      "imf": "IMF World Economic Outlook 2024",
+      "un": "UN Statistics Division 2024"
+    },
+    "notes": {
+      "freedomScore": "0-100 scale where 100 is most free",
+      "gdp": "Nominal GDP in trillions of USD",
+      "population": "Mid-2024 estimates",
+      "gdpPerCapita": "Nominal GDP per capita in USD",
+      "hdi": "Human Development Index 2023"
+    }
+  }
+}

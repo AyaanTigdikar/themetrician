@@ -64,16 +64,64 @@
     .section-divider {
       border-top: 1px solid #e5e5e5;
     }
+    
+    /* Side panel styles */
+    .side-panel {
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+    }
+    
+    .side-panel.open {
+      transform: translateX(0);
+    }
+    
+    /* Metric styles for country panel */
+    .country-metric {
+      display: flex;
+      justify-between: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .country-metric:last-child {
+      border-bottom: none;
+    }
+    
+    .metric-label {
+      color: #6b7280;
+      font-size: 0.875rem;
+    }
+    
+    .metric-value {
+      color: #111827;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+    
+    /* Score indicator bar */
+    .score-indicator {
+      width: 100%;
+      height: 8px;
+      background: #e5e7eb;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 0.5rem;
+    }
+    
+    .score-fill {
+      height: 100%;
+      transition: width 0.5s ease-in-out;
+    }
   </style>
 </head>
 <body class="bg-white text-gray-900">
 
   <!-- Navbar -->
-  <nav class="bg-white border-b border-gray-200 fixed w-full top-0 z-50">
+  <nav class="bg-white border-b border-gray-200 fixed w-full top-0 z-40">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="#" class="text-2xl font-bold text-black">TheMetrician</a>
+      <a href="/themetrician/" class="text-2xl font-bold text-black">TheMetrician</a>
       <div class="flex space-x-8">
-        <a href="#" class="text-gray-700 hover:text-black font-medium transition">Home</a>
+        <a href="/themetrician/" class="text-gray-700 hover:text-black font-medium transition">Home</a>
         
         <!-- Case Studies Dropdown -->
         <div class="dropdown relative">
@@ -81,9 +129,9 @@
             Case Studies ▾
           </a>
           <div class="dropdown-content">
-            <a href="#">Africa</a>
-            <a href="#">Asia</a>
-            <a href="#">Latin America</a>
+            <a href="/themetrician/case-studies/africa">Africa</a>
+            <a href="/themetrician/case-studies/asia">Asia</a>
+            <a href="/themetrician/case-studies/latin-america">Latin America</a>
           </div>
         </div>
         
@@ -93,11 +141,11 @@
             Methods ▾
           </a>
           <div class="dropdown-content">
-            <a href="#">Matching</a>
-            <a href="#">Random Forest</a>
-            <a href="#">Neural Networks</a>
-            <a href="#">Text Analysis</a>
-            <a href="#">Causal Inference</a>
+            <a href="/themetrician/methods/matching">Matching</a>
+            <a href="/themetrician/methods/random-forest">Random Forest</a>
+            <a href="/themetrician/methods/neural-networks">Neural Networks</a>
+            <a href="/themetrician/methods/text-analysis">Text Analysis</a>
+            <a href="/themetrician/methods/causal-inference">Causal Inference</a>
           </div>
         </div>
         
@@ -107,17 +155,17 @@
             Theories ▾
           </a>
           <div class="dropdown-content">
-            <a href="#">Microeconomics</a>
-            <a href="#">Macroeconomics</a>
-            <a href="#">Trade</a>
-            <a href="#">Public Economics</a>
-            <a href="#">Growth Diagnostics</a>
-            <a href="#">Development</a>
+            <a href="/themetrician/theories/microeconomics">Microeconomics</a>
+            <a href="/themetrician/theories/macroeconomics">Macroeconomics</a>
+            <a href="/themetrician/theories/trade">Trade</a>
+            <a href="/themetrician/theories/public-economics">Public Economics</a>
+            <a href="/themetrician/theories/growth-diagnostics">Growth Diagnostics</a>
+            <a href="/themetrician/theories/development">Development</a>
           </div>
         </div>
         
-        <a href="/news" class="text-gray-700 hover:text-black font-medium transition">News</a>
-        <a href="/visuals" class="text-gray-700 hover:text-black font-medium transition">Visuals</a>
+        <a href="/themetrician/news" class="text-gray-700 hover:text-black font-medium transition">News</a>
+        <a href="/themetrician/visuals" class="text-gray-700 hover:text-black font-medium transition">Visuals</a>
         <a href="/themetrician/about.html" class="text-gray-700 hover:text-black font-medium transition">About</a>
       </div>
     </div>
@@ -133,7 +181,7 @@
       playsinline
       class="absolute inset-0 w-full h-full object-cover opacity-50"
     >
-      <source src="\themetrician\viz\IntroVideo.mp4" type="video/mp4" />
+      <source src="/themetrician/viz/IntroVideo.mp4" type="video/mp4" />
     </video>
 
     <!-- Gradient overlay -->
@@ -178,7 +226,7 @@
           <p class="text-gray-600 mb-4">
             Analysis of trade patterns, tariff impacts, and global supply chain dynamics using advanced econometric methods.
           </p>
-          <a href="#" class="text-black font-medium hover:underline">Learn more →</a>
+          <a href="/themetrician/research/trade" class="text-black font-medium hover:underline">Learn more →</a>
         </div>
 
         <div class="bg-white p-8 card-hover shadow-sm border border-gray-100">
@@ -187,7 +235,7 @@
           <p class="text-gray-600 mb-4">
             Evidence-based approaches to poverty reduction and sustainable development across emerging markets.
           </p>
-          <a href="#" class="text-black font-medium hover:underline">Learn more →</a>
+          <a href="/themetrician/research/development" class="text-black font-medium hover:underline">Learn more →</a>
         </div>
 
         <div class="bg-white p-8 card-hover shadow-sm border border-gray-100">
@@ -196,7 +244,7 @@
           <p class="text-gray-600 mb-4">
             Rigorous evaluation of policy interventions using causal inference and machine learning techniques.
           </p>
-          <a href="#" class="text-black font-medium hover:underline">Learn more →</a>
+          <a href="/themetrician/research/policy" class="text-black font-medium hover:underline">Learn more →</a>
         </div>
       </div>
     </div>
@@ -208,7 +256,7 @@
       <div class="max-w-3xl mx-auto text-center mb-12">
         <h2 class="text-4xl font-light mb-4">Freedom House Scores 2025</h2>
         <p class="text-lg text-gray-600">
-          Global democracy and freedom indices visualization
+          Click on any country to explore detailed political and economic indicators
         </p>
       </div>
       <div class="max-w-5xl mx-auto bg-gray-50 p-8 rounded-lg">
@@ -216,6 +264,23 @@
       </div>
     </div>
   </section>
+
+  <!-- Side Panel for Country Details -->
+  <div id="sidePanel" class="side-panel fixed top-0 right-0 h-full w-96 bg-white shadow-2xl z-50 overflow-y-auto">
+    <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4">
+      <div class="flex justify-between items-center">
+        <h3 class="text-lg font-semibold">Country Details</h3>
+        <button onclick="closePanel()" class="text-gray-500 hover:text-gray-700">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div id="countryContent" class="p-6">
+      <!-- Country details will be dynamically inserted here -->
+    </div>
+  </div>
 
   <!-- Methods Section -->
   <section id="methods" class="py-20 bg-gray-50 section-divider">
@@ -275,7 +340,7 @@
             <p class="text-sm text-gray-500 mb-2">MACROECONOMICS</p>
             <h3 class="text-xl font-semibold mb-2">Global GDP Trends and Post-Pandemic Recovery</h3>
             <p class="text-gray-600 mb-3">Analysis of economic recovery patterns across developed and emerging markets using real-time indicators.</p>
-            <a href="#" class="text-black font-medium hover:underline">Read analysis →</a>
+            <a href="/themetrician/insights/gdp-trends" class="text-black font-medium hover:underline">Read analysis →</a>
           </div>
         </article>
 
@@ -287,7 +352,7 @@
             <p class="text-sm text-gray-500 mb-2">DEVELOPMENT</p>
             <h3 class="text-xl font-semibold mb-2">Digital Financial Inclusion in Sub-Saharan Africa</h3>
             <p class="text-gray-600 mb-3">Evidence from randomized controlled trials on mobile money adoption and poverty reduction.</p>
-            <a href="#" class="text-black font-medium hover:underline">Read analysis →</a>
+            <a href="/themetrician/insights/financial-inclusion" class="text-black font-medium hover:underline">Read analysis →</a>
           </div>
         </article>
       </div>
@@ -301,7 +366,7 @@
       <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
         Get the latest research and insights on economic policy and data science applications
       </p>
-      <a href="#" class="inline-block bg-white text-black px-8 py-3 font-medium hover:bg-gray-100 transition">
+      <a href="/themetrician/subscribe" class="inline-block bg-white text-black px-8 py-3 font-medium hover:bg-gray-100 transition">
         Subscribe to Updates
       </a>
     </div>
@@ -314,33 +379,33 @@
         <div>
           <h4 class="font-semibold mb-4">Research</h4>
           <ul class="space-y-2 text-gray-600">
-            <li><a href="#" class="hover:text-black">Case Studies</a></li>
-            <li><a href="#" class="hover:text-black">Publications</a></li>
-            <li><a href="#" class="hover:text-black">Working Papers</a></li>
+            <li><a href="/themetrician/research/case-studies" class="hover:text-black">Case Studies</a></li>
+            <li><a href="/themetrician/research/publications" class="hover:text-black">Publications</a></li>
+            <li><a href="/themetrician/research/working-papers" class="hover:text-black">Working Papers</a></li>
           </ul>
         </div>
         <div>
           <h4 class="font-semibold mb-4">Methods</h4>
           <ul class="space-y-2 text-gray-600">
-            <li><a href="#" class="hover:text-black">Econometrics</a></li>
-            <li><a href="#" class="hover:text-black">Data Science</a></li>
-            <li><a href="#" class="hover:text-black">Visualization</a></li>
+            <li><a href="/themetrician/methods/econometrics" class="hover:text-black">Econometrics</a></li>
+            <li><a href="/themetrician/methods/data-science" class="hover:text-black">Data Science</a></li>
+            <li><a href="/themetrician/methods/visualization" class="hover:text-black">Visualization</a></li>
           </ul>
         </div>
         <div>
           <h4 class="font-semibold mb-4">About</h4>
           <ul class="space-y-2 text-gray-600">
-            <li><a href="#" class="hover:text-black">Mission</a></li>
-            <li><a href="#" class="hover:text-black">Team</a></li>
-            <li><a href="#" class="hover:text-black">Contact</a></li>
+            <li><a href="/themetrician/about#mission" class="hover:text-black">Mission</a></li>
+            <li><a href="/themetrician/about#team" class="hover:text-black">Team</a></li>
+            <li><a href="/themetrician/contact" class="hover:text-black">Contact</a></li>
           </ul>
         </div>
         <div>
           <h4 class="font-semibold mb-4">Connect</h4>
           <ul class="space-y-2 text-gray-600">
-            <li><a href="#" class="hover:text-black">Newsletter</a></li>
-            <li><a href="#" class="hover:text-black">Twitter</a></li>
-            <li><a href="#" class="hover:text-black">LinkedIn</a></li>
+            <li><a href="/themetrician/newsletter" class="hover:text-black">Newsletter</a></li>
+            <li><a href="https://twitter.com/themetrician" class="hover:text-black">Twitter</a></li>
+            <li><a href="https://linkedin.com/company/themetrician" class="hover:text-black">LinkedIn</a></li>
           </ul>
         </div>
       </div>
@@ -350,15 +415,314 @@
     </div>
   </footer>
 
-  <!-- Vega-Lite Visualization -->
+  <!-- Country Interaction Scripts -->
   <script>
-    vegaEmbed('#vis', 'freedomhouse2025_map.json', {
+    // Country class definition
+    class Country {
+      constructor(data) {
+        this.id = data.id;
+        this.name = data.name;
+        this.freedomScore = data.freedomScore;
+        this.status = this.calculateStatus();
+        this.region = data.region || 'Unknown';
+        this.subregion = data.subregion || 'Unknown';
+        this.capital = data.capital || 'Unknown';
+        this.population = data.population || 0;
+        this.gdpPerCapita = data.gdpPerCapita || 0;
+        this.headOfState = data.headOfState || 'Unknown';
+        this.governmentType = data.governmentType || 'Unknown';
+        this.flagUrl = data.flagUrl || '';
+        this.economicData = data.economicData || {};
+        this.politicalData = data.politicalData || {};
+        this.socialIndicators = data.socialIndicators || {};
+        this.tradePartners = data.tradePartners || [];
+        this.majorExports = data.majorExports || [];
+        this.majorImports = data.majorImports || [];
+      }
+      
+      calculateStatus() {
+        if (this.freedomScore <= 32) return 'Not Free';
+        if (this.freedomScore <= 66) return 'Partly Free';
+        return 'Free';
+      }
+      
+      getStatusColor() {
+        if (this.freedomScore <= 32) return '#dc2626';
+        if (this.freedomScore <= 66) return '#eab308';
+        return '#16a34a';
+      }
+      
+      formatPopulation() {
+        if (this.population >= 1000000000) {
+          return (this.population / 1000000000).toFixed(2) + 'B';
+        } else if (this.population >= 1000000) {
+          return (this.population / 1000000).toFixed(1) + 'M';
+        } else if (this.population >= 1000) {
+          return (this.population / 1000).toFixed(0) + 'K';
+        }
+        return this.population.toLocaleString();
+      }
+      
+      formatGDP() {
+        return '$' + this.gdpPerCapita.toLocaleString();
+      }
+    }
+    
+    // Initialize country database
+    let countryDatabase = {};
+    
+    // Load country data from JSON file
+    fetch('/themetrician/data/country_database.json')
+      .then(response => response.json())
+      .then(data => {
+        for (const [id, countryData] of Object.entries(data.countries)) {
+          countryDatabase[id] = new Country(countryData);
+        }
+        console.log('Country database loaded successfully');
+      })
+      .catch(error => {
+        console.log('Loading fallback country data');
+        // Fallback sample data if JSON file not found
+        countryDatabase = {
+          '840': new Country({
+            id: '840',
+            name: 'United States',
+            freedomScore: 84,
+            region: 'Americas',
+            subregion: 'North America',
+            capital: 'Washington, D.C.',
+            population: 331900000,
+            gdpPerCapita: 80035,
+            headOfState: 'Donald Trump',
+            governmentType: 'Federal Republic',
+            flagUrl: 'https://flagcdn.com/w320/us.png',
+            economicData: {
+              gdp: 25.46,
+              gdpGrowth: 2.5,
+              inflation: 3.4,
+              unemployment: 3.7
+            }
+          }),
+          '826': new Country({
+            id: '826',
+            name: 'United Kingdom',
+            freedomScore: 92,
+            region: 'Europe',
+            subregion: 'Northern Europe',
+            capital: 'London',
+            population: 67500000,
+            gdpPerCapita: 48913,
+            headOfState: 'King Charles III',
+            governmentType: 'Constitutional Monarchy',
+            flagUrl: 'https://flagcdn.com/w320/gb.png',
+            economicData: {
+              gdp: 3.34,
+              gdpGrowth: 0.1,
+              inflation: 4.0,
+              unemployment: 3.9
+            }
+          }),
+          '156': new Country({
+            id: '156',
+            name: 'China',
+            freedomScore: 9,
+            region: 'Asia',
+            subregion: 'Eastern Asia',
+            capital: 'Beijing',
+            population: 1412000000,
+            gdpPerCapita: 12720,
+            headOfState: 'Xi Jinping',
+            governmentType: 'Communist State',
+            flagUrl: 'https://flagcdn.com/w320/cn.png',
+            economicData: {
+              gdp: 17.96,
+              gdpGrowth: 5.2,
+              inflation: 0.2,
+              unemployment: 5.0
+            }
+          })
+        };
+      });
+    
+    // Panel control functions
+    function openPanel(countryId) {
+      const panel = document.getElementById('sidePanel');
+      panel.classList.add('open');
+      renderCountryDetails(countryId);
+    }
+    
+    function closePanel() {
+      const panel = document.getElementById('sidePanel');
+      panel.classList.remove('open');
+    }
+    
+    // Render country details in panel
+    function renderCountryDetails(countryId) {
+      const country = countryDatabase[countryId];
+      
+      if (!country) {
+        document.getElementById('countryContent').innerHTML = `
+          <div class="text-center py-8">
+            <p class="text-gray-500">No detailed information available for this country yet.</p>
+            <p class="text-sm text-gray-400 mt-2">Country ID: ${countryId}</p>
+          </div>
+        `;
+        return;
+      }
+      
+      const content = `
+        <div>
+          <!-- Country Header -->
+          <div class="mb-6">
+            <div class="flex items-center space-x-4 mb-4">
+              ${country.flagUrl ? `<img src="${country.flagUrl}" alt="${country.name} flag" class="w-16 h-auto rounded shadow-sm">` : ''}
+              <div>
+                <h2 class="text-2xl font-semibold">${country.name}</h2>
+                <p class="text-sm text-gray-600">${country.region} • ${country.subregion}</p>
+              </div>
+            </div>
+            
+            <!-- Freedom Score -->
+            <div class="bg-gray-50 rounded-lg p-4">
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-medium text-gray-700">Freedom House Score</span>
+                <span class="text-2xl font-bold" style="color: ${country.getStatusColor()}">${country.freedomScore}</span>
+              </div>
+              <div class="score-indicator">
+                <div class="score-fill" style="width: ${country.freedomScore}%; background-color: ${country.getStatusColor()}"></div>
+              </div>
+              <p class="text-sm font-medium mt-2" style="color: ${country.getStatusColor()}">${country.status}</p>
+            </div>
+          </div>
+          
+          <!-- Basic Information -->
+          <div class="mb-6">
+            <h3 class="text-lg font-semibold mb-3">Basic Information</h3>
+            <div class="bg-white border border-gray-200 rounded-lg p-4">
+              <div class="country-metric">
+                <span class="metric-label">Capital</span>
+                <span class="metric-value">${country.capital}</span>
+              </div>
+              <div class="country-metric">
+                <span class="metric-label">Population</span>
+                <span class="metric-value">${country.formatPopulation()}</span>
+              </div>
+              <div class="country-metric">
+                <span class="metric-label">GDP per Capita</span>
+                <span class="metric-value">${country.formatGDP()}</span>
+              </div>
+              <div class="country-metric">
+                <span class="metric-label">Government Type</span>
+                <span class="metric-value">${country.governmentType}</span>
+              </div>
+              <div class="country-metric">
+                <span class="metric-label">Head of State</span>
+                <span class="metric-value">${country.headOfState}</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Economic Indicators -->
+          ${country.economicData && Object.keys(country.economicData).length > 0 ? `
+          <div class="mb-6">
+            <h3 class="text-lg font-semibold mb-3">Economic Indicators</h3>
+            <div class="bg-white border border-gray-200 rounded-lg p-4">
+              ${country.economicData.gdp ? `
+              <div class="country-metric">
+                <span class="metric-label">GDP (Trillion USD)</span>
+                <span class="metric-value">$${country.economicData.gdp}</span>
+              </div>` : ''}
+              ${country.economicData.gdpGrowth !== undefined ? `
+              <div class="country-metric">
+                <span class="metric-label">GDP Growth</span>
+                <span class="metric-value">${country.economicData.gdpGrowth}%</span>
+              </div>` : ''}
+              ${country.economicData.inflation !== undefined ? `
+              <div class="country-metric">
+                <span class="metric-label">Inflation Rate</span>
+                <span class="metric-value">${country.economicData.inflation}%</span>
+              </div>` : ''}
+              ${country.economicData.unemployment !== undefined ? `
+              <div class="country-metric">
+                <span class="metric-label">Unemployment</span>
+                <span class="metric-value">${country.economicData.unemployment}%</span>
+              </div>` : ''}
+            </div>
+          </div>` : ''}
+          
+          <!-- Political Indicators -->
+          ${country.politicalData && Object.keys(country.politicalData).length > 0 ? `
+          <div class="mb-6">
+            <h3 class="text-lg font-semibold mb-3">Political Indicators</h3>
+            <div class="bg-white border border-gray-200 rounded-lg p-4">
+              ${country.politicalData.politicalRights ? `
+              <div class="country-metric">
+                <span class="metric-label">Political Rights</span>
+                <span class="metric-value">${country.politicalData.politicalRights}/40</span>
+              </div>` : ''}
+              ${country.politicalData.civilLiberties ? `
+              <div class="country-metric">
+                <span class="metric-label">Civil Liberties</span>
+                <span class="metric-value">${country.politicalData.civilLiberties}/60</span>
+              </div>` : ''}
+              ${country.politicalData.corruptionIndex ? `
+              <div class="country-metric">
+                <span class="metric-label">Corruption Perception Index</span>
+                <span class="metric-value">${country.politicalData.corruptionIndex}/100</span>
+              </div>` : ''}
+            </div>
+          </div>` : ''}
+          
+          <!-- Trade Partners -->
+          ${country.tradePartners && country.tradePartners.length > 0 ? `
+          <div class="mb-6">
+            <h3 class="text-lg font-semibold mb-3">Major Trade Partners</h3>
+            <div class="flex flex-wrap gap-2">
+              ${country.tradePartners.map(partner => 
+                `<span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">${partner}</span>`
+              ).join('')}
+            </div>
+          </div>` : ''}
+        </div>
+      `;
+      
+      document.getElementById('countryContent').innerHTML = content;
+    }
+    
+    // Load and initialize the map
+    vegaEmbed('#vis', '/themetrician/data/freedomhouse2025_map.json', {
       width: 900,
       height: 500,
       actions: false
-    })
-    .then(result => console.log('Loaded Vega view'))
-    .catch(err => console.error(err));
+    }).then(result => {
+      console.log('Map loaded successfully');
+      
+      // Add click handler for country selection
+      result.view.addEventListener('click', function(event, item) {
+        if (item && item.datum && item.datum.id) {
+          console.log('Country clicked:', item.datum.id, item.datum);
+          openPanel(item.datum.id);
+        }
+      });
+    }).catch(err => {
+      console.error('Error loading map:', err);
+      document.getElementById('vis').innerHTML = `
+        <div class="text-center py-12">
+          <p class="text-red-600">Error loading map. Please ensure freedomhouse2025_map.json is in the data folder.</p>
+        </div>
+      `;
+    });
+    
+    // Close panel when clicking outside
+    document.addEventListener('click', function(event) {
+      const panel = document.getElementById('sidePanel');
+      const vis = document.getElementById('vis');
+      if (panel && vis && !panel.contains(event.target) && !vis.contains(event.target)) {
+        if (panel.classList.contains('open')) {
+          closePanel();
+        }
+      }
+    });
   </script>
 
 </body>
