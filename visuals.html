@@ -57,17 +57,17 @@
     .map-wrapper {
       display: flex;
       height: 100%;
-      transition: all 0.3s ease-in-out;
+      position: relative;
+      background: #f9fafb;
     }
     
     .map-container {
       flex: 1;
       position: relative;
-      transition: margin-right 0.3s ease-in-out;
-    }
-    
-    .map-container.panel-open {
-      margin-right: 384px; /* Width of side panel */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease-in-out;
     }
     
     /* Side panel styles */
@@ -82,10 +82,53 @@
       box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
       background: white;
       z-index: 30;
+      overflow-y: auto;
     }
     
     .side-panel.open {
       transform: translateX(0);
+    }
+    
+    /* Zoom controls */
+    .zoom-controls {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .zoom-btn {
+      background: white;
+      border: none;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 20px;
+      color: #374151;
+    }
+    
+    .zoom-btn:hover {
+      background: #f3f4f6;
+    }
+    
+    .zoom-btn:active {
+      background: #e5e7eb;
+    }
+    
+    .zoom-btn.divider {
+      border-top: 1px solid #e5e7eb;
     }
     
     /* Metric selector dropdown */
@@ -131,7 +174,7 @@
     /* Metric styles */
     .country-metric {
       display: flex;
-      justify-between: space-between;
+      justify-content: space-between;
       padding: 0.75rem 0;
       border-bottom: 1px solid #e5e7eb;
     }
@@ -252,14 +295,27 @@
     
     <!-- Map and Panel Container -->
     <div class="map-wrapper">
-      <div id="mapContainer" class="map-container bg-gray-50">
-        <div id="vis" class="w-full h-full flex items-center justify-center"></div>
+      <div id="mapContainer" class="map-container">
+        <div id="vis"></div>
+        
+        <!-- Zoom Controls -->
+        <div class="zoom-controls">
+          <button class="zoom-btn" onclick="zoomIn()" title="Zoom In">
+            +
+          </button>
+          <button class="zoom-btn divider" onclick="zoomOut()" title="Zoom Out">
+            −
+          </button>
+          <button class="zoom-btn divider" onclick="resetZoom()" title="Reset">
+            ⟲
+          </button>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Side Panel for Country Details -->
-  <div id="sidePanel" class="side-panel overflow-y-auto">
+  <div id="sidePanel" class="side-panel">
     <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4">
       <div class="flex justify-between items-center">
         <h3 class="text-lg font-semibold">Country Details</h3>
