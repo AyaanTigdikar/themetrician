@@ -3,9 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
   <title>TheMetrician - Economics & Data Science Insights</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -64,54 +61,6 @@
     .section-divider {
       border-top: 1px solid #e5e5e5;
     }
-    
-    /* Side panel styles */
-    .side-panel {
-      transform: translateX(100%);
-      transition: transform 0.3s ease-in-out;
-    }
-    
-    .side-panel.open {
-      transform: translateX(0);
-    }
-    
-    /* Metric styles for country panel */
-    .country-metric {
-      display: flex;
-      justify-between: space-between;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid #e5e7eb;
-    }
-    
-    .country-metric:last-child {
-      border-bottom: none;
-    }
-    
-    .metric-label {
-      color: #6b7280;
-      font-size: 0.875rem;
-    }
-    
-    .metric-value {
-      color: #111827;
-      font-size: 0.875rem;
-      font-weight: 600;
-    }
-    
-    /* Score indicator bar */
-    .score-indicator {
-      width: 100%;
-      height: 8px;
-      background: #e5e7eb;
-      border-radius: 4px;
-      overflow: hidden;
-      margin-top: 0.5rem;
-    }
-    
-    .score-fill {
-      height: 100%;
-      transition: width 0.5s ease-in-out;
-    }
   </style>
 </head>
 <body class="bg-white text-gray-900">
@@ -165,7 +114,7 @@
         </div>
         
         <a href="/themetrician/news" class="text-gray-700 hover:text-black font-medium transition">News</a>
-        <a href="/themetrician/visuals" class="text-gray-700 hover:text-black font-medium transition">Visuals</a>
+        <a href="/themetrician/visuals.html" class="text-gray-700 hover:text-black font-medium transition">Visuals</a>
         <a href="/themetrician/about.html" class="text-gray-700 hover:text-black font-medium transition">About</a>
       </div>
     </div>
@@ -201,8 +150,8 @@
           <a href="#featured" class="inline-block bg-white text-black px-8 py-3 font-medium hover:bg-gray-100 transition">
             Explore Research
           </a>
-          <a href="#methods" class="inline-block border border-white text-white px-8 py-3 font-medium hover:bg-white hover:text-black transition">
-            View Methods
+          <a href="/themetrician/visuals.html" class="inline-block border border-white text-white px-8 py-3 font-medium hover:bg-white hover:text-black transition">
+            Interactive Visuals
           </a>
         </div>
       </div>
@@ -250,37 +199,55 @@
     </div>
   </section>
 
-  <!-- Data Visualization Section -->
-  <section id="data" class="py-20 bg-white section-divider">
+
+
+  <!-- Interactive Visualizations Section -->
+  <section id="visualizations" class="py-20 bg-white section-divider">
     <div class="container mx-auto px-6">
-      <div class="max-w-3xl mx-auto text-center mb-12">
-        <h2 class="text-4xl font-light mb-4">Freedom House Scores 2025</h2>
-        <p class="text-lg text-gray-600">
-          Click on any country to explore detailed political and economic indicators
-        </p>
-      </div>
-      <div class="max-w-5xl mx-auto bg-gray-50 p-8 rounded-lg">
-        <div id="vis" style="width:100%; height:500px;"></div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-4xl font-light mb-4">
+            Interactive <span class="font-semibold">Data Visualizations</span>
+          </h2>
+          <p class="text-lg text-gray-600 mb-6">
+            Explore global political and economic data through our interactive visualization platform. Click, filter, and dive deep into country-specific metrics and trends.
+          </p>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start">
+              <svg class="w-6 h-6 text-black mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span class="text-gray-700">Freedom House democracy scores for 195+ countries</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-6 h-6 text-black mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span class="text-gray-700">Economic indicators including GDP, trade, and development metrics</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-6 h-6 text-black mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span class="text-gray-700">Click-to-explore interface with detailed country profiles</span>
+            </li>
+          </ul>
+          <a href="/themetrician/visuals.html" class="inline-block bg-black text-white px-8 py-3 font-medium hover:bg-gray-800 transition">
+            Explore Visualizations →
+          </a>
+        </div>
+        <div class="bg-gray-100 rounded-lg p-8 h-96 flex items-center justify-center">
+          <div class="text-center">
+            <svg class="w-24 h-24 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+            </svg>
+            <p class="text-gray-600 font-medium">Interactive World Map</p>
+            <p class="text-sm text-gray-500 mt-2">Full-screen visualization available</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-
-  <!-- Side Panel for Country Details -->
-  <div id="sidePanel" class="side-panel fixed top-0 right-0 h-full w-96 bg-white shadow-2xl z-50 overflow-y-auto">
-    <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4">
-      <div class="flex justify-between items-center">
-        <h3 class="text-lg font-semibold">Country Details</h3>
-        <button onclick="closePanel()" class="text-gray-500 hover:text-gray-700">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
-      </div>
-    </div>
-    <div id="countryContent" class="p-6">
-      <!-- Country details will be dynamically inserted here -->
-    </div>
-  </div>
 
   <!-- Methods Section -->
   <section id="methods" class="py-20 bg-gray-50 section-divider">
@@ -414,316 +381,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- Country Interaction Scripts -->
-  <script>
-    // Country class definition
-    class Country {
-      constructor(data) {
-        this.id = data.id;
-        this.name = data.name;
-        this.freedomScore = data.freedomScore;
-        this.status = this.calculateStatus();
-        this.region = data.region || 'Unknown';
-        this.subregion = data.subregion || 'Unknown';
-        this.capital = data.capital || 'Unknown';
-        this.population = data.population || 0;
-        this.gdpPerCapita = data.gdpPerCapita || 0;
-        this.headOfState = data.headOfState || 'Unknown';
-        this.governmentType = data.governmentType || 'Unknown';
-        this.flagUrl = data.flagUrl || '';
-        this.economicData = data.economicData || {};
-        this.politicalData = data.politicalData || {};
-        this.socialIndicators = data.socialIndicators || {};
-        this.tradePartners = data.tradePartners || [];
-        this.majorExports = data.majorExports || [];
-        this.majorImports = data.majorImports || [];
-      }
-      
-      calculateStatus() {
-        if (this.freedomScore <= 32) return 'Not Free';
-        if (this.freedomScore <= 66) return 'Partly Free';
-        return 'Free';
-      }
-      
-      getStatusColor() {
-        if (this.freedomScore <= 32) return '#dc2626';
-        if (this.freedomScore <= 66) return '#eab308';
-        return '#16a34a';
-      }
-      
-      formatPopulation() {
-        if (this.population >= 1000000000) {
-          return (this.population / 1000000000).toFixed(2) + 'B';
-        } else if (this.population >= 1000000) {
-          return (this.population / 1000000).toFixed(1) + 'M';
-        } else if (this.population >= 1000) {
-          return (this.population / 1000).toFixed(0) + 'K';
-        }
-        return this.population.toLocaleString();
-      }
-      
-      formatGDP() {
-        return '$' + this.gdpPerCapita.toLocaleString();
-      }
-    }
-    
-    // Initialize country database
-    let countryDatabase = {};
-    
-    // Load country data from JSON file
-    fetch('/themetrician/data/country_database.json')
-      .then(response => response.json())
-      .then(data => {
-        for (const [id, countryData] of Object.entries(data.countries)) {
-          countryDatabase[id] = new Country(countryData);
-        }
-        console.log('Country database loaded successfully');
-      })
-      .catch(error => {
-        console.log('Loading fallback country data');
-        // Fallback sample data if JSON file not found
-        countryDatabase = {
-          '840': new Country({
-            id: '840',
-            name: 'United States',
-            freedomScore: 84,
-            region: 'Americas',
-            subregion: 'North America',
-            capital: 'Washington, D.C.',
-            population: 331900000,
-            gdpPerCapita: 80035,
-            headOfState: 'Donald Trump',
-            governmentType: 'Federal Republic',
-            flagUrl: 'https://flagcdn.com/w320/us.png',
-            economicData: {
-              gdp: 25.46,
-              gdpGrowth: 2.5,
-              inflation: 3.4,
-              unemployment: 3.7
-            }
-          }),
-          '826': new Country({
-            id: '826',
-            name: 'United Kingdom',
-            freedomScore: 92,
-            region: 'Europe',
-            subregion: 'Northern Europe',
-            capital: 'London',
-            population: 67500000,
-            gdpPerCapita: 48913,
-            headOfState: 'King Charles III',
-            governmentType: 'Constitutional Monarchy',
-            flagUrl: 'https://flagcdn.com/w320/gb.png',
-            economicData: {
-              gdp: 3.34,
-              gdpGrowth: 0.1,
-              inflation: 4.0,
-              unemployment: 3.9
-            }
-          }),
-          '156': new Country({
-            id: '156',
-            name: 'China',
-            freedomScore: 9,
-            region: 'Asia',
-            subregion: 'Eastern Asia',
-            capital: 'Beijing',
-            population: 1412000000,
-            gdpPerCapita: 12720,
-            headOfState: 'Xi Jinping',
-            governmentType: 'Communist State',
-            flagUrl: 'https://flagcdn.com/w320/cn.png',
-            economicData: {
-              gdp: 17.96,
-              gdpGrowth: 5.2,
-              inflation: 0.2,
-              unemployment: 5.0
-            }
-          })
-        };
-      });
-    
-    // Panel control functions
-    function openPanel(countryId) {
-      const panel = document.getElementById('sidePanel');
-      panel.classList.add('open');
-      renderCountryDetails(countryId);
-    }
-    
-    function closePanel() {
-      const panel = document.getElementById('sidePanel');
-      panel.classList.remove('open');
-    }
-    
-    // Render country details in panel
-    function renderCountryDetails(countryId) {
-      const country = countryDatabase[countryId];
-      
-      if (!country) {
-        document.getElementById('countryContent').innerHTML = `
-          <div class="text-center py-8">
-            <p class="text-gray-500">No detailed information available for this country yet.</p>
-            <p class="text-sm text-gray-400 mt-2">Country ID: ${countryId}</p>
-          </div>
-        `;
-        return;
-      }
-      
-      const content = `
-        <div>
-          <!-- Country Header -->
-          <div class="mb-6">
-            <div class="flex items-center space-x-4 mb-4">
-              ${country.flagUrl ? `<img src="${country.flagUrl}" alt="${country.name} flag" class="w-16 h-auto rounded shadow-sm">` : ''}
-              <div>
-                <h2 class="text-2xl font-semibold">${country.name}</h2>
-                <p class="text-sm text-gray-600">${country.region} • ${country.subregion}</p>
-              </div>
-            </div>
-            
-            <!-- Freedom Score -->
-            <div class="bg-gray-50 rounded-lg p-4">
-              <div class="flex justify-between items-center mb-2">
-                <span class="text-sm font-medium text-gray-700">Freedom House Score</span>
-                <span class="text-2xl font-bold" style="color: ${country.getStatusColor()}">${country.freedomScore}</span>
-              </div>
-              <div class="score-indicator">
-                <div class="score-fill" style="width: ${country.freedomScore}%; background-color: ${country.getStatusColor()}"></div>
-              </div>
-              <p class="text-sm font-medium mt-2" style="color: ${country.getStatusColor()}">${country.status}</p>
-            </div>
-          </div>
-          
-          <!-- Basic Information -->
-          <div class="mb-6">
-            <h3 class="text-lg font-semibold mb-3">Basic Information</h3>
-            <div class="bg-white border border-gray-200 rounded-lg p-4">
-              <div class="country-metric">
-                <span class="metric-label">Capital</span>
-                <span class="metric-value">${country.capital}</span>
-              </div>
-              <div class="country-metric">
-                <span class="metric-label">Population</span>
-                <span class="metric-value">${country.formatPopulation()}</span>
-              </div>
-              <div class="country-metric">
-                <span class="metric-label">GDP per Capita</span>
-                <span class="metric-value">${country.formatGDP()}</span>
-              </div>
-              <div class="country-metric">
-                <span class="metric-label">Government Type</span>
-                <span class="metric-value">${country.governmentType}</span>
-              </div>
-              <div class="country-metric">
-                <span class="metric-label">Head of State</span>
-                <span class="metric-value">${country.headOfState}</span>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Economic Indicators -->
-          ${country.economicData && Object.keys(country.economicData).length > 0 ? `
-          <div class="mb-6">
-            <h3 class="text-lg font-semibold mb-3">Economic Indicators</h3>
-            <div class="bg-white border border-gray-200 rounded-lg p-4">
-              ${country.economicData.gdp ? `
-              <div class="country-metric">
-                <span class="metric-label">GDP (Trillion USD)</span>
-                <span class="metric-value">$${country.economicData.gdp}</span>
-              </div>` : ''}
-              ${country.economicData.gdpGrowth !== undefined ? `
-              <div class="country-metric">
-                <span class="metric-label">GDP Growth</span>
-                <span class="metric-value">${country.economicData.gdpGrowth}%</span>
-              </div>` : ''}
-              ${country.economicData.inflation !== undefined ? `
-              <div class="country-metric">
-                <span class="metric-label">Inflation Rate</span>
-                <span class="metric-value">${country.economicData.inflation}%</span>
-              </div>` : ''}
-              ${country.economicData.unemployment !== undefined ? `
-              <div class="country-metric">
-                <span class="metric-label">Unemployment</span>
-                <span class="metric-value">${country.economicData.unemployment}%</span>
-              </div>` : ''}
-            </div>
-          </div>` : ''}
-          
-          <!-- Political Indicators -->
-          ${country.politicalData && Object.keys(country.politicalData).length > 0 ? `
-          <div class="mb-6">
-            <h3 class="text-lg font-semibold mb-3">Political Indicators</h3>
-            <div class="bg-white border border-gray-200 rounded-lg p-4">
-              ${country.politicalData.politicalRights ? `
-              <div class="country-metric">
-                <span class="metric-label">Political Rights</span>
-                <span class="metric-value">${country.politicalData.politicalRights}/40</span>
-              </div>` : ''}
-              ${country.politicalData.civilLiberties ? `
-              <div class="country-metric">
-                <span class="metric-label">Civil Liberties</span>
-                <span class="metric-value">${country.politicalData.civilLiberties}/60</span>
-              </div>` : ''}
-              ${country.politicalData.corruptionIndex ? `
-              <div class="country-metric">
-                <span class="metric-label">Corruption Perception Index</span>
-                <span class="metric-value">${country.politicalData.corruptionIndex}/100</span>
-              </div>` : ''}
-            </div>
-          </div>` : ''}
-          
-          <!-- Trade Partners -->
-          ${country.tradePartners && country.tradePartners.length > 0 ? `
-          <div class="mb-6">
-            <h3 class="text-lg font-semibold mb-3">Major Trade Partners</h3>
-            <div class="flex flex-wrap gap-2">
-              ${country.tradePartners.map(partner => 
-                `<span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">${partner}</span>`
-              ).join('')}
-            </div>
-          </div>` : ''}
-        </div>
-      `;
-      
-      document.getElementById('countryContent').innerHTML = content;
-    }
-    
-    // Load and initialize the map
-    vegaEmbed('#vis', '/themetrician/data/freedomhouse2025_map.json', {
-      width: 900,
-      height: 500,
-      actions: false
-    }).then(result => {
-      console.log('Map loaded successfully');
-      
-      // Add click handler for country selection
-      result.view.addEventListener('click', function(event, item) {
-        if (item && item.datum && item.datum.id) {
-          console.log('Country clicked:', item.datum.id, item.datum);
-          openPanel(item.datum.id);
-        }
-      });
-    }).catch(err => {
-      console.error('Error loading map:', err);
-      document.getElementById('vis').innerHTML = `
-        <div class="text-center py-12">
-          <p class="text-red-600">Error loading map. Please ensure freedomhouse2025_map.json is in the data folder.</p>
-        </div>
-      `;
-    });
-    
-    // Close panel when clicking outside
-    document.addEventListener('click', function(event) {
-      const panel = document.getElementById('sidePanel');
-      const vis = document.getElementById('vis');
-      if (panel && vis && !panel.contains(event.target) && !vis.contains(event.target)) {
-        if (panel.classList.contains('open')) {
-          closePanel();
-        }
-      }
-    });
-  </script>
 
 </body>
 </html>
