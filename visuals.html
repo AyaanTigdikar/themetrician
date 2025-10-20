@@ -53,7 +53,7 @@
       flex-direction: column;
     }
     
-    /* Map container that adjusts when panel opens */
+    /* Map wrapper with dynamic layout */
     .map-wrapper {
       display: flex;
       height: 100%;
@@ -62,31 +62,37 @@
     }
     
     .map-container {
-      flex: 1;
+      width: 100%;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.3s ease-in-out;
+      transition: width 0.3s ease-in-out;
     }
     
-    /* Side panel styles */
+    .map-container.panel-open {
+      width: calc(100% - 384px);
+    }
+    
+    /* Side panel styles - NOT fixed positioning */
     .side-panel {
-      position: fixed;
-      right: 0;
-      top: 65px;
-      height: calc(100vh - 65px);
-      width: 384px;
-      transform: translateX(100%);
-      transition: transform 0.3s ease-in-out;
-      box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+      width: 0;
+      height: 100%;
       background: white;
-      z-index: 30;
-      overflow-y: auto;
+      box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+      transition: width 0.3s ease-in-out;
+      overflow: hidden;
+      position: relative;
     }
     
     .side-panel.open {
-      transform: translateX(0);
+      width: 384px;
+    }
+    
+    .side-panel-content {
+      width: 384px;
+      height: 100%;
+      overflow-y: auto;
     }
     
     /* Zoom controls */
@@ -293,8 +299,9 @@
       </div>
     </div>
     
-    <!-- Map and Panel Container -->
+    <!-- Map and Panel Container - FLEXBOX LAYOUT -->
     <div class="map-wrapper">
+      <!-- Map Container -->
       <div id="mapContainer" class="map-container">
         <div id="vis"></div>
         
@@ -311,29 +318,129 @@
           </button>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- Side Panel for Country Details -->
-  <div id="sidePanel" class="side-panel">
-    <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4">
-      <div class="flex justify-between items-center">
-        <h3 class="text-lg font-semibold">Country Details</h3>
-        <button onclick="closePanel()" class="text-gray-500 hover:text-gray-700 transition">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
+      
+      <!-- Side Panel - PART OF THE FLEXBOX -->
+      <div id="sidePanel" class="side-panel">
+        <div class="side-panel-content">
+          <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4">
+            <div class="flex justify-between items-center">
+              <h3 class="text-lg font-semibold">Country Details</h3>
+              <button onclick="closePanel()" class="text-gray-500 hover:text-gray-700 transition">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div id="countryContent" class="p-6">
+            <!-- Country details will be dynamically inserted here -->
+          </div>
+        </div>
       </div>
-    </div>
-    <div id="countryContent" class="p-6">
-      <!-- Country details will be dynamically inserted here -->
     </div>
   </div>
 
   <!-- Country Interaction Scripts -->
   <script>
-    // Country class definition
+    // Global variables
+    let mapView = null;
+    let currentMetric = 'freedom';
+    let currentZoom = 1;
+    let panelOpen = false;
+    
+    // Legend configurations
+    const legends = {
+      freedom: {
+        title: 'Freedom House Scores 2025',
+        items: [
+          { color: '#dc2626', label: 'Not Free (0-32)' },
+          { color: '#eab308', label: 'Partly Free (33-66)' },
+          { color: '#16a34a', label: 'Free (67-100)' }
+        ]
+      },
+      gdp: {
+        title: 'GDP per Capita 2025',
+        items: [
+          { color: '#fee2e2', label: '< $5,000' },
+          { color: '#fca5a5', label: '$5,000 - $15,000' },
+          { color: '#f87171', label: '$15,000 - $30,000' },
+          { color: '#ef4444', label: '$30,000 - $50,000' },
+          { color: '#dc2626', label: '> $50,000' }
+        ]
+      },
+      population: {
+        title: 'Population 2025',
+        items: [
+          { color: '#dbeafe', label: '< 10M' },
+          { color: '#93c5fd', label: '10M - 50M' },
+          { color: '#60a5fa', label: '50M - 100M' },
+          { color: '#3b82f6', label: '100M - 500M' },
+          { color: '#1d4ed8', label: '> 500M' }
+        ]
+      }
+    };
+    
+    // Update legend
+    function updateLegend(metric) {
+      const legend = legends[metric];
+      const container = document.getElementById('legendContainer');
+      
+      container.innerHTML = legend.items.map(item => `
+        <div class="legend-item">
+          <div class="legend-color" style="background-color: ${item.color}"></div>
+          <span class="text-gray-600">${item.label}</span>
+        </div>
+      `).join('');
+    }
+    
+    // Initialize legend
+    updateLegend('freedom');
+    
+    // Change metric function
+    function changeMetric(metric) {
+      currentMetric = metric;
+      updateLegend(metric);
+      
+      if (metric === 'gdp') {
+        alert('GDP per Capita view coming soon!');
+      } else if (metric === 'population') {
+        alert('Population view coming soon!');
+      }
+    }
+    
+    // Zoom functions
+    function zoomIn() {
+      if (mapView && currentZoom < 5) {
+        currentZoom = Math.min(currentZoom * 1.5, 5);
+        mapView.signal('zoom', currentZoom).run();
+      }
+    }
+    
+    function zoomOut() {
+      if (mapView && currentZoom > 0.5) {
+        currentZoom = Math.max(currentZoom / 1.5, 0.5);
+        mapView.signal('zoom', currentZoom).run();
+      }
+    }
+    
+    function resetZoom() {
+      if (mapView) {
+        currentZoom = 1;
+        mapView.signal('zoom', 1).run();
+      }
+    }
+    
+    // Calculate map dimensions based on panel state
+    function getMapDimensions() {
+      const container = document.getElementById('mapContainer');
+      const rect = container.getBoundingClientRect();
+      return {
+        width: rect.width - 50,
+        height: rect.height - 50
+      };
+    }
+    
+    // Country class
     class Country {
       constructor(data) {
         this.id = data.id;
@@ -388,7 +495,7 @@
     // Initialize country database
     let countryDatabase = {};
     
-    // Load country data from JSON file
+    // Load country data
     fetch('/themetrician/data/country_database.json')
       .then(response => response.json())
       .then(data => {
@@ -399,7 +506,6 @@
       })
       .catch(error => {
         console.log('Loading fallback country data');
-        // Fallback sample data
         countryDatabase = {
           '840': new Country({
             id: '840',
@@ -413,25 +519,7 @@
             headOfState: 'Donald Trump',
             governmentType: 'Federal Republic',
             flagUrl: 'https://flagcdn.com/w320/us.png',
-            economicData: {
-              gdp: 25.46,
-              gdpGrowth: 2.5,
-              inflation: 3.4,
-              unemployment: 3.7,
-              tradeBalance: -945.3
-            },
-            politicalData: {
-              politicalRights: 32,
-              civilLiberties: 52,
-              pressFreedom: 71,
-              corruptionIndex: 69
-            },
-            socialIndicators: {
-              hdi: 0.926,
-              giniCoefficient: 41.5,
-              literacyRate: 99,
-              lifeExpectancy: 79.1
-            }
+            economicData: { gdp: 25.46, gdpGrowth: 2.5, inflation: 3.4, unemployment: 3.7 }
           }),
           '826': new Country({
             id: '826',
@@ -445,12 +533,7 @@
             headOfState: 'King Charles III',
             governmentType: 'Constitutional Monarchy',
             flagUrl: 'https://flagcdn.com/w320/gb.png',
-            economicData: {
-              gdp: 3.34,
-              gdpGrowth: 0.1,
-              inflation: 4.0,
-              unemployment: 3.9
-            }
+            economicData: { gdp: 3.34, gdpGrowth: 0.1, inflation: 4.0, unemployment: 3.9 }
           }),
           '156': new Country({
             id: '156',
@@ -464,50 +547,7 @@
             headOfState: 'Xi Jinping',
             governmentType: 'Communist State',
             flagUrl: 'https://flagcdn.com/w320/cn.png',
-            economicData: {
-              gdp: 17.96,
-              gdpGrowth: 5.2,
-              inflation: 0.2,
-              unemployment: 5.0
-            }
-          }),
-          '276': new Country({
-            id: '276',
-            name: 'Germany',
-            freedomScore: 95,
-            region: 'Europe',
-            subregion: 'Western Europe',
-            capital: 'Berlin',
-            population: 83200000,
-            gdpPerCapita: 51203,
-            headOfState: 'Frank-Walter Steinmeier',
-            governmentType: 'Federal Republic',
-            flagUrl: 'https://flagcdn.com/w320/de.png',
-            economicData: {
-              gdp: 4.26,
-              gdpGrowth: -0.3,
-              inflation: 5.9,
-              unemployment: 3.0
-            }
-          }),
-          '356': new Country({
-            id: '356',
-            name: 'India',
-            freedomScore: 63,
-            region: 'Asia',
-            subregion: 'Southern Asia',
-            capital: 'New Delhi',
-            population: 1417000000,
-            gdpPerCapita: 2612,
-            headOfState: 'Droupadi Murmu',
-            governmentType: 'Federal Republic',
-            flagUrl: 'https://flagcdn.com/w320/in.png',
-            economicData: {
-              gdp: 3.73,
-              gdpGrowth: 7.2,
-              inflation: 5.4,
-              unemployment: 7.5
-            }
+            economicData: { gdp: 17.96, gdpGrowth: 5.2, inflation: 0.2, unemployment: 5.0 }
           })
         };
       });
@@ -515,13 +555,38 @@
     // Panel control functions
     function openPanel(countryId) {
       const panel = document.getElementById('sidePanel');
+      const mapContainer = document.getElementById('mapContainer');
+      
       panel.classList.add('open');
+      mapContainer.classList.add('panel-open');
+      panelOpen = true;
+      
+      // Wait for CSS transition then resize map
+      setTimeout(() => {
+        if (mapView) {
+          const dims = getMapDimensions();
+          mapView.width(dims.width).height(dims.height).run();
+        }
+      }, 350); // Match CSS transition time
+      
       renderCountryDetails(countryId);
     }
     
     function closePanel() {
       const panel = document.getElementById('sidePanel');
+      const mapContainer = document.getElementById('mapContainer');
+      
       panel.classList.remove('open');
+      mapContainer.classList.remove('panel-open');
+      panelOpen = false;
+      
+      // Wait for CSS transition then resize map
+      setTimeout(() => {
+        if (mapView) {
+          const dims = getMapDimensions();
+          mapView.width(dims.width).height(dims.height).run();
+        }
+      }, 350); // Match CSS transition time
     }
     
     // Render country details
@@ -615,89 +680,6 @@
                 <span class="metric-label">Unemployment</span>
                 <span class="metric-value">${country.economicData.unemployment}%</span>
               </div>` : ''}
-              ${country.economicData.tradeBalance !== undefined ? `
-              <div class="country-metric">
-                <span class="metric-label">Trade Balance</span>
-                <span class="metric-value">$${country.economicData.tradeBalance}B</span>
-              </div>` : ''}
-            </div>
-          </div>` : ''}
-          
-          <!-- Political Indicators -->
-          ${country.politicalData && Object.keys(country.politicalData).length > 0 ? `
-          <div class="mb-6">
-            <h3 class="text-lg font-semibold mb-3">Political Indicators</h3>
-            <div class="bg-white border border-gray-200 rounded-lg p-4">
-              ${country.politicalData.politicalRights ? `
-              <div class="country-metric">
-                <span class="metric-label">Political Rights</span>
-                <span class="metric-value">${country.politicalData.politicalRights}/40</span>
-              </div>` : ''}
-              ${country.politicalData.civilLiberties ? `
-              <div class="country-metric">
-                <span class="metric-label">Civil Liberties</span>
-                <span class="metric-value">${country.politicalData.civilLiberties}/60</span>
-              </div>` : ''}
-              ${country.politicalData.corruptionIndex ? `
-              <div class="country-metric">
-                <span class="metric-label">Corruption Perception Index</span>
-                <span class="metric-value">${country.politicalData.corruptionIndex}/100</span>
-              </div>` : ''}
-              ${country.politicalData.pressFreedom ? `
-              <div class="country-metric">
-                <span class="metric-label">Press Freedom</span>
-                <span class="metric-value">${country.politicalData.pressFreedom}/100</span>
-              </div>` : ''}
-            </div>
-          </div>` : ''}
-          
-          <!-- Social Indicators -->
-          ${country.socialIndicators && Object.keys(country.socialIndicators).length > 0 ? `
-          <div class="mb-6">
-            <h3 class="text-lg font-semibold mb-3">Social Indicators</h3>
-            <div class="bg-white border border-gray-200 rounded-lg p-4">
-              ${country.socialIndicators.hdi ? `
-              <div class="country-metric">
-                <span class="metric-label">Human Development Index</span>
-                <span class="metric-value">${country.socialIndicators.hdi}</span>
-              </div>` : ''}
-              ${country.socialIndicators.lifeExpectancy ? `
-              <div class="country-metric">
-                <span class="metric-label">Life Expectancy</span>
-                <span class="metric-value">${country.socialIndicators.lifeExpectancy} years</span>
-              </div>` : ''}
-              ${country.socialIndicators.literacyRate ? `
-              <div class="country-metric">
-                <span class="metric-label">Literacy Rate</span>
-                <span class="metric-value">${country.socialIndicators.literacyRate}%</span>
-              </div>` : ''}
-              ${country.socialIndicators.giniCoefficient ? `
-              <div class="country-metric">
-                <span class="metric-label">Gini Coefficient</span>
-                <span class="metric-value">${country.socialIndicators.giniCoefficient}</span>
-              </div>` : ''}
-            </div>
-          </div>` : ''}
-          
-          <!-- Trade Information -->
-          ${country.tradePartners && country.tradePartners.length > 0 ? `
-          <div class="mb-6">
-            <h3 class="text-lg font-semibold mb-3">Major Trade Partners</h3>
-            <div class="flex flex-wrap gap-2">
-              ${country.tradePartners.map(partner => 
-                `<span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">${partner}</span>`
-              ).join('')}
-            </div>
-          </div>` : ''}
-          
-          <!-- International Organizations -->
-          ${country.internationalOrganizations && country.internationalOrganizations.length > 0 ? `
-          <div class="mb-6">
-            <h3 class="text-lg font-semibold mb-3">International Organizations</h3>
-            <div class="flex flex-wrap gap-2">
-              ${country.internationalOrganizations.map(org => 
-                `<span class="px-3 py-1 bg-black text-white rounded-full text-sm">${org}</span>`
-              ).join('')}
             </div>
           </div>` : ''}
         </div>
@@ -706,62 +688,84 @@
       document.getElementById('countryContent').innerHTML = content;
     }
     
-    // Map view control functions (for future implementation)
-    function showFreedomScores() {
-      // Update map to show freedom scores
-      document.querySelectorAll('.control-button').forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
-    }
-    
-    function showGDP() {
-      // Future: Update map to show GDP data
-      document.querySelectorAll('.control-button').forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
-      alert('GDP view coming soon!');
-    }
-    
-    function showPopulation() {
-      // Future: Update map to show population data
-      document.querySelectorAll('.control-button').forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
-      alert('Population view coming soon!');
-    }
-    
-    // Load and initialize the map
-    vegaEmbed('#vis', '/themetrician/data/freedomhouse2025_map.json', {
-      width: window.innerWidth - 100,
-      height: window.innerHeight - 200,
-      actions: false
-    }).then(result => {
-      console.log('Map loaded successfully');
+    // Initialize map with proper zoom support
+    function initializeMap() {
+      const dims = getMapDimensions();
       
-      // Add click handler for country selection
-      result.view.addEventListener('click', function(event, item) {
-        if (item && item.datum && item.datum.id) {
-          console.log('Country clicked:', item.datum.id, item.datum);
-          openPanel(item.datum.id);
-        }
-      });
-      
-      // Handle window resize
-      window.addEventListener('resize', () => {
-        result.view.width(window.innerWidth - 100).height(window.innerHeight - 200).run();
-      });
-    }).catch(err => {
-      console.error('Error loading map:', err);
-      document.getElementById('vis').innerHTML = `
-        <div class="text-center py-12">
-          <p class="text-red-600">Error loading map. Please ensure freedomhouse2025_map.json is in the data folder.</p>
-        </div>
-      `;
+      // Load and modify the map spec
+      fetch('/themetrician/data/freedomhouse2025_map.json')
+        .then(response => response.json())
+        .then(spec => {
+          // Add zoom signal
+          if (!spec.signals) spec.signals = [];
+          spec.signals.push({
+            name: 'zoom',
+            value: 1,
+            on: [{
+              events: 'wheel!',
+              update: 'clamp(zoom * pow(1.002, -event.deltaY), 0.5, 5)'
+            }]
+          });
+          
+          // Update the color scale
+          if (spec.encoding && spec.encoding.color) {
+            spec.encoding.color.scale = {
+              domain: [0, 100],
+              scheme: 'redyellowgreen'
+            };
+          }
+          
+          return vegaEmbed('#vis', spec, {
+            width: dims.width,
+            height: dims.height,
+            actions: false
+          });
+        })
+        .then(result => {
+          console.log('Map loaded successfully');
+          mapView = result.view;
+          
+          // Add click handler
+          result.view.addEventListener('click', function(event, item) {
+            if (item && item.datum && item.datum.id) {
+              console.log('Country clicked:', item.datum.id);
+              openPanel(item.datum.id);
+            }
+          });
+        })
+        .catch(err => {
+          console.error('Error loading map:', err);
+          document.getElementById('vis').innerHTML = `
+            <div class="text-center py-12">
+              <p class="text-red-600">Error loading map. Please ensure freedomhouse2025_map.json is in the data folder.</p>
+            </div>
+          `;
+        });
+    }
+    
+    // Initialize map on load
+    initializeMap();
+    
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      if (mapView) {
+        const dims = getMapDimensions();
+        mapView.width(dims.width).height(dims.height).run();
+      }
     });
     
-    // Close panel when clicking outside
+    // Close panel on outside click
     document.addEventListener('click', function(event) {
       const panel = document.getElementById('sidePanel');
+      const panelContent = document.querySelector('.side-panel-content');
       const vis = document.getElementById('vis');
-      if (panel && vis && !panel.contains(event.target) && !vis.contains(event.target)) {
-        if (panel.classList.contains('open')) {
+      
+      if (panel && panelContent && vis) {
+        if (!panelContent.contains(event.target) && 
+            !vis.contains(event.target) &&
+            !event.target.closest('.metric-selector') &&
+            !event.target.closest('.zoom-controls') &&
+            panel.classList.contains('open')) {
           closePanel();
         }
       }
