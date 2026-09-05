@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Ocean's Blind Spot — TheMetrician</title>
+  <meta name="description" content="We measure the ocean's chemistry with exquisite precision and the humans who use it barely at all. The case for socio-economic ocean data — and a governance architecture to fund and share it.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dropdown-content { display:none; position:absolute; background:#fff; min-width:200px; box-shadow:0 8px 16px rgba(0,0,0,.1); z-index:50; border-top:2px solid #000; top:100%; left:0; }
+    .dropdown:hover .dropdown-content { display:block; }
+    .dropdown-content a { color:#333; padding:12px 16px; text-decoration:none; display:block; transition:all .2s; }
+    .dropdown-content a:hover { background:#f5f5f5; padding-left:20px; }
+
+    .measure { max-width: 720px; }
+    .article-body { font-size:1.1875rem; line-height:1.75; color:#1f2937; }
+    .article-body p { margin-bottom:1.4rem; }
+    .article-body p > strong { font-weight:600; color:#111827; }
+    .article-body h2 { font-size:1.9rem; font-weight:300; line-height:1.2; color:#111827; margin:3.5rem 0 1.25rem; }
+    .article-body h2 .accent { font-weight:600; }
+    .article-body h3 { font-size:1.25rem; font-weight:600; color:#111827; margin:2.25rem 0 .75rem; }
+    .article-body .lede::first-letter { float:left; font-size:4.2rem; line-height:.82; font-weight:600; padding:.35rem .7rem 0 0; color:#111827; }
+    .rule { width:3rem; height:4px; background:#000; }
+    .article-body a { color:#111827; text-decoration:underline; text-underline-offset:2px; text-decoration-thickness:1px; }
+    .article-body a:hover { color:#4b5563; }
+    .pullquote { border-left:4px solid #000; padding-left:1.5rem; margin:2.5rem 0; font-size:1.6rem; font-weight:300; line-height:1.3; color:#111827; }
+
+    figure.chart { margin:2.75rem 0; }
+    figure.chart .frame { border:1px solid #e5e7eb; background:#ffffff; padding:20px 18px; }
+    figure.chart .frame svg { width:100%; height:auto; display:block; }
+    figure.chart figcaption { margin-top:.85rem; }
+    .fig-kicker { font-size:.75rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:#6b7280; }
+    .fig-title { font-size:1rem; font-weight:600; color:#111827; margin-top:.15rem; }
+    .fig-note { font-size:.85rem; color:#6b7280; margin-top:.35rem; line-height:1.5; }
+    .fig-source { font-size:.78rem; color:#9ca3af; margin-top:.35rem; }
+
+    .keybox { background:#f9fafb; border:1px solid #e5e7eb; }
+
+    .statband { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:#e5e7eb; border:1px solid #e5e7eb; margin:2.5rem 0; }
+    .statband .cell { background:#fff; padding:1.5rem 1.25rem; }
+    .statband .num { font-size:2.7rem; font-weight:300; line-height:1; color:#111827; }
+    .statband .lbl { font-size:.9rem; color:#4b5563; margin-top:.6rem; line-height:1.45; }
+    .statband .src { font-size:.75rem; color:#9ca3af; margin-top:.5rem; }
+    @media (max-width:560px){ .statband{grid-template-columns:1fr;} }
+
+    @media (max-width:640px){ .article-body{font-size:1.09rem;} .article-body .lede::first-letter{font-size:3.4rem;} .pullquote{font-size:1.3rem;} }
+  </style>
+</head>
+<body class="bg-white text-gray-900">
+
+  <!-- Navbar (identical to index.html) -->
+  <nav class="bg-white border-b border-gray-200 fixed w-full top-0 z-40">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="/themetrician/" class="text-2xl font-bold text-black">TheMetrician</a>
+      <div class="flex space-x-8">
+        <a href="/themetrician/" class="text-gray-700 hover:text-black font-medium transition">Home</a>
+        <div class="dropdown relative">
+          <a href="#" class="text-gray-700 hover:text-black font-medium transition">Case Studies ▾</a>
+          <div class="dropdown-content">
+            <a href="/themetrician/case-studies/africa">Africa</a>
+            <a href="/themetrician/case-studies/asia">Asia</a>
+            <a href="/themetrician/case-studies/latin-america">Latin America</a>
+          </div>
+        </div>
+        <div class="dropdown relative">
+          <a href="#" class="text-gray-700 hover:text-black font-medium transition">Methods ▾</a>
+          <div class="dropdown-content">
+            <a href="/themetrician/methods/matching">Matching</a>
+            <a href="/themetrician/methods/random-forest">Random Forest</a>
+            <a href="/themetrician/methods/neural-networks">Neural Networks</a>
+            <a href="/themetrician/methods/text-analysis">Text Analysis</a>
+            <a href="/themetrician/methods/causal-inference">Causal Inference</a>
+          </div>
+        </div>
+        <div class="dropdown relative">
+          <a href="#" class="text-gray-700 hover:text-black font-medium transition">Theories ▾</a>
+          <div class="dropdown-content">
+            <a href="/themetrician/theories/microeconomics">Microeconomics</a>
+            <a href="/themetrician/theories/macroeconomics">Macroeconomics</a>
+            <a href="/themetrician/theories/trade">Trade</a>
+            <a href="/themetrician/theories/public-economics">Public Economics</a>
+            <a href="/themetrician/theories/growth-diagnostics">Growth Diagnostics</a>
+            <a href="/themetrician/theories/development">Development</a>
+          </div>
+        </div>
+        <a href="/themetrician/news" class="text-gray-700 hover:text-black font-medium transition">News</a>
+        <a href="/themetrician/visuals.html" class="text-gray-700 hover:text-black font-medium transition">Visuals</a>
+        <a href="/themetrician/about.html" class="text-gray-700 hover:text-black font-medium transition">About</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Article header -->
+  <header class="pt-32 pb-10 border-b border-gray-200">
+    <div class="container mx-auto px-6">
+      <div class="measure mx-auto">
+        <p class="text-sm font-semibold tracking-widest uppercase text-gray-500 mb-5">Comment · Ocean Governance</p>
+        <h1 class="text-4xl md:text-5xl font-light leading-tight text-gray-900 mb-6">
+          The ocean's <span class="font-semibold">blind spot</span>
+        </h1>
+        <p class="text-xl text-gray-600 font-light leading-relaxed mb-8">
+          We measure the sea's chemistry with exquisite precision and the people who use it barely at all. That
+          imbalance leaves policymakers unable to see the disputes, and the opportunities, that socio-economic ocean
+          data would reveal — and it is a market failure with a fixable shape.
+        </p>
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-gray-500 pt-6 border-t border-gray-100">
+          <span class="text-gray-900 font-medium">Ayaan Tigdikar</span>
+          <span>2025</span>
+          <span>10 min read</span>
+          <span class="hidden sm:inline text-gray-300">|</span>
+          <span>Ocean data &amp; governance</span>
+        </div>
+        <p class="text-xs text-gray-400 mt-3 italic">Adapted from a policy essay on global ocean data governance.</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Body -->
+  <main class="container mx-auto px-6">
+    <div class="measure mx-auto article-body py-12">
+
+      <!-- KEY FINDINGS -->
+      <div class="keybox p-6 md:p-8 mb-12">
+        <div class="rule mb-5"></div>
+        <h2 class="text-xl font-semibold text-gray-900 mb-4" style="margin-top:0">The argument in brief</h2>
+        <ul class="space-y-3 text-base text-gray-700" style="line-height:1.6">
+          <li>Global ocean observing systems deliver more than a million measurements a day — but of the 50-plus Essential Ocean Variables, only <strong>three track human activity</strong>. The blue economy is dramatically under-measured.</li>
+          <li>Who needs the data and who can pay for it are <strong>mismatched</strong>: the communities most affected by ocean governance can least afford to fund data, while those who can afford it have little incentive to share. That is a textbook market failure.</li>
+          <li>Access follows sensitivity — from <strong>fisheries data that should be shared widely to military data that cannot be</strong> — which is exactly why socio-economic data lags scientific data.</li>
+          <li>The fix is coordination, not new science: an <strong>IOC-UNESCO-led architecture</strong> on FAIR principles, data-for-access licensing, and a dedicated fund pointed at the $175bn gap in the world's least-funded development goal.</li>
+        </ul>
+      </div>
+
+      <!-- I. THE IMBALANCE -->
+      <p class="lede">
+        Every day, satellites, autonomous gliders and research vessels return more than a million observations of the
+        ocean. We can track its acidification, its oxygen, its warming with growing precision. What we cannot see, with
+        anything like the same clarity, is us — the fishing fleets, shipping lanes, offshore rigs, and coastal
+        communities whose activity is the actual subject of most ocean <em>policy</em>. The instruments are pointed at
+        the water. The people using it stay in the dark.
+      </p>
+
+      <p>
+        The imbalance is baked into the categories themselves. Climate science has produced more than fifty Essential
+        Ocean Variables — the standardised measurements that make forecasting and modelling possible. Of those, exactly
+        three touch human activity at all: ocean colour, ocean sound, and marine debris. Everything else about how
+        people use the sea is measured, if at all, in incompatible databases, project by project, country by country.
+      </p>
+
+      <figure class="chart">
+        <div class="frame">
+          <svg viewBox="0 0 760 300" role="img" aria-label="Of more than fifty Essential Ocean Variables, only three track human activity.">
+            <line x1="70" y1="235" x2="700" y2="235" stroke="#111827" stroke-width="1.5"/>
+            <!-- scientific -->
+            <rect x="150" y="55" width="170" height="180" fill="#111827"/>
+            <text x="235" y="45" text-anchor="middle" style="font:600 20px Inter,sans-serif;fill:#111827">50+</text>
+            <text x="235" y="258" text-anchor="middle" style="font:600 15px Inter,sans-serif;fill:#111827">Physical, chemical, biological</text>
+            <text x="235" y="278" text-anchor="middle" style="font:400 13px Inter,sans-serif;fill:#6b7280">Essential Ocean Variables</text>
+            <!-- human -->
+            <rect x="440" y="224" width="170" height="11" fill="#9ca3af"/>
+            <text x="525" y="214" text-anchor="middle" style="font:600 20px Inter,sans-serif;fill:#111827">3</text>
+            <text x="525" y="258" text-anchor="middle" style="font:600 15px Inter,sans-serif;fill:#111827">Human-activity variables</text>
+            <text x="525" y="278" text-anchor="middle" style="font:400 13px Inter,sans-serif;fill:#6b7280">ocean colour · sound · debris</text>
+          </svg>
+        </div>
+        <figcaption>
+          <span class="fig-kicker">Figure 1</span>
+          <div class="fig-title">Fifty ways to measure the water, three to measure its users</div>
+          <div class="fig-note">Of the 50-plus Essential Ocean Variables that structure global ocean observation, only three relate to human activity.</div>
+          <div class="fig-source">Source: Tanhua et al. (2019); IOC-UNESCO.</div>
+        </figcaption>
+      </figure>
+
+      <p>
+        This is not for want of infrastructure. Physical oceanography leans on roughly 4,000 Argo floats returning
+        13,000 temperature and salinity profiles a month, with several hundred more measuring oxygen and pH. But that
+        apparatus was built as an extension of national weather and defence systems, not as a global public good, and
+        it was built largely by the United States and the European Union. When money flows — $101.5m to NOAA under the
+        Inflation Reduction Act, €7.5m a year to Europe's EMODnet — it flows to the science. The blue economy, and the
+        people in it, are left to fragmented, project-specific records that never add up to a picture a policymaker
+        can use.
+      </p>
+
+      <div class="statband">
+        <div class="cell">
+          <div class="num">1m+</div>
+          <div class="lbl">ocean observations returned every day by satellites, autonomous vehicles and research vessels.</div>
+          <div class="src">IOC-UNESCO (2024)</div>
+        </div>
+        <div class="cell">
+          <div class="num">~60%</div>
+          <div class="lbl">of the ocean surface lies beyond any nation's jurisdiction — the "common heritage of humankind" under UNCLOS.</div>
+          <div class="src">United Nations (1982)</div>
+        </div>
+      </div>
+
+      <!-- II. MARKET FAILURE -->
+      <h2>Who needs the data, and who can <span class="accent">pay for it</span></h2>
+      <p>
+        To see why the gap persists, map the actors on two axes: how much they are willing to pay for ocean data, and
+        how much they matter to the decisions the data should inform. The picture that emerges is not reassuring.
+      </p>
+
+      <figure class="chart">
+        <div class="frame">
+          <svg viewBox="0 0 720 560" role="img" aria-label="A two-by-two of ocean-data stakeholders by willingness to pay and importance to decision-making.">
+            <!-- axis titles -->
+            <text x="410" y="536" text-anchor="middle" style="font:600 13px Inter,sans-serif;fill:#111827">Willingness to pay  →</text>
+            <text x="34" y="290" text-anchor="middle" transform="rotate(-90 34 290)" style="font:600 13px Inter,sans-serif;fill:#111827">Importance to decision-making  →</text>
+            <text x="175" y="520" text-anchor="middle" style="font:400 11px Inter,sans-serif;fill:#9ca3af">LOW</text>
+            <text x="645" y="520" text-anchor="middle" style="font:400 11px Inter,sans-serif;fill:#9ca3af">HIGH</text>
+            <text x="70" y="470" text-anchor="middle" style="font:400 11px Inter,sans-serif;fill:#9ca3af">LOW</text>
+            <text x="70" y="80" text-anchor="middle" style="font:400 11px Inter,sans-serif;fill:#9ca3af">HIGH</text>
+
+            <!-- cells -->
+            <!-- TL: low WTP, high importance (highlight) -->
+            <rect x="150" y="60" width="255" height="205" fill="#f3f4f6" stroke="#111827" stroke-width="1"/>
+            <!-- TR: high WTP, high importance -->
+            <rect x="405" y="60" width="255" height="205" fill="#ffffff" stroke="#111827" stroke-width="1"/>
+            <!-- BL: low WTP, low importance -->
+            <rect x="150" y="265" width="255" height="205" fill="#ffffff" stroke="#111827" stroke-width="1"/>
+            <!-- BR: high WTP, low importance -->
+            <rect x="405" y="265" width="255" height="205" fill="#ffffff" stroke="#111827" stroke-width="1"/>
+
+            <!-- TL text -->
+            <text x="277" y="120" text-anchor="middle" style="font:600 13px Inter,sans-serif;fill:#111827">Fishing &amp; coastal communities,</text>
+            <text x="277" y="140" text-anchor="middle" style="font:600 13px Inter,sans-serif;fill:#111827">indigenous groups,</text>
+            <text x="277" y="160" text-anchor="middle" style="font:600 13px Inter,sans-serif;fill:#111827">developing nations</text>
+            <text x="277" y="196" text-anchor="middle" style="font:italic 12px Inter,sans-serif;fill:#6b7280">most affected —</text>
+            <text x="277" y="213" text-anchor="middle" style="font:italic 12px Inter,sans-serif;fill:#6b7280">least able to pay</text>
+
+            <!-- TR text -->
+            <text x="532" y="120" text-anchor="middle" style="font:600 13px Inter,sans-serif;fill:#111827">National governments;</text>
+            <text x="532" y="140" text-anchor="middle" style="font:600 13px Inter,sans-serif;fill:#111827">large corporations —</text>
+            <text x="532" y="160" text-anchor="middle" style="font:600 13px Inter,sans-serif;fill:#111827">shipping, energy, insurance</text>
+            <text x="532" y="196" text-anchor="middle" style="font:italic 12px Inter,sans-serif;fill:#6b7280">able to pay —</text>
+            <text x="532" y="213" text-anchor="middle" style="font:italic 12px Inter,sans-serif;fill:#6b7280">may not share</text>
+
+            <!-- BL text -->
+            <text x="277" y="360" text-anchor="middle" style="font:600 13px Inter,sans-serif;fill:#9ca3af">Neither motivated nor</text>
+            <text x="277" y="380" text-anchor="middle" style="font:600 13px Inter,sans-serif;fill:#9ca3af">needed for governance</text>
+
+            <!-- BR text -->
+            <text x="532" y="350" text-anchor="middle" style="font:600 13px Inter,sans-serif;fill:#6b7280">Commercially valuable but</text>
+            <text x="532" y="370" text-anchor="middle" style="font:600 13px Inter,sans-serif;fill:#6b7280">governance-irrelevant</text>
+            <text x="532" y="390" text-anchor="middle" style="font:600 13px Inter,sans-serif;fill:#6b7280">private data</text>
+          </svg>
+        </div>
+        <figcaption>
+          <span class="fig-kicker">Figure 2</span>
+          <div class="fig-title">The mismatch at the heart of ocean data</div>
+          <div class="fig-note">The shaded quadrant is the problem: the stakeholders who matter most to ocean governance are the least able to fund the data — while those who can pay have reason to hold it back.</div>
+          <div class="fig-source">Framework after World Bank (2022).</div>
+        </figcaption>
+      </figure>
+
+      <p>
+        Two facts fall out of the grid. Those most affected by ocean governance — fishing and coastal communities,
+        indigenous peoples, developing-nation governments — have the least capacity to fund data collection, even
+        though their generations of traditional ecological knowledge about fish migration and ecosystem health are
+        things no satellite can replicate. And those with the deepest pockets — governments and corporations — often
+        have the strongest reasons <em>not</em> to share, because the data reveals something competitive or sensitive.
+        Need and capacity sit in different corners of the box. That is the market failure, and it is the standard
+        justification for public intervention.
+      </p>
+
+      <div class="pullquote">
+        The people who most need ocean data cannot pay for it; the people who can pay have every reason to keep it.
+        Between those two corners sits a market failure.
+      </div>
+
+      <!-- III. THE SPECTRUM -->
+      <h2>From fisheries to <span class="accent">warships</span></h2>
+      <p>
+        Not all ocean data is equally shareable, and that is the second reason the socio-economic side lags. Picture a
+        spectrum of sensitivity. At one end sits data that everyone gains from pooling; at the other, data no state
+        will ever hand over.
+      </p>
+
+      <figure class="chart">
+        <div class="frame">
+          <svg viewBox="0 0 760 180" role="img" aria-label="A spectrum of ocean data from shareable fisheries data to unshareable military data.">
+            <defs>
+              <linearGradient id="shareGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#e5e7eb"/>
+                <stop offset="1" stop-color="#111827"/>
+              </linearGradient>
+            </defs>
+            <text x="88" y="44" style="font:600 12px Inter,sans-serif;fill:#6b7280;letter-spacing:.05em">SHARE BROADLY</text>
+            <text x="672" y="44" text-anchor="end" style="font:600 12px Inter,sans-serif;fill:#111827;letter-spacing:.05em">CANNOT SHARE</text>
+            <rect x="88" y="58" width="584" height="26" rx="3" fill="url(#shareGrad)"/>
+            <!-- ticks -->
+            <line x1="170" y1="84" x2="170" y2="104" stroke="#9ca3af" stroke-width="1.25"/>
+            <line x1="380" y1="84" x2="380" y2="104" stroke="#9ca3af" stroke-width="1.25"/>
+            <line x1="600" y1="84" x2="600" y2="104" stroke="#9ca3af" stroke-width="1.25"/>
+            <text x="170" y="124" text-anchor="middle" style="font:600 13px Inter,sans-serif;fill:#111827">Fisheries stocks</text>
+            <text x="170" y="142" text-anchor="middle" style="font:400 12px Inter,sans-serif;fill:#6b7280">conflict prevention</text>
+            <text x="380" y="124" text-anchor="middle" style="font:600 13px Inter,sans-serif;fill:#111827">Seabed minerals</text>
+            <text x="380" y="142" text-anchor="middle" style="font:400 12px Inter,sans-serif;fill:#6b7280">contested, but public interest</text>
+            <text x="600" y="124" text-anchor="middle" style="font:600 13px Inter,sans-serif;fill:#111827">Military positions</text>
+            <text x="600" y="142" text-anchor="middle" style="font:400 12px Inter,sans-serif;fill:#6b7280">national security</text>
+          </svg>
+        </div>
+        <figcaption>
+          <span class="fig-kicker">Figure 3</span>
+          <div class="fig-title">Access follows sensitivity</div>
+          <div class="fig-note">Socio-economic ocean data spans a spectrum. The governance challenge is to share the left end aggressively while accepting that the right end never will be.</div>
+          <div class="fig-source">Author's schematic, after Sumaila et al. (2021).</div>
+        </figcaption>
+      </figure>
+
+      <p>
+        The left end is not hypothetical. Fisheries disputes — India and Sri Lanka in the Palk Bay, the UK and France
+        after Brexit, the Philippines and China in the South China Sea — are in part information failures. Had officials
+        shared systematic data on falling fish stocks, they could have seen the tensions coming and defused them before
+        they escalated. In the middle sits deep-sea mining, thrown open by a 2025 US executive order and opposed by 32
+        countries calling for a moratorium: here the argument is that data on mineral deposits <em>must</em> be shared
+        widely, precisely to prevent unilateral grabs of a common resource. At the right end are military vessel
+        positions — more than 45 US freedom-of-navigation operations in the Indo-Pacific since 2017 — which cannot, and
+        arguably should not, be shared at all. The lesson is that a workable system shares what it can and does not
+        pretend the sensitive end away.
+      </p>
+
+      <!-- IV. WHAT WORKS -->
+      <h2>Proof that it <span class="accent">can work</span></h2>
+      <p>
+        Scepticism about multilateral data-sharing is fair — until you look at the Sulu-Sulawesi seas. In 2017,
+        Indonesia, Malaysia and the Philippines, facing a shared plague of piracy, kidnapping and trafficking, launched
+        INDOMALPHI: coordinated patrols, joint command posts, and pooled intelligence. Piracy incidents in the patrol
+        area fell from 99 in 2017 to zero by the first half of 2023.
+      </p>
+
+      <div class="statband">
+        <div class="cell">
+          <div class="num">99 &rarr; 0</div>
+          <div class="lbl">piracy incidents in the INDOMALPHI patrol area, 2017 to the first half of 2023.</div>
+          <div class="src">Storey (2018); Indo-Pacific Defence Forum (2023)</div>
+        </div>
+        <div class="cell">
+          <div class="num">$175bn</div>
+          <div class="lbl">the annual funding gap for SDG&nbsp;14 — life below water — the least-funded of all the development goals.</div>
+          <div class="src">UNOPS (2025); Johansen &amp; Vestvik (2020)</div>
+        </div>
+      </div>
+
+      <p>
+        What made it hold, even without a sanctions mechanism, is instructive: the three states faced identical threats
+        and gained equally, technical expertise was built into the arrangement, compliance stayed high, and the politics
+        aligned despite genuine territorial rivalries. Shared problem, shared benefit, credible expertise — that is the
+        recipe, and it generalises far beyond piracy.
+      </p>
+
+      <!-- V. ARCHITECTURE -->
+      <h2>An architecture, not more <span class="accent">instruments</span></h2>
+      <p>
+        The missing ingredient is coordination, not new technology. Four problems need solving at once: competing
+        incentives across governments and firms; infrastructure costs beyond any single nation; the unfairness of data
+        that is unavailable to those it most concerns, over an ocean that is 60% beyond any national jurisdiction; and
+        the absence of any body to standardise human-activity data. One institution is already shaped for the job.
+        IOC-UNESCO runs a network of more than 100 National Oceanographic Data Centres and a new multi-year strategy for
+        ocean planning — the architecture is there to extend the discipline that produced the Essential Ocean Variables
+        to the human side of the ledger.
+      </p>
+
+      <p>
+        The moving parts are unglamorous but well understood. Adopt <strong>FAIR principles</strong> — findable,
+        accessible, interoperable, reusable — as the common technical standard rather than rigid compliance rules. Use
+        <strong>data-for-access licensing</strong>: firms seeking to operate in a nation's waters contribute their data
+        as a condition of the licence, turning regulatory leverage into a public good. Borrow a light-touch dispute
+        forum on the model of the World Bank's ICSID, whose value is less enforcement than a common, credible reading of
+        the facts. And pay for it through a dedicated <strong>Ocean Data Fund</strong>, financed by levies on
+        ocean-dependent industries and pointed squarely at the $175bn gap in SDG 14. That multilateral funding is
+        achievable is not a hope but a fact: the Global Ocean Observing System is already backed jointly by the US,
+        China, the EU, Japan, India and others.
+      </p>
+
+      <p>
+        South Africa shows the payoff at national scale. Its OCIMS platform, built through a public-private partnership
+        under Operation Phakisa, folds vessel tracking, aquaculture monitoring and spill detection into one system. A
+        2015 red tide cost the country's lobster industry $6.3m; with the monitoring tool now in place, authorities can
+        act before the next one lands. Integrated data turns disasters into events you see coming.
+      </p>
+
+      <!-- VI. PAYING FOR IT -->
+      <h2>Paying for it — and <span class="accent">framing it</span></h2>
+      <p>
+        Some of the cheapest gains come from riding infrastructure that already exists. Submarine telecom cables can
+        carry smart sensors along whole ocean basins; offshore wind platforms can host monitoring stations; commercial
+        cargo ships can carry standard sensor packages that turn routine voyages into data-collection missions. The
+        technology is not the constraint.
+      </p>
+
+      <p>
+        The real constraint is political: ocean-data infrastructure competes with housing and healthcare for budgets,
+        and "ocean data" alone rarely wins that fight. The way through is framing — attaching the same monitoring to
+        priorities that command money. Counter-trafficking and border security, climate compliance and marine carbon
+        sinks, energy security and cable resilience, and the management of dangerous migration routes across the
+        Mediterranean: each is a funding stream that a bare appeal to data cannot tap, and each is served by the very
+        same sensors.
+      </p>
+
+      <!-- CONCLUSION -->
+      <h2>The upshot</h2>
+      <p>
+        Ocean data sits at an inflexion point. The instruments for measuring the sea's physics exist and keep
+        improving; the equivalent effort on human activity barely exists at all. Without it, policymakers cannot see
+        conflicts coming, cannot govern shared resources fairly, and cannot prevent damage they will later pay to
+        repair. INDOMALPHI shows that collaboration works when the problem is clear and the gains are shared; the
+        technology to scale it is already in the water; and the political framings that unlock the money are lying in
+        plain sight. What is missing is the decision to point the apparatus, finally, at ourselves.
+      </p>
+
+      <p class="text-sm text-gray-500 mt-12 pt-6 border-t border-gray-200">
+        This article adapts a policy essay on global ocean data governance. Figure 1 visualises the composition of the
+        Essential Ocean Variables; Figures 2 and 3 are schematics of the argument. Key sources: IOC-UNESCO (2024);
+        Tanhua et al. (2019); World Bank (2022); Sumaila et al. (2021); Storey (2018); UNOPS (2025).
+      </p>
+
+    </div>
+  </main>
+
+  <!-- Footer (identical to index.html) -->
+  <footer class="bg-white py-12 border-t border-gray-200">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <h4 class="font-semibold mb-4">Research</h4>
+          <ul class="space-y-2 text-gray-600">
+            <li><a href="/themetrician/research/case-studies" class="hover:text-black">Case Studies</a></li>
+            <li><a href="/themetrician/research/publications" class="hover:text-black">Publications</a></li>
+            <li><a href="/themetrician/research/working-papers" class="hover:text-black">Working Papers</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Methods</h4>
+          <ul class="space-y-2 text-gray-600">
+            <li><a href="/themetrician/methods/econometrics" class="hover:text-black">Econometrics</a></li>
+            <li><a href="/themetrician/methods/data-science" class="hover:text-black">Data Science</a></li>
+            <li><a href="/themetrician/methods/visualization" class="hover:text-black">Visualization</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">About</h4>
+          <ul class="space-y-2 text-gray-600">
+            <li><a href="/themetrician/about#mission" class="hover:text-black">Mission</a></li>
+            <li><a href="/themetrician/about#team" class="hover:text-black">Team</a></li>
+            <li><a href="/themetrician/contact" class="hover:text-black">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Connect</h4>
+          <ul class="space-y-2 text-gray-600">
+            <li><a href="/themetrician/newsletter" class="hover:text-black">Newsletter</a></li>
+            <li><a href="https://twitter.com/themetrician" class="hover:text-black">Twitter</a></li>
+            <li><a href="https://linkedin.com/company/themetrician" class="hover:text-black">LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pt-8 border-t border-gray-200 text-center text-gray-600">
+        <p>&copy; 2025 TheMetrician. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
