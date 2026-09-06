@@ -1,0 +1,150 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Missing the Tube, Finding the Bike &mdash; TheMetrician</title><meta name="description" content="London Tube strikes push 36% more riders onto the city's bikes. A causal event study and a machine-learning classifier trace how many stay.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dropdown-content { display:none; position:absolute; background:#fff; min-width:200px; box-shadow:0 8px 16px rgba(0,0,0,.1); z-index:50; border-top:2px solid #000; top:100%; left:0; }
+    .dropdown:hover .dropdown-content { display:block; }
+    .dropdown-content a { color:#333; padding:12px 16px; text-decoration:none; display:block; transition:all .2s; }
+    .dropdown-content a:hover { background:#f5f5f5; padding-left:20px; }
+    .measure { max-width: 720px; }
+    .article-body { font-size:1.1875rem; line-height:1.75; color:#1f2937; }
+    .article-body p { margin-bottom:1.4rem; }
+    .article-body p > strong { font-weight:600; color:#111827; }
+    .article-body h2 { font-size:1.9rem; font-weight:300; line-height:1.2; color:#111827; margin:3.5rem 0 1.25rem; }
+    .article-body h2 .accent { font-weight:600; }
+    .article-body h3 { font-size:1.25rem; font-weight:600; color:#111827; margin:2.25rem 0 .75rem; }
+    .article-body .lede::first-letter { float:left; font-size:4.2rem; line-height:.82; font-weight:600; padding:.35rem .7rem 0 0; color:#111827; }
+    .rule { width:3rem; height:4px; background:#000; }
+    .article-body a { color:#111827; text-decoration:underline; text-underline-offset:2px; text-decoration-thickness:1px; }
+    .pullquote { border-left:4px solid #000; padding-left:1.5rem; margin:2.5rem 0; font-size:1.6rem; font-weight:300; line-height:1.3; color:#111827; }
+    figure.chart { margin:2.75rem 0; }
+    figure.chart .frame { border:1px solid #e5e7eb; background:#ffffff; padding:20px 18px; }
+    figure.chart .frame svg { width:100%; height:auto; display:block; }
+    figure.chart figcaption { margin-top:.85rem; }
+    .fig-kicker { font-size:.75rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:#6b7280; }
+    .fig-title { font-size:1rem; font-weight:600; color:#111827; margin-top:.15rem; }
+    .fig-note { font-size:.85rem; color:#6b7280; margin-top:.35rem; line-height:1.5; }
+    .fig-source { font-size:.78rem; color:#9ca3af; margin-top:.35rem; }
+    .keybox { background:#f9fafb; border:1px solid #e5e7eb; }
+    .statband { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:#e5e7eb; border:1px solid #e5e7eb; margin:2.5rem 0; }
+    .statband .cell { background:#fff; padding:1.5rem 1.25rem; }
+    .statband .num { font-size:2.7rem; font-weight:300; line-height:1; color:#111827; }
+    .statband .lbl { font-size:.9rem; color:#4b5563; margin-top:.6rem; line-height:1.45; }
+    .statband .src { font-size:.75rem; color:#9ca3af; margin-top:.5rem; }
+    @media (max-width:560px){ .statband{grid-template-columns:1fr;} }
+    @media (max-width:640px){ .article-body{font-size:1.09rem;} .article-body .lede::first-letter{font-size:3.4rem;} .pullquote{font-size:1.3rem;} }
+</style></head><body class="bg-white text-gray-900">
+    <nav class="bg-white border-b border-gray-200 fixed w-full top-0 z-40">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="/themetrician/" class="flex items-center gap-3">
+        <img src="/themetrician/themetrician-logo.png" alt="TheMetrician logo" class="h-10 w-auto">
+        <span class="text-2xl font-bold text-black">TheMetrician</span>
+      </a>
+      <div class="flex items-center space-x-8">
+        <a href="/themetrician/" class="text-gray-700 hover:text-black font-medium transition">Home</a>
+        <div class="dropdown relative">
+          <a href="/themetrician/#investigations" class="text-gray-700 hover:text-black font-medium transition">Investigations &#9662;</a>
+          <div class="dropdown-content" style="min-width:290px"><div style="padding:9px 16px 3px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;font-weight:600">Macro</div><a href="/themetrician/articles/beyond-the-resource-curse/">Beyond the resource curse</a><a href="/themetrician/articles/vietnam-growth-diagnostics/">Vietnam has outgrown its roads</a><a href="/themetrician/articles/ethiopia-land-tenure/">The tax on leaving</a><div style="padding:9px 16px 3px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;font-weight:600">Micro</div><a href="/themetrician/articles/germany-health-insurance/">When the healthy opt out</a><a href="/themetrician/articles/tube-strikes-cycling/">Missing the tube, finding the bike</a><div style="padding:9px 16px 3px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;font-weight:600">Data science</div><a href="/themetrician/articles/fake-news-detection/">Style over substance</a><div style="padding:9px 16px 3px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;font-weight:600">Comment</div><a href="/themetrician/articles/ocean-data/">The ocean's blind spot</a></div>
+        </div>
+        <a href="/themetrician/visuals.html" class="text-gray-700 hover:text-black font-medium transition">Map</a>
+        <a href="/themetrician/about.html" class="text-gray-700 hover:text-black font-medium transition">About</a>
+      </div>
+    </div>
+  </nav>  <header class="pt-32 pb-10 border-b border-gray-200"><div class="container mx-auto px-6"><div class="measure mx-auto">
+        <p class="text-sm font-semibold tracking-widest uppercase text-gray-500 mb-5">Micro Studies &middot; Transport</p>
+        <h1 class="text-4xl md:text-5xl font-light leading-tight text-gray-900 mb-6">Missing the tube, finding the <span class="font-semibold">bike</span></h1>
+        <p class="text-xl text-gray-600 font-light leading-relaxed mb-8">Every London Tube strike is an experiment no commuter volunteered for. Using 4.7 million trips, two methods agree: strikes send about a third more riders to the city's bikes &mdash; and a small habit lingers for a week.</p>
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-gray-500 pt-6 border-t border-gray-100"><span class="text-gray-900 font-medium">Ayaan Tigdikar</span><span>2026</span><span>10 min read</span><span class="hidden sm:inline text-gray-300">|</span><span>Methods: event study &middot; machine learning</span></div>
+        <p class="text-xs text-gray-400 mt-3 italic">Adapted from an LSE group project (ST446), 2026.</p>
+      </div></div></header>
+  <main class="container mx-auto px-6"><div class="measure mx-auto article-body py-12">
+      <div class="keybox p-6 md:p-8 mb-12"><div class="rule mb-5"></div>
+        <h2 class="text-xl font-semibold text-gray-900 mb-4" style="margin-top:0">What the analysis finds</h2>
+        <ul class="space-y-3 text-base text-gray-700" style="line-height:1.6"><li>Across 4.7 million morning-peak trips, Tube strikes raise cycle-hire demand by about <strong>36% on the strike day</strong> &mdash; large and precisely estimated.</li><li>Cycling stays <strong>jointly elevated for up to ten working days</strong>, but the day-to-day effects are noisy and driven by longer, warmer-month strikes.</li><li>A Random Forest using cycling behaviour alone (AUC 0.73) sees <strong>P(strike) jump from 0.34 to 0.54</strong>, then fade to 0.39&ndash;0.41 &mdash; a modest, short-lived habit.</li><li>The signature of a strike day is <strong>longer trips and more varied destinations</strong>, not simply higher volume. Disruption <em>length</em> is what turns a trial into a habit.</li></ul></div>
+      <p class="lede">The London Underground carries over three million people on an ordinary day, and when its
+        drivers walk out, all of them need another way to work. A natural experiment hides in those walkouts: each
+        strike is a sudden, involuntary nudge that forces a slice of commuters to try something new. This study asks
+        what happens when that something is a bike &mdash; and whether the habit sticks.</p>
+      <p>The setting is ideal because the economics is about <em>forced experimentation</em>. Commuters settle into
+        routines that are good enough and stop searching, even when a better option exists, because the effort of
+        trying is not worth it. A strike removes the choice: the Tube is simply gone, and some riders discover that
+        London's cycle-hire scheme suits them. The question is whether they revert the moment service resumes, or keep
+        pedalling. To answer it we build a station-day panel of roughly <strong>4.7 million</strong> morning-peak
+        cycle-hire trips from 2022 to 2025 and bring two complementary tools to bear: a causal event study and a
+        machine-learning classifier.</p>
+      <div class="statband"><div class="cell"><div class="num">4.7m</div><div class="lbl">morning-peak cycle-hire trips, 2022&ndash;2025, aggregated to a station-day panel.</div><div class="src">Transport for London</div></div><div class="cell"><div class="num">16</div><div class="lbl">full or partial Tube disruptions from labour disputes since 2010 &mdash; each a forced experiment.</div><div class="src">Transport for London</div></div></div>
+      <h2>What the strikes <span class="accent">do</span></h2>
+      <p>The first tool is a Negative Binomial event study: it compares cycling at each station in the days around a
+        strike against that station's own baseline, absorbing weather, day-of-week and seasonal patterns. The design
+        earns its keep in the flat pre-period &mdash; the days before a strike show no drift, which is what makes the
+        strike-day jump interpretable as cause rather than coincidence.</p>
+      <figure class="chart"><div class="frame"><svg viewBox="0 0 760 390" role="img" xmlns="http://www.w3.org/2000/svg"><line x1="64" y1="313.3" x2="744" y2="313.3" stroke="#eef0f2" stroke-width="1"/><text x="56" y="317.3" text-anchor="end" style="font:400 11px Inter,system-ui,sans-serif;fill:#9ca3af">-20%</text><line x1="64" y1="271.9" x2="744" y2="271.9" stroke="#eef0f2" stroke-width="1"/><text x="56" y="275.9" text-anchor="end" style="font:400 11px Inter,system-ui,sans-serif;fill:#9ca3af">-10%</text><line x1="64" y1="230.4" x2="744" y2="230.4" stroke="#111827" stroke-width="1.1"/><text x="56" y="234.4" text-anchor="end" style="font:400 11px Inter,system-ui,sans-serif;fill:#9ca3af">0%</text><line x1="64" y1="189.0" x2="744" y2="189.0" stroke="#eef0f2" stroke-width="1"/><text x="56" y="193.0" text-anchor="end" style="font:400 11px Inter,system-ui,sans-serif;fill:#9ca3af">10%</text><line x1="64" y1="147.6" x2="744" y2="147.6" stroke="#eef0f2" stroke-width="1"/><text x="56" y="151.6" text-anchor="end" style="font:400 11px Inter,system-ui,sans-serif;fill:#9ca3af">20%</text><line x1="64" y1="106.1" x2="744" y2="106.1" stroke="#eef0f2" stroke-width="1"/><text x="56" y="110.1" text-anchor="end" style="font:400 11px Inter,system-ui,sans-serif;fill:#9ca3af">30%</text><line x1="64" y1="64.7" x2="744" y2="64.7" stroke="#eef0f2" stroke-width="1"/><text x="56" y="68.7" text-anchor="end" style="font:400 11px Inter,system-ui,sans-serif;fill:#9ca3af">40%</text><line x1="290.7" y1="44" x2="290.7" y2="334" stroke="#9ca3af" stroke-width="1" stroke-dasharray="4 3"/><text x="290.7" y="38.0" text-anchor="middle" style="font:600 11px Inter,system-ui,sans-serif;fill:#111827">strike day</text><text x="64.0" y="354.0" text-anchor="middle" style="font:400 11px Inter,system-ui,sans-serif;fill:#6b7280">-5</text><text x="245.3" y="354.0" text-anchor="middle" style="font:400 11px Inter,system-ui,sans-serif;fill:#6b7280">-1</text><text x="290.7" y="354.0" text-anchor="middle" style="font:400 11px Inter,system-ui,sans-serif;fill:#6b7280">+0</text><text x="336.0" y="354.0" text-anchor="middle" style="font:400 11px Inter,system-ui,sans-serif;fill:#6b7280">+1</text><text x="517.3" y="354.0" text-anchor="middle" style="font:400 11px Inter,system-ui,sans-serif;fill:#6b7280">+5</text><text x="744.0" y="354.0" text-anchor="middle" style="font:400 11px Inter,system-ui,sans-serif;fill:#6b7280">+10</text><line x1="64.0" y1="299.6" x2="64.0" y2="148.0" stroke="#9ca3af" stroke-width="1.3"/><circle cx="64.0" cy="223.8" r="4" fill="#6b7280"/><line x1="109.3" y1="290.1" x2="109.3" y2="155.4" stroke="#9ca3af" stroke-width="1.3"/><circle cx="109.3" cy="223.0" r="4" fill="#6b7280"/><line x1="154.7" y1="313.3" x2="154.7" y2="179.1" stroke="#9ca3af" stroke-width="1.3"/><circle cx="154.7" cy="246.2" r="4" fill="#6b7280"/><line x1="200.0" y1="252.8" x2="200.0" y2="176.6" stroke="#9ca3af" stroke-width="1.3"/><circle cx="200.0" cy="214.7" r="4" fill="#6b7280"/><line x1="245.3" y1="269.4" x2="245.3" y2="181.1" stroke="#9ca3af" stroke-width="1.3"/><circle cx="245.3" cy="225.5" r="4" fill="#6b7280"/><line x1="290.7" y1="141.4" x2="290.7" y2="64.3" stroke="#9ca3af" stroke-width="1.3"/><circle cx="290.7" cy="102.8" r="5.5" fill="#111827"/><text x="300.7" y="96.8" style="font:700 13px Inter,system-ui,sans-serif;fill:#111827">+36%</text><line x1="336.0" y1="211.8" x2="336.0" y2="147.2" stroke="#9ca3af" stroke-width="1.3"/><circle cx="336.0" cy="179.5" r="4" fill="#1f2937"/><line x1="381.3" y1="278.9" x2="381.3" y2="161.2" stroke="#9ca3af" stroke-width="1.3"/><circle cx="381.3" cy="220.1" r="4" fill="#1f2937"/><line x1="426.7" y1="273.9" x2="426.7" y2="144.7" stroke="#9ca3af" stroke-width="1.3"/><circle cx="426.7" cy="209.3" r="4" fill="#1f2937"/><line x1="472.0" y1="305.0" x2="472.0" y2="177.8" stroke="#9ca3af" stroke-width="1.3"/><circle cx="472.0" cy="241.2" r="4" fill="#1f2937"/><line x1="517.3" y1="212.2" x2="517.3" y2="156.3" stroke="#9ca3af" stroke-width="1.3"/><circle cx="517.3" cy="184.4" r="4" fill="#1f2937"/><line x1="562.7" y1="224.6" x2="562.7" y2="174.1" stroke="#9ca3af" stroke-width="1.3"/><circle cx="562.7" cy="199.4" r="4" fill="#1f2937"/><line x1="608.0" y1="218.8" x2="608.0" y2="143.4" stroke="#9ca3af" stroke-width="1.3"/><circle cx="608.0" cy="181.1" r="4" fill="#1f2937"/><line x1="653.3" y1="273.9" x2="653.3" y2="149.2" stroke="#9ca3af" stroke-width="1.3"/><circle cx="653.3" cy="211.4" r="4" fill="#1f2937"/><line x1="698.7" y1="225.0" x2="698.7" y2="155.4" stroke="#9ca3af" stroke-width="1.3"/><circle cx="698.7" cy="190.2" r="4" fill="#1f2937"/><line x1="744.0" y1="232.9" x2="744.0" y2="161.7" stroke="#9ca3af" stroke-width="1.3"/><circle cx="744.0" cy="197.3" r="4" fill="#1f2937"/><text x="404.0" y="382" text-anchor="middle" style="font:400 12px Inter,system-ui,sans-serif;fill:#6b7280">working days relative to strike</text><text x="15" y="189.0" text-anchor="middle" transform="rotate(-90 15 189.0)" style="font:400 12px Inter,system-ui,sans-serif;fill:#6b7280">log-IRR vs pre-strike baseline</text></svg></div>
+        <figcaption><span class="fig-kicker">Figure 1</span><span style="font-size:.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#111827;border:1px solid #d1d5db;border-radius:999px;padding:2px 9px;margin-left:.5rem">Hover</span><div class="fig-title">A sharp spike, then a noisy tail</div><div class="fig-note">Estimated effect of Tube strikes on cycling demand by working day, relative to the pre-strike baseline (log incident-rate ratio, with 95% confidence intervals). The pre-period is flat; the strike day jumps ~36%.</div><div class="fig-source">Source: author's calculations; station-clustered standard errors.</div></figcaption></figure>
+      <p>On the strike day itself, cycling demand rises by about <strong>36%</strong> &mdash; large, precisely
+        estimated, and exactly what modal substitution predicts. Afterwards the picture is messier: demand stays
+        elevated for up to ten working days and is jointly significant across the post-period, but the day-to-day
+        estimates are imprecise, and a leave-one-out check shows the lasting bump is carried by particular strikes
+        (the longer ones, and those in warm months) rather than being a uniform law. The habit is real but modest.</p>
+      <div class="pullquote">A strike is a free trial no commuter asked for. About a third more of them take the bike
+        that day &mdash; and a few never quite give it back.</div>
+      <h2>A second opinion from <span class="accent">machine learning</span></h2>
+      <p>The event study assumes a shape; the second tool does not. We train a Random Forest to recognise a strike day
+        purely from cycling behaviour &mdash; trip durations, how many distinct destinations riders reach, distance to
+        the nearest Tube station &mdash; with no calendar or disruption information at all. It then scores ordinary and
+        post-strike days by how &ldquo;strike-like&rdquo; the cycling looks. Its modest skill (an AUC of 0.73) is
+        itself informative: strike-day cycling has a detectable signature, but not an overwhelming one.</p>
+      <figure class="chart"><div class="frame"><svg viewBox="0 0 760 360" role="img" xmlns="http://www.w3.org/2000/svg"><line x1="64" y1="304.0" x2="744" y2="304.0" stroke="#eef0f2"/><text x="56" y="308.0" text-anchor="end" style="font:400 11px Inter,system-ui,sans-serif;fill:#9ca3af">0.0</text><line x1="64" y1="217.3" x2="744" y2="217.3" stroke="#eef0f2"/><text x="56" y="221.3" text-anchor="end" style="font:400 11px Inter,system-ui,sans-serif;fill:#9ca3af">0.2</text><line x1="64" y1="130.7" x2="744" y2="130.7" stroke="#eef0f2"/><text x="56" y="134.7" text-anchor="end" style="font:400 11px Inter,system-ui,sans-serif;fill:#9ca3af">0.4</text><line x1="64" y1="44.0" x2="744" y2="44.0" stroke="#eef0f2"/><text x="56" y="48.0" text-anchor="end" style="font:400 11px Inter,system-ui,sans-serif;fill:#9ca3af">0.6</text><line x1="64" y1="304" x2="744" y2="304" stroke="#111827" stroke-width="1.25"/><line x1="64" y1="156.7" x2="744" y2="156.7" stroke="#c23a3a" stroke-width="1.2" stroke-dasharray="5 3"/><text x="70" y="20" style="font:600 11px Inter,system-ui,sans-serif;fill:#c23a3a">&#8211; baseline 0.34 (normal days)</text><rect x="85.4" y="135.0" width="54.4" height="169.0" fill="#9ca3af"/><text x="112.6" y="130.0" text-anchor="middle" style="font:600 11px Inter,system-ui,sans-serif;fill:#374151">0.39</text><text x="112.6" y="324.0" text-anchor="middle" style="font:600 12px Inter,system-ui,sans-serif;fill:#111827">Pre</text><rect x="182.5" y="70.0" width="54.4" height="234.0" fill="#111827"/><text x="209.7" y="65.0" text-anchor="middle" style="font:600 11px Inter,system-ui,sans-serif;fill:#374151">0.54</text><text x="209.7" y="324.0" text-anchor="middle" style="font:600 12px Inter,system-ui,sans-serif;fill:#111827">Strike</text><rect x="279.7" y="126.3" width="54.4" height="177.7" fill="#9ca3af"/><text x="306.9" y="121.3" text-anchor="middle" style="font:600 11px Inter,system-ui,sans-serif;fill:#374151">0.41</text><text x="306.9" y="324.0" text-anchor="middle" style="font:600 12px Inter,system-ui,sans-serif;fill:#111827">+1</text><rect x="376.8" y="135.0" width="54.4" height="169.0" fill="#9ca3af"/><text x="404.0" y="130.0" text-anchor="middle" style="font:600 11px Inter,system-ui,sans-serif;fill:#374151">0.39</text><text x="404.0" y="324.0" text-anchor="middle" style="font:600 12px Inter,system-ui,sans-serif;fill:#111827">+2</text><rect x="473.9" y="130.7" width="54.4" height="173.3" fill="#9ca3af"/><text x="501.1" y="125.7" text-anchor="middle" style="font:600 11px Inter,system-ui,sans-serif;fill:#374151">0.40</text><text x="501.1" y="324.0" text-anchor="middle" style="font:600 12px Inter,system-ui,sans-serif;fill:#111827">+3</text><rect x="571.1" y="130.7" width="54.4" height="173.3" fill="#9ca3af"/><text x="598.3" y="125.7" text-anchor="middle" style="font:600 11px Inter,system-ui,sans-serif;fill:#374151">0.40</text><text x="598.3" y="324.0" text-anchor="middle" style="font:600 12px Inter,system-ui,sans-serif;fill:#111827">+4</text><rect x="668.2" y="126.3" width="54.4" height="177.7" fill="#9ca3af"/><text x="695.4" y="121.3" text-anchor="middle" style="font:600 11px Inter,system-ui,sans-serif;fill:#374151">0.41</text><text x="695.4" y="324.0" text-anchor="middle" style="font:600 12px Inter,system-ui,sans-serif;fill:#111827">+5</text><text x="15" y="174.0" text-anchor="middle" transform="rotate(-90 15 174.0)" style="font:400 12px Inter,system-ui,sans-serif;fill:#6b7280">P(strike) from the Random Forest</text></svg></div>
+        <figcaption><span class="fig-kicker">Figure 2</span><span style="font-size:.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#111827;border:1px solid #d1d5db;border-radius:999px;padding:2px 9px;margin-left:.5rem">Hover</span><div class="fig-title">The signature fades within a week</div><div class="fig-note">Average predicted probability that a day is a strike day, from the Random Forest. Strike days score far above the normal-day baseline; the following days stay only mildly elevated.</div><div class="fig-source">Source: author's calculations.</div></figcaption></figure>
+      <p>The classifier corroborates the event study from a different direction. Its strike-probability score jumps
+        from a baseline of 0.34 to 0.54 on strike days, then settles to 0.39&ndash;0.41 for the following week &mdash;
+        elevated, but much closer to normal than to a strike. Two methods, one conclusion: a big immediate shift, a
+        small and fading residual.</p>
+      <figure class="chart"><div class="frame"><svg viewBox="0 0 760 372" role="img" xmlns="http://www.w3.org/2000/svg"><text x="190" y="33.3" text-anchor="end" style="font:500 12px Inter,system-ui,sans-serif;fill:#374151">avg trip duration</text><rect x="200" y="20.0" width="446.4" height="18.6" fill="#1f2937"/><text x="652.4" y="33.3" style="font:600 11px Inter,system-ui,sans-serif;fill:#6b7280">0.176</text><text x="190" y="63.3" text-anchor="end" style="font:500 12px Inter,system-ui,sans-serif;fill:#374151">dist. to tube (start)</text><rect x="200" y="50.0" width="263.8" height="18.6" fill="#1f2937"/><text x="469.8" y="63.3" style="font:600 11px Inter,system-ui,sans-serif;fill:#6b7280">0.104</text><text x="190" y="93.3" text-anchor="end" style="font:500 12px Inter,system-ui,sans-serif;fill:#374151">unique destinations</text><rect x="200" y="80.0" width="238.4" height="18.6" fill="#1f2937"/><text x="444.4" y="93.3" style="font:600 11px Inter,system-ui,sans-serif;fill:#6b7280">0.094</text><text x="190" y="123.3" text-anchor="end" style="font:500 12px Inter,system-ui,sans-serif;fill:#374151">median trip duration</text><rect x="200" y="110.0" width="190.2" height="18.6" fill="#1f2937"/><text x="396.2" y="123.3" style="font:600 11px Inter,system-ui,sans-serif;fill:#6b7280">0.075</text><text x="190" y="153.3" text-anchor="end" style="font:500 12px Inter,system-ui,sans-serif;fill:#374151">trip count</text><rect x="200" y="140.0" width="152.2" height="18.6" fill="#1f2937"/><text x="358.2" y="153.3" style="font:600 11px Inter,system-ui,sans-serif;fill:#6b7280">0.060</text><text x="190" y="183.3" text-anchor="end" style="font:500 12px Inter,system-ui,sans-serif;fill:#374151">unique O-D pairs</text><rect x="200" y="170.0" width="131.9" height="18.6" fill="#1f2937"/><text x="337.9" y="183.3" style="font:600 11px Inter,system-ui,sans-serif;fill:#6b7280">0.052</text><text x="190" y="213.3" text-anchor="end" style="font:500 12px Inter,system-ui,sans-serif;fill:#374151">dist. to tube (end)</text><rect x="200" y="200.0" width="124.3" height="18.6" fill="#1f2937"/><text x="330.3" y="213.3" style="font:600 11px Inter,system-ui,sans-serif;fill:#6b7280">0.049</text><text x="190" y="243.3" text-anchor="end" style="font:500 12px Inter,system-ui,sans-serif;fill:#374151">std. of trip duration</text><rect x="200" y="230.0" width="101.5" height="18.6" fill="#1f2937"/><text x="307.5" y="243.3" style="font:600 11px Inter,system-ui,sans-serif;fill:#6b7280">0.040</text><text x="190" y="273.3" text-anchor="end" style="font:500 12px Inter,system-ui,sans-serif;fill:#374151">line: Jubilee</text><rect x="200" y="260.0" width="71.0" height="18.6" fill="#1f2937"/><text x="277.0" y="273.3" style="font:600 11px Inter,system-ui,sans-serif;fill:#6b7280">0.028</text><text x="190" y="303.3" text-anchor="end" style="font:500 12px Inter,system-ui,sans-serif;fill:#374151">line: Circle</text><rect x="200" y="290.0" width="60.9" height="18.6" fill="#1f2937"/><text x="266.9" y="303.3" style="font:600 11px Inter,system-ui,sans-serif;fill:#6b7280">0.024</text><text x="450.0" y="356" text-anchor="middle" style="font:400 12px Inter,system-ui,sans-serif;fill:#6b7280">Random Forest feature importance (MDI)</text></svg></div>
+        <figcaption><span class="fig-kicker">Figure 3</span><span style="font-size:.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#111827;border:1px solid #d1d5db;border-radius:999px;padding:2px 9px;margin-left:.5rem">Hover</span><div class="fig-title">What a strike-day ride looks like</div><div class="fig-note">The behavioural features that best distinguish strike-day cycling. Longer trips and a wider spread of destinations &mdash; not simply more trips &mdash; are the signature. Adapted from the paper's feature-importance figure.</div><div class="fig-source">Source: author's calculations.</div></figcaption></figure>
+      <p>What separates a strike day is not just volume but <em>behaviour</em>. Trip counts rise on many ordinary
+        days too &mdash; good weather, events &mdash; so raw volume is a poor tell. The distinctive markers are longer
+        rides and a wider spread of destinations, the fingerprint of people using bikes for journeys they would
+        normally have made underground. A logistic-regression check flags the same features, which is reassuring: the
+        pattern is a property of the data, not of one model.</p>
+      <h2>The upshot for <span class="accent">London</span></h2>
+      <p>The two analyses agree. Tube strikes cause a substantial, immediate switch to cycling &mdash; roughly a third
+        more trips &mdash; and a modest habit that lingers for about a working week before fading. That persistence is
+        far weaker than the more-than-20% lasting rise other work has documented after the month-long COVID
+        disruptions, which points to a simple lesson: the <strong>length</strong> of a disruption, not just its
+        occurrence, is what turns a forced trial into a durable habit.</p>
+      <p>For Transport for London and for the bike-share operators, that is actionable. Strikes reliably deliver a
+        wave of first-time riders; capturing even a fraction of them &mdash; through capacity, pricing, or a nudge to
+        keep going &mdash; is where a short-run substitution could be converted into a long-run shift. Whether repeated
+        short strikes eventually accumulate into that shift is the natural question for individual-level data to
+        answer next.</p>
+      <p class="text-sm text-gray-500 mt-12 pt-6 border-t border-gray-200">This article adapts a group project
+        analysing London Tube strikes and cycle-hire demand (2026). Figures re-render the study's event-study and
+        machine-learning results. Data: Transport for London cycle-hire and disruption records; Met Office weather.</p>
+
+    </div></main>
+    <footer class="bg-white py-12 border-t border-gray-200">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div>
+          <div class="flex items-center gap-2 mb-3"><img src="/themetrician/themetrician-logo.png" alt="TheMetrician" class="h-8 w-auto"><span class="text-lg font-bold text-black">TheMetrician</span></div>
+          <p class="text-sm text-gray-500 max-w-xs">Data-driven investigations in economics and public policy.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Investigations</h4>
+          <ul class="space-y-2 text-gray-600 text-sm"><li><a href="/themetrician/articles/beyond-the-resource-curse/" class="hover:text-black">Beyond the resource curse</a></li><li><a href="/themetrician/articles/vietnam-growth-diagnostics/" class="hover:text-black">Vietnam has outgrown its roads</a></li><li><a href="/themetrician/articles/ethiopia-land-tenure/" class="hover:text-black">The tax on leaving</a></li><li><a href="/themetrician/articles/germany-health-insurance/" class="hover:text-black">When the healthy opt out</a></li><li><a href="/themetrician/articles/tube-strikes-cycling/" class="hover:text-black">Missing the tube, finding the bike</a></li><li><a href="/themetrician/articles/fake-news-detection/" class="hover:text-black">Style over substance</a></li><li><a href="/themetrician/articles/ocean-data/" class="hover:text-black">The ocean's blind spot</a></li></ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Explore</h4>
+          <ul class="space-y-2 text-gray-600 text-sm">
+            <li><a href="/themetrician/" class="hover:text-black">Home</a></li>
+            <li><a href="/themetrician/visuals.html" class="hover:text-black">Interactive map</a></li>
+            <li><a href="/themetrician/about.html" class="hover:text-black">About</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pt-8 border-t border-gray-200 text-center text-gray-600"><p>&copy; 2025 TheMetrician. All rights reserved.</p></div>
+    </div>
+  </footer>
+</body></html>
