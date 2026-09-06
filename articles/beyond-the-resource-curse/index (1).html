@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beyond the Resource Curse — TheMetrician</title>
+  <meta name="description" content="Evidence from 54 resource-rich economies, 1995–2019: panel econometrics and machine learning converge on three pillars, with case studies of Congo, Azerbaijan and Chile.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dropdown-content { display:none; position:absolute; background:#fff; min-width:200px; box-shadow:0 8px 16px rgba(0,0,0,.1); z-index:50; border-top:2px solid #000; top:100%; left:0; }
+    .dropdown:hover .dropdown-content { display:block; }
+    .dropdown-content a { color:#333; padding:12px 16px; text-decoration:none; display:block; transition:all .2s; }
+    .dropdown-content a:hover { background:#f5f5f5; padding-left:20px; }
+
+    .measure { max-width: 720px; }
+    .article-body { font-size:1.1875rem; line-height:1.75; color:#1f2937; }
+    .article-body p { margin-bottom:1.4rem; }
+    .article-body p > strong { font-weight:600; color:#111827; }
+    .article-body h2 { font-size:1.9rem; font-weight:300; line-height:1.2; color:#111827; margin:3.5rem 0 1.25rem; }
+    .article-body h2 .accent { font-weight:600; }
+    .article-body h3 { font-size:1.25rem; font-weight:600; color:#111827; margin:2.25rem 0 .75rem; }
+    .article-body .lede::first-letter { float:left; font-size:4.2rem; line-height:.82; font-weight:600; padding:.35rem .7rem 0 0; color:#111827; }
+    .rule { width:3rem; height:4px; background:#000; }
+    .article-body a { color:#111827; text-decoration:underline; text-underline-offset:2px; text-decoration-thickness:1px; }
+    .article-body a:hover { color:#4b5563; }
+    .pullquote { border-left:4px solid #000; padding-left:1.5rem; margin:2.5rem 0; font-size:1.6rem; font-weight:300; line-height:1.3; color:#111827; }
+
+    figure.chart { margin:2.75rem 0; }
+    figure.chart .frame { border:1px solid #e5e7eb; background:#fafafa; }
+    figure.chart iframe { width:100%; border:0; display:block; background:#fafafa; }
+    figure.chart figcaption { margin-top:.85rem; }
+    .fig-kicker { font-size:.75rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:#6b7280; }
+    .fig-title { font-size:1rem; font-weight:600; color:#111827; margin-top:.15rem; }
+    .fig-note { font-size:.85rem; color:#6b7280; margin-top:.35rem; line-height:1.5; }
+    .fig-source { font-size:.78rem; color:#9ca3af; margin-top:.35rem; }
+    .interact-tag { display:inline-block; font-size:.7rem; font-weight:600; letter-spacing:.04em; text-transform:uppercase; color:#111827; border:1px solid #d1d5db; border-radius:999px; padding:2px 9px; margin-left:.5rem; vertical-align:middle; }
+
+    .keybox { background:#f9fafb; border:1px solid #e5e7eb; }
+
+    table.data { width:100%; border-collapse:collapse; font-size:.92rem; }
+    table.data th { text-align:left; font-weight:600; color:#6b7280; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; padding:.6rem .5rem; border-bottom:2px solid #111827; }
+    table.data td { padding:.6rem .5rem; border-bottom:1px solid #eee; }
+    table.data td.num { text-align:right; font-variant-numeric:tabular-nums; font-weight:600; }
+    .up { color:#15803d; } .down { color:#b91c1c; }
+
+    table.reg { border-collapse:collapse; width:100%; font-size:.85rem; font-variant-numeric:tabular-nums; }
+    table.reg th, table.reg td { padding:3px 10px; text-align:center; }
+    table.reg td.v { text-align:left; }
+    table.reg .se { color:#6b7280; font-size:.78rem; }
+    table.reg .top { border-top:2px solid #111; } table.reg .mid { border-top:1px solid #111; } table.reg .bot { border-bottom:2px solid #111; }
+    details.reg-wrap > summary { cursor:pointer; font-weight:600; color:#111827; }
+    details.reg-wrap[open] > summary { margin-bottom:1rem; }
+
+    @media (max-width:640px){ .article-body{font-size:1.09rem;} .article-body .lede::first-letter{font-size:3.4rem;} .pullquote{font-size:1.3rem;} }
+  </style>
+</head>
+<body class="bg-white text-gray-900">
+
+  <!-- Navbar (identical to index.html) -->
+    <nav class="bg-white border-b border-gray-200 fixed w-full top-0 z-40">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="/themetrician/" class="flex items-center gap-3">
+        <img src="/themetrician/themetrician-logo.png" alt="TheMetrician logo" class="h-10 w-auto">
+        <span class="text-2xl font-bold text-black">TheMetrician</span>
+      </a>
+      <div class="flex items-center space-x-8">
+        <a href="/themetrician/" class="text-gray-700 hover:text-black font-medium transition">Home</a>
+        <div class="dropdown relative">
+          <a href="/themetrician/#investigations" class="text-gray-700 hover:text-black font-medium transition">Investigations &#9662;</a>
+          <div class="dropdown-content" style="min-width:290px"><div style="padding:9px 16px 3px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;font-weight:600">Macro</div><a href="/themetrician/articles/beyond-the-resource-curse/">Beyond the resource curse</a><a href="/themetrician/articles/vietnam-growth-diagnostics/">Vietnam has outgrown its roads</a><a href="/themetrician/articles/ethiopia-land-tenure/">The tax on leaving</a><div style="padding:9px 16px 3px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;font-weight:600">Micro</div><a href="/themetrician/articles/germany-health-insurance/">When the healthy opt out</a><a href="/themetrician/articles/tube-strikes-cycling/">Missing the tube, finding the bike</a><div style="padding:9px 16px 3px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;font-weight:600">Data science</div><a href="/themetrician/articles/fake-news-detection/">Style over substance</a><div style="padding:9px 16px 3px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;font-weight:600">Comment</div><a href="/themetrician/articles/ocean-data/">The ocean's blind spot</a></div>
+        </div>
+        <a href="/themetrician/visuals.html" class="text-gray-700 hover:text-black font-medium transition">Map</a>
+        <a href="/themetrician/about.html" class="text-gray-700 hover:text-black font-medium transition">About</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Article header -->
+  <header class="pt-32 pb-10 border-b border-gray-200">
+    <div class="container mx-auto px-6">
+      <div class="measure mx-auto">
+        <p class="text-sm font-semibold tracking-widest uppercase text-gray-500 mb-5">Macro Studies · Development</p>
+        <h1 class="text-4xl md:text-5xl font-light leading-tight text-gray-900 mb-6">
+          Beyond the resource curse: what lets some economies
+          <span class="font-semibold">climb the value ladder</span>
+        </h1>
+        <p class="text-xl text-gray-600 font-light leading-relaxed mb-8">
+          A theory-driven regression and a data-driven machine-learning ensemble are pointed at the same panel of 54
+          resource-rich economies. They converge on three pillars — finance, infrastructure, and human capital — and
+          the case studies show which one binds where.
+        </p>
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-gray-500 pt-6 border-t border-gray-100">
+          <span class="text-gray-900 font-medium">Ayaan Tigdikar</span>
+          <span>March 2026</span>
+          <span>10 min read</span>
+          <span class="hidden sm:inline text-gray-300">|</span>
+          <span>Methods: panel econometrics · machine learning</span>
+        </div>
+        <p class="text-xs text-gray-400 mt-3 italic">Adapted from an LSE Capstone project undertaken for Moody's, 2026.</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Body -->
+  <main class="container mx-auto px-6">
+    <div class="measure mx-auto article-body py-12">
+
+      <div class="keybox p-6 md:p-8 mb-12">
+        <div class="rule mb-5"></div>
+        <h2 class="text-xl font-semibold text-gray-900 mb-4" style="margin-top:0">What the analysis finds</h2>
+        <ul class="space-y-3 text-base text-gray-700" style="line-height:1.6">
+          <li>Across 54 resource-rich economies from 1995 to 2019, three structural pillars — <strong>financial depth</strong> (domestic credit to the private sector), <strong>infrastructure</strong> (electricity access), and <strong>human capital</strong> — are the most robust correlates of economic complexity.</li>
+          <li>Human capital matters <em>most</em> where extraction is most intense: the interaction of schooling with resource production is a top predictor across every model.</li>
+          <li>Traditional macro and institutional variables — trade openness, political stability — add little once these pillars and a country's own complexity history are accounted for.</li>
+          <li>Which constraint binds shifts with development: infrastructure in Congo, the political management of the rent in Azerbaijan, and the depth of skills and R&D in Chile.</li>
+        </ul>
+      </div>
+
+      <p class="lede">
+        Natural resources were supposed to be a shortcut. A country sitting on oil, copper or gas has, in principle,
+        a ready-made source of foreign exchange and public revenue with which to build everything else. Yet for much
+        of the developing world the shortcut never opened onto anywhere: export baskets stayed narrow, manufacturing
+        stayed thin, and the windfall funded consumption rather than capability. Chile and Malaysia show it can be
+        done. They are the exceptions that make the rule visible.
+      </p>
+
+      <p>
+        The most influential framing of that failure is the <strong>resource curse</strong> — the idea that resource
+        endowments deterministically depress long-run growth, whether through currency appreciation that hollows out
+        manufacturing (the "Dutch disease") or through the politics of rent-seeking and weak institutions. But the
+        empirical case has eroded. The original cross-country result rested on treating resource exports as if they
+        were exogenous, when they plainly depend on investment, institutions and infrastructure. Once that endogeneity
+        is taken seriously, much of the curse dissolves. The interesting question is no longer <em>whether</em>
+        resources hurt, but <strong>under what conditions</strong> a country converts extraction into broader
+        productive capability — the ability to make complex, high-value things.
+      </p>
+
+      <p>
+        To measure that capability we use the <strong>Economic Complexity Index (ECI)</strong>, which infers the
+        sophistication of an economy from the mix of products it exports competitively, across a panel of 54
+        resource-dependent developing economies observed annually from 1995 to 2019. We then point two deliberately
+        different lenses at the same data: a theory-driven panel regression, and a data-driven machine-learning
+        ensemble. Where both agree, we can be more confident the finding is real rather than an artefact of one
+        modelling choice.
+      </p>
+
+      <!-- ECONOMETRICS -->
+      <h2>What theory <span class="accent">predicts</span></h2>
+      <p>
+        The first lens is a panel regression grounded in intertemporal investment theory. It puts complexity on the
+        left and a pre-specified set of regressors on the right, with a lagged dependent variable to capture the
+        strong persistence of capability and to blunt the most obvious sources of endogeneity. Choosing the
+        specification in advance guards against fishing for significance; the cost is that anything the theory omits,
+        the model cannot see.
+      </p>
+
+      <figure class="chart">
+        <div class="frame">
+          <iframe src="charts/coef_plot.html" height="560" loading="lazy" title="Regression coefficients with 95% confidence intervals"></iframe>
+        </div>
+        <figcaption>
+          <span class="fig-kicker">Figure 1</span><span class="interact-tag">Hover</span>
+          <div class="fig-title">Human capital and investment survive; resources and institutions do not</div>
+          <div class="fig-note">Coefficients with 95% confidence intervals across three specifications: contemporaneous, with a lagged dependent variable, and fully lagged.</div>
+          <div class="fig-source">Source: author's calculations; clustered standard errors by country.</div>
+        </figcaption>
+      </figure>
+
+      <p>
+        Two variables come through clean. The <strong>Human Capital Index</strong> and <strong>gross fixed capital
+        formation</strong> enter positively and significantly in every specification. Resource-production intensity is
+        negatively signed — the direction the curse would predict — but never statistically significant once other
+        factors are present. And the institutional variables that dominate so much of the growth literature — rule of
+        law, political stability, trade openness — wash out once a country's own complexity history is controlled for.
+        Within countries, over this window, those things simply move too little to explain the variation.
+      </p>
+
+      <details class="reg-wrap my-8">
+        <summary>Full regression table</summary>
+        <div style="overflow-x:auto">
+          <table class="reg">
+            <thead>
+              <tr class="top"><th></th><th colspan="3"><em>Dependent variable: ECI</em></th></tr>
+              <tr class="mid bot"><th></th><th>(1)</th><th>(2)</th><th>(3)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="v">Human Capital Index (log)</td><td>1.643***</td><td>0.286***</td><td>0.278***</td></tr>
+              <tr class="se"><td class="v"></td><td>(0.406)</td><td>(0.106)</td><td>(0.107)</td></tr>
+              <tr><td class="v">Gross Fixed Capital Formation (log)</td><td>0.147***</td><td>0.038***</td><td>0.034***</td></tr>
+              <tr class="se"><td class="v"></td><td>(0.055)</td><td>(0.010)</td><td>(0.012)</td></tr>
+              <tr><td class="v">Production Value (log)</td><td>−0.040</td><td>−0.008</td><td>−0.005</td></tr>
+              <tr class="se"><td class="v"></td><td>(0.032)</td><td>(0.008)</td><td>(0.008)</td></tr>
+              <tr><td class="v">Political Stability</td><td>0.028</td><td>0.013</td><td>0.013</td></tr>
+              <tr class="se"><td class="v"></td><td>(0.069)</td><td>(0.019)</td><td>(0.017)</td></tr>
+              <tr><td class="v">Rule of Law</td><td>0.346*</td><td>0.067</td><td>0.067</td></tr>
+              <tr class="se"><td class="v"></td><td>(0.202)</td><td>(0.046)</td><td>(0.046)</td></tr>
+              <tr><td class="v">Trade Openness (% GDP)</td><td>0.001</td><td>0.000</td><td>0.000</td></tr>
+              <tr class="se"><td class="v"></td><td>(0.003)</td><td>(0.001)</td><td>(0.001)</td></tr>
+              <tr><td class="v">Forestry Rents (% GDP)</td><td>−0.027*</td><td>−0.005</td><td>−0.003</td></tr>
+              <tr class="se"><td class="v"></td><td>(0.016)</td><td>(0.004)</td><td>(0.003)</td></tr>
+              <tr class="mid"><td class="v" colspan="4" style="text-align:left;font-style:italic;color:#6b7280">Lagged dependent variable</td></tr>
+              <tr><td class="v">ECI (t−1)</td><td></td><td>0.811***</td><td>0.813***</td></tr>
+              <tr class="se"><td class="v"></td><td></td><td>(0.044)</td><td>(0.044)</td></tr>
+              <tr class="mid"><td class="v">Observations</td><td>1,324</td><td>1,270</td><td>1,270</td></tr>
+              <tr><td class="v">Countries</td><td>54</td><td>54</td><td>54</td></tr>
+              <tr><td class="v">R²</td><td>0.376</td><td>0.789</td><td>0.789</td></tr>
+              <tr class="bot"><td class="v">Clustered SE</td><td colspan="3">Country</td></tr>
+            </tbody>
+          </table>
+          <p class="fig-note" style="margin-top:.5rem">* p&lt;0.1; ** p&lt;0.05; *** p&lt;0.01. Model (1): contemporaneous regressors. Model (2): with ECI(t−1). Model (3): all regressors lagged one period. Interaction terms omitted here for brevity.</p>
+        </div>
+      </details>
+
+      <!-- MACHINE LEARNING -->
+      <h2>What the data say <span class="accent">on their own</span></h2>
+      <p>
+        The second lens abandons the theory. Regularised regressions — LASSO, Ridge and Elastic Net — and a Random
+        Forest are handed a broad menu of candidate predictors and left to decide which earn their keep, shrinking
+        weak signals toward zero and averaging away noise. If the theory-first model missed something that matters
+        empirically, this is where it should surface.
+      </p>
+
+      <figure class="chart">
+        <div class="frame">
+          <iframe src="charts/07_lasso_ridge_en_coefficients.html" height="580" loading="lazy" title="LASSO, Ridge and Elastic Net coefficients"></iframe>
+        </div>
+        <figcaption>
+          <span class="fig-kicker">Figure 2</span><span class="interact-tag">Hover</span>
+          <div class="fig-title">Three regularised models agree on the sign of every retained predictor</div>
+          <div class="fig-note">Standardised coefficients from LASSO, Ridge and Elastic Net, trained on the 1996–2014 panel. Domestic credit carries the largest positive weight.</div>
+          <div class="fig-source">Source: author's calculations.</div>
+        </figcaption>
+      </figure>
+
+      <p>
+        The consensus is striking. <strong>Domestic credit to the private sector</strong> — a proxy for financial
+        development that never appeared in the econometric specification — emerges as the single strongest predictor.
+        <strong>Human capital and its interaction with resource production</strong>, and <strong>electricity
+        access</strong>, follow. The Random Forest, which makes no linearity assumptions at all, tells the same
+        story: once the lagged level of complexity is set aside, the same handful of structural variables rise to the
+        top.
+      </p>
+
+      <figure class="chart">
+        <div class="frame">
+          <iframe src="charts/08_rf_feature_importance.html" height="520" loading="lazy" title="Random Forest feature importance"></iframe>
+        </div>
+        <figcaption>
+          <span class="fig-kicker">Figure 3</span><span class="interact-tag">Hover</span>
+          <div class="fig-title">A model-agnostic check points to the same three pillars</div>
+          <div class="fig-note">Random Forest feature importance (mean decrease in impurity, 200 trees, normalised).</div>
+          <div class="fig-source">Source: author's calculations.</div>
+        </figcaption>
+      </figure>
+
+      <div class="pullquote">
+        Domestic credit, electricity, and human capital that pays off precisely where extraction is most intense — the
+        same three pillars survive whether the model is built from theory or from the data.
+      </div>
+
+      <p>
+        That last clause is the most policy-relevant result. Human capital is not uniformly useful: its return to
+        complexity is largest exactly where a country is most resource-dependent — where the distance between what the
+        economy currently makes and the capabilities it would need to diversify is widest. Schooling and skills are
+        the bridge across that distance.
+      </p>
+
+      <figure class="chart">
+        <div class="frame">
+          <iframe src="charts/eci_hci.html" height="620" loading="lazy" title="ECI against HCI at different production intensities"></iframe>
+        </div>
+        <figcaption>
+          <span class="fig-kicker">Figure 4</span><span class="interact-tag">Hover</span>
+          <div class="fig-title">Human capital binds tighter to complexity where production is intense</div>
+          <div class="fig-note">ECI against the Human Capital Index, split by production value per capita. The fitted slope is far steeper — and better-fitting — for high-production economies.</div>
+          <div class="fig-source">Source: author's calculations.</div>
+        </figcaption>
+      </figure>
+
+      <p>
+        For the record, the models predict complexity <em>levels</em> well — test R² around 0.85 — but year-on-year
+        <em>changes</em> poorly, with R² below 0.15. Capability is sticky; where a country will be next year is mostly
+        where it is now. That persistence is a caution against over-reading any single year, and it sets up the
+        starkly uneven long-run record.
+      </p>
+
+      <!-- WINNERS/LOSERS -->
+      <h2>Climbers and <span class="accent">stragglers</span></h2>
+      <p>
+        Over the quarter-century, the spread of outcomes is enormous. Papua New Guinea, Vietnam and Bahrain registered
+        the largest gains in complexity; Venezuela, Chad and Libya the largest losses — in several cases collapsing
+        from the middle of the global distribution to its bottom.
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-8 my-8">
+        <div>
+          <div class="rule mb-3" style="width:2.5rem;height:3px"></div>
+          <h3 style="margin-top:0">Top 10 improvers, 1995–2019</h3>
+          <table class="data">
+            <thead><tr><th>Country</th><th class="num">Δ ECI</th><th class="num">%ile ’95</th><th class="num">%ile ’19</th></tr></thead>
+            <tbody>
+              <tr><td>Papua New Guinea</td><td class="num up">+1.011</td><td class="num">2</td><td class="num">15</td></tr>
+              <tr><td>Vietnam</td><td class="num up">+0.985</td><td class="num">31</td><td class="num">83</td></tr>
+              <tr><td>Bahrain</td><td class="num up">+0.903</td><td class="num">63</td><td class="num">96</td></tr>
+              <tr><td>Malaysia</td><td class="num up">+0.876</td><td class="num">96</td><td class="num">100</td></tr>
+              <tr><td>Iran</td><td class="num up">+0.855</td><td class="num">41</td><td class="num">87</td></tr>
+              <tr><td>Angola</td><td class="num up">+0.710</td><td class="num">7</td><td class="num">30</td></tr>
+              <tr><td>Kuwait</td><td class="num up">+0.676</td><td class="num">78</td><td class="num">94</td></tr>
+              <tr><td>Qatar</td><td class="num up">+0.660</td><td class="num">54</td><td class="num">85</td></tr>
+              <tr><td>Nigeria</td><td class="num up">+0.609</td><td class="num">6</td><td class="num">7</td></tr>
+              <tr><td>Lao PDR</td><td class="num up">+0.552</td><td class="num">15</td><td class="num">59</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <div class="rule mb-3" style="width:2.5rem;height:3px"></div>
+          <h3 style="margin-top:0">Top 10 decliners, 1995–2019</h3>
+          <table class="data">
+            <thead><tr><th>Country</th><th class="num">Δ ECI</th><th class="num">%ile ’95</th><th class="num">%ile ’19</th></tr></thead>
+            <tbody>
+              <tr><td>Venezuela</td><td class="num down">−1.560</td><td class="num">94</td><td class="num">26</td></tr>
+              <tr><td>Chad</td><td class="num down">−1.134</td><td class="num">52</td><td class="num">4</td></tr>
+              <tr><td>Libya</td><td class="num down">−1.116</td><td class="num">69</td><td class="num">13</td></tr>
+              <tr><td>Iraq</td><td class="num down">−1.053</td><td class="num">59</td><td class="num">6</td></tr>
+              <tr><td>Zimbabwe</td><td class="num down">−0.806</td><td class="num">85</td><td class="num">50</td></tr>
+              <tr><td>Azerbaijan</td><td class="num down">−0.680</td><td class="num">81</td><td class="num">57</td></tr>
+              <tr><td>Mongolia</td><td class="num down">−0.609</td><td class="num">50</td><td class="num">24</td></tr>
+              <tr><td>Algeria</td><td class="num down">−0.493</td><td class="num">57</td><td class="num">43</td></tr>
+              <tr><td>Rwanda</td><td class="num down">−0.478</td><td class="num">76</td><td class="num">63</td></tr>
+              <tr><td>Liberia</td><td class="num down">−0.402</td><td class="num">61</td><td class="num">56</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- CASES -->
+      <h2>Where the constraint <span class="accent">binds</span></h2>
+      <p>
+        Averages conceal mechanism. To see how the three pillars operate on the ground — and how the binding
+        constraint shifts with the level of development — the analysis closes with three cases, chosen to sit at
+        different rungs of the ladder: the Republic of the Congo, Azerbaijan, and Chile.
+      </p>
+
+      <figure class="chart">
+        <div class="frame">
+          <iframe src="charts/eci_evolution_roc.html" height="620" loading="lazy" title="ECI trajectories of selected countries"></iframe>
+        </div>
+        <figcaption>
+          <span class="fig-kicker">Figure 5</span><span class="interact-tag">Hover</span>
+          <div class="fig-title">Three cases against a benchmark</div>
+          <div class="fig-note">ECI trajectories for the Republic of the Congo, Azerbaijan and Angola, with Malaysia as a diversification benchmark.</div>
+          <div class="fig-source">Source: author's calculations.</div>
+        </figcaption>
+      </figure>
+
+      <h3>Republic of the Congo — the infrastructure floor</h3>
+      <p>
+        For an oil economy that jointly lacks financial depth, human capital and infrastructure, the binding
+        constraint is the most basic one: power. Unreliable electricity and thin transport networks cap the non-oil
+        economy before finance or skills can even become the marginal problem, while procyclical public spending
+        amplifies every swing in the oil price. The map below plots the oil-and-gas installations around which the
+        economy is organised.
+      </p>
+
+      <figure class="chart">
+        <div class="frame">
+          <iframe src="charts/fused_map.html" height="600" loading="lazy" title="Oil and gas infrastructure map, Azerbaijan and Republic of the Congo"></iframe>
+        </div>
+        <figcaption>
+          <span class="fig-kicker">Figure 6</span><span class="interact-tag">Pan · zoom</span>
+          <div class="fig-title">Oil &amp; gas infrastructure: Azerbaijan and the Republic of the Congo</div>
+          <div class="fig-note">An interactive map of the extractive assets that anchor both economies. Pan and zoom; click markers for facility detail.</div>
+          <div class="fig-source">Source: author's compilation.</div>
+        </figcaption>
+      </figure>
+
+      <h3>Azerbaijan — Dutch disease, institutionalised</h3>
+      <p>
+        Azerbaijan clears the infrastructure bar but runs into the classic trap. An oil boom that appreciated the real
+        exchange rate and crowded out non-oil tradeables, layered over weak institutions and limited transparency,
+        left the country's complexity <em>falling</em> across the period — one of the sharpest declines in the sample.
+        Here the constraint is not a missing power station but the political economy of the rent itself.
+      </p>
+
+      <h3>Chile — the frontier problem</h3>
+      <p>
+        Chile is the region's success story, and precisely for that reason it isolates the hardest constraint. Strong
+        institutions and solid infrastructure did not, on their own, arrest a gentle decline in complexity since the
+        mid-2000s. What remains binding at Chile's level of development is the top of the ladder — human-capital depth
+        and research-and-development capacity. Its mining sector is world-class and highly concentrated, as the next
+        three views show, but concentration in extraction is not the same as capability in production.
+      </p>
+
+      <figure class="chart">
+        <div class="frame">
+          <iframe src="charts/13_chile_regional_tiles.html" height="720" loading="lazy" title="Regional distribution of Chilean mineral production"></iframe>
+        </div>
+        <figcaption>
+          <span class="fig-kicker">Figure 7</span><span class="interact-tag">Hover</span>
+          <div class="fig-title">One region does most of the work</div>
+          <div class="fig-note">Regional distribution of mineral production value; each tile is a fixed unit of value. Antofagasta dominates.</div>
+          <div class="fig-source">Source: author's compilation, estimated 2024 values.</div>
+        </figcaption>
+      </figure>
+
+      <figure class="chart">
+        <div class="frame">
+          <iframe src="charts/11_chile_top_facilities_bar.html" height="680" loading="lazy" title="Top Chilean facilities by production value"></iframe>
+        </div>
+        <figcaption>
+          <span class="fig-kicker">Figure 8</span><span class="interact-tag">Toggle legend</span>
+          <div class="fig-title">Output is concentrated in a handful of giant facilities</div>
+          <div class="fig-note">Top facilities by estimated 2024 production value, coloured by mineral. Toggle minerals in the legend to filter.</div>
+          <div class="fig-source">Source: author's compilation.</div>
+        </figcaption>
+      </figure>
+
+      <figure class="chart">
+        <div class="frame">
+          <iframe src="charts/12_chile_export_choropleth.html" height="600" loading="lazy" title="Chilean mineral export destinations"></iframe>
+        </div>
+        <figcaption>
+          <span class="fig-kicker">Figure 9</span><span class="interact-tag">Select mineral</span>
+          <div class="fig-title">Where the minerals go</div>
+          <div class="fig-note">Export destinations by value. Use the dropdown to switch commodities; countries without recorded trade are shown in grey.</div>
+          <div class="fig-source">Source: author's compilation.</div>
+        </figcaption>
+      </figure>
+
+      <!-- UPSHOT -->
+      <h2>The upshot</h2>
+      <p>
+        The resource curse, as a deterministic law, does not survive contact with this data. What survives is more
+        useful: a short, consistent list of things that let resource-rich economies build capability — and a warning
+        that the list is sequenced. Finance, power and human capital all matter, but at low incomes the constraint is
+        infrastructure, in the middle it is the political management of the rent, and at the frontier it is the depth
+        of skills and innovation. Policy that treats all three as interchangeable will spend on the wrong one.
+      </p>
+      <p>
+        The most actionable finding is the interaction. Human capital does the most work precisely where resource
+        dependence is highest — which is to say, in exactly the economies that most need to diversify and are furthest
+        from being able to. That is an argument for treating schooling and skills not as a social good to be afforded
+        once growth arrives, but as the central instrument of diversification itself.
+      </p>
+
+      <p class="text-sm text-gray-500 mt-12 pt-6 border-t border-gray-200">
+        This article adapts an LSE Capstone report, <em>Beyond the Resource Curse: The Challenge of Industrial
+        Upgrading in Resource-Rich Emerging Economies</em>, prepared for Moody's in 2026. Complexity is measured by the
+        Economic Complexity Index; data are drawn from the World Bank, IMF, Penn World Table, V-Dem, and geological
+        production and price sources. All charts are the author's own and are interactive.
+      </p>
+
+    </div>
+  </main>
+
+  <!-- Footer (identical to index.html) -->
+    <footer class="bg-white py-12 border-t border-gray-200">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div>
+          <div class="flex items-center gap-2 mb-3"><img src="/themetrician/themetrician-logo.png" alt="TheMetrician" class="h-8 w-auto"><span class="text-lg font-bold text-black">TheMetrician</span></div>
+          <p class="text-sm text-gray-500 max-w-xs">Data-driven investigations in economics and public policy.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Investigations</h4>
+          <ul class="space-y-2 text-gray-600 text-sm"><li><a href="/themetrician/articles/beyond-the-resource-curse/" class="hover:text-black">Beyond the resource curse</a></li><li><a href="/themetrician/articles/vietnam-growth-diagnostics/" class="hover:text-black">Vietnam has outgrown its roads</a></li><li><a href="/themetrician/articles/ethiopia-land-tenure/" class="hover:text-black">The tax on leaving</a></li><li><a href="/themetrician/articles/germany-health-insurance/" class="hover:text-black">When the healthy opt out</a></li><li><a href="/themetrician/articles/tube-strikes-cycling/" class="hover:text-black">Missing the tube, finding the bike</a></li><li><a href="/themetrician/articles/fake-news-detection/" class="hover:text-black">Style over substance</a></li><li><a href="/themetrician/articles/ocean-data/" class="hover:text-black">The ocean's blind spot</a></li></ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Explore</h4>
+          <ul class="space-y-2 text-gray-600 text-sm">
+            <li><a href="/themetrician/" class="hover:text-black">Home</a></li>
+            <li><a href="/themetrician/visuals.html" class="hover:text-black">Interactive map</a></li>
+            <li><a href="/themetrician/about.html" class="hover:text-black">About</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pt-8 border-t border-gray-200 text-center text-gray-600"><p>&copy; 2025 TheMetrician. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+</body>
+</html>
