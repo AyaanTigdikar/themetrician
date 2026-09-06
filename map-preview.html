@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Map preview</title>
+  <style>
+    html, body { margin:0; padding:0; height:100%; background:transparent; overflow:hidden; }
+    #map { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
+    #map .vega-embed, #map canvas, #map svg { width:100% !important; height:100% !important; }
+    .vega-embed summary, .vega-embed .vega-actions { display:none !important; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+    // Renders the same Freedom House choropleth as the full Visuals page,
+    // stripped of chrome, to act as a static preview that links through.
+    fetch('/themetrician/data/freedomhouse2025_map.json')
+      .then(function (r) { return r.json(); })
+      .then(function (spec) {
+        spec.encoding = spec.encoding || {};
+        spec.encoding.color = {
+          field: 'Freedom House Score', type: 'quantitative',
+          scale: { scheme: 'redyellowgreen', domain: [0, 100] },
+          legend: null
+        };
+        delete spec.encoding.tooltip;
+        spec.background = 'transparent';
+        spec.autosize = { type: 'fit', contains: 'padding', resize: true };
+        spec.width = 'container';
+        spec.height = 'container';
+        spec.config = spec.config || {};
+        spec.config.view = { stroke: null, continuousWidth: 0, continuousHeight: 0 };
+        return vegaEmbed('#map', spec, { actions: false, renderer: 'canvas' });
+      })
+      .catch(function (e) { console.error('map preview:', e); });
+  </script>
+</body>
+</html>
