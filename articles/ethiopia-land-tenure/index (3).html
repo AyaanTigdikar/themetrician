@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Tax on Leaving — TheMetrician</title>
+  <meta name="description" content="Ethiopia's land rights aren't missing — they're tied to staying put. Tenure conditioned on use acts as a hidden tax on migration, holding labour on low-productivity farms.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dropdown-content { display:none; position:absolute; background:#fff; min-width:200px; box-shadow:0 8px 16px rgba(0,0,0,.1); z-index:50; border-top:2px solid #000; top:100%; left:0; }
+    .dropdown:hover .dropdown-content { display:block; }
+    .dropdown-content a { color:#333; padding:12px 16px; text-decoration:none; display:block; transition:all .2s; }
+    .dropdown-content a:hover { background:#f5f5f5; padding-left:20px; }
+
+    .measure { max-width: 720px; }
+    .article-body { font-size:1.1875rem; line-height:1.75; color:#1f2937; }
+    .article-body p { margin-bottom:1.4rem; }
+    .article-body p > strong { font-weight:600; color:#111827; }
+    .article-body h2 { font-size:1.9rem; font-weight:300; line-height:1.2; color:#111827; margin:3.5rem 0 1.25rem; }
+    .article-body h2 .accent { font-weight:600; }
+    .article-body h3 { font-size:1.25rem; font-weight:600; color:#111827; margin:2.25rem 0 .75rem; }
+    .article-body .lede::first-letter { float:left; font-size:4.2rem; line-height:.82; font-weight:600; padding:.35rem .7rem 0 0; color:#111827; }
+    .rule { width:3rem; height:4px; background:#000; }
+    .article-body a { color:#111827; text-decoration:underline; text-underline-offset:2px; text-decoration-thickness:1px; }
+    .article-body a:hover { color:#4b5563; }
+    .pullquote { border-left:4px solid #000; padding-left:1.5rem; margin:2.5rem 0; font-size:1.6rem; font-weight:300; line-height:1.3; color:#111827; }
+
+    figure.chart { margin:2.75rem 0; }
+    figure.chart .frame { border:1px solid #e5e7eb; background:#ffffff; padding:20px 18px; }
+    figure.chart .frame svg { width:100%; height:auto; display:block; }
+    figure.chart figcaption { margin-top:.85rem; }
+    .fig-kicker { font-size:.75rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:#6b7280; }
+    .fig-title { font-size:1rem; font-weight:600; color:#111827; margin-top:.15rem; }
+    .fig-note { font-size:.85rem; color:#6b7280; margin-top:.35rem; line-height:1.5; }
+    .fig-source { font-size:.78rem; color:#9ca3af; margin-top:.35rem; }
+
+    .keybox { background:#f9fafb; border:1px solid #e5e7eb; }
+
+    /* stat callouts */
+    .statband { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:#e5e7eb; border:1px solid #e5e7eb; margin:2.5rem 0; }
+    .statband .cell { background:#fff; padding:1.5rem 1.25rem; }
+    .statband .num { font-size:2.7rem; font-weight:300; line-height:1; color:#111827; }
+    .statband .lbl { font-size:.9rem; color:#4b5563; margin-top:.6rem; line-height:1.45; }
+    .statband .src { font-size:.75rem; color:#9ca3af; margin-top:.5rem; }
+    @media (max-width:560px){ .statband{grid-template-columns:1fr;} }
+
+    @media (max-width:640px){ .article-body{font-size:1.09rem;} .article-body .lede::first-letter{font-size:3.4rem;} .pullquote{font-size:1.3rem;} }
+  </style>
+</head>
+<body class="bg-white text-gray-900">
+
+  <!-- Navbar (identical to index.html) -->
+    <nav class="bg-white border-b border-gray-200 fixed w-full top-0 z-40">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="/themetrician/" class="flex items-center gap-3">
+        <img src="/themetrician/themetrician-logo.png" alt="TheMetrician logo" class="h-10 w-auto">
+        <span class="text-2xl font-bold text-black">TheMetrician</span>
+      </a>
+      <div class="flex items-center space-x-8">
+        <a href="/themetrician/" class="text-gray-700 hover:text-black font-medium transition">Home</a>
+        <div class="dropdown relative">
+          <a href="/themetrician/#investigations" class="text-gray-700 hover:text-black font-medium transition">Investigations &#9662;</a>
+          <div class="dropdown-content" style="min-width:290px"><div style="padding:9px 16px 3px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;font-weight:600">Macro</div><a href="/themetrician/articles/beyond-the-resource-curse/">Beyond the resource curse</a><a href="/themetrician/articles/vietnam-growth-diagnostics/">Vietnam has outgrown its roads</a><a href="/themetrician/articles/ethiopia-land-tenure/">The tax on leaving</a><div style="padding:9px 16px 3px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;font-weight:600">Micro</div><a href="/themetrician/articles/germany-health-insurance/">When the healthy opt out</a><a href="/themetrician/articles/tube-strikes-cycling/">Missing the tube, finding the bike</a><div style="padding:9px 16px 3px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;font-weight:600">Data science</div><a href="/themetrician/articles/fake-news-detection/">Style over substance</a><div style="padding:9px 16px 3px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;font-weight:600">Comment</div><a href="/themetrician/articles/ocean-data/">The ocean's blind spot</a></div>
+        </div>
+        <a href="/themetrician/visuals.html" class="text-gray-700 hover:text-black font-medium transition">Map</a>
+        <a href="/themetrician/about.html" class="text-gray-700 hover:text-black font-medium transition">About</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Article header -->
+  <header class="pt-32 pb-10 border-b border-gray-200">
+    <div class="container mx-auto px-6">
+      <div class="measure mx-auto">
+        <p class="text-sm font-semibold tracking-widest uppercase text-gray-500 mb-5">Macro Studies · Development</p>
+        <h1 class="text-4xl md:text-5xl font-light leading-tight text-gray-900 mb-6">
+          The tax on <span class="font-semibold">leaving</span>
+        </h1>
+        <p class="text-xl text-gray-600 font-light leading-relaxed mb-8">
+          Ethiopia is among the most rural economies in Africa, with one of the widest gaps between farm and city
+          productivity. The obstacle to closing it is not a shortage of land rights — it is that those rights are tied
+          to staying put. Tenure conditioned on use works as a hidden tax on migration.
+        </p>
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-gray-500 pt-6 border-t border-gray-100">
+          <span class="text-gray-900 font-medium">Ayaan Tigdikar</span>
+          <span>2026</span>
+          <span>9 min read</span>
+          <span class="hidden sm:inline text-gray-300">|</span>
+          <span>Method: policy analysis</span>
+        </div>
+        <p class="text-xs text-gray-400 mt-3 italic">Adapted from a policy essay on land tenure and labour mobility in Ethiopia.</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Body -->
+  <main class="container mx-auto px-6">
+    <div class="measure mx-auto article-body py-12">
+
+      <!-- KEY FINDINGS -->
+      <div class="keybox p-6 md:p-8 mb-12">
+        <div class="rule mb-5"></div>
+        <h2 class="text-xl font-semibold text-gray-900 mb-4" style="margin-top:0">The argument in brief</h2>
+        <ul class="space-y-3 text-base text-gray-700" style="line-height:1.6">
+          <li>Ethiopia keeps roughly <strong>76% of its people rural</strong> and <strong>63% of employment in agriculture</strong>, even though output per worker outside farming is <strong>more than four times higher</strong> — a large, unrealised gain from moving labour.</li>
+          <li>The country already has land certificates and legal rental rights. What it lacks is <strong>tenure secure enough to survive absence</strong>: keep your plot only if you keep working it.</li>
+          <li>That use-condition is an <strong>implicit tax on migration</strong>. The market it breaks is the <em>rental market for land</em>, not the migration market — and fixing one fixes both.</li>
+          <li>Evidence from Mexico and from Ethiopia itself supports the direction of reform, though the likely <strong>magnitude is modest</strong> and bounded by what a country that cannot fully privatise land can achieve.</li>
+        </ul>
+      </div>
+
+      <!-- I. THE PUZZLE -->
+      <p class="lede">
+        Few development puzzles are as stark, or as old, as the gap between the farm and the city. In Ethiopia the gap
+        is enormous: a worker outside agriculture produces more than four times what a worker inside it does. Standard
+        economics says labour should flow toward the higher return until the gap closes. Yet roughly three in four
+        Ethiopians still live in rural areas, and nearly two in three still work the land. The reallocation that ought
+        to be happening is not happening.
+      </p>
+
+      <figure class="chart">
+        <div class="frame">
+          <svg viewBox="0 0 760 300" role="img" aria-label="Output per worker: agriculture versus non-agriculture in Ethiopia, a gap of more than four times.">
+            <line x1="70" y1="235" x2="700" y2="235" stroke="#111827" stroke-width="1.5"/>
+            <!-- agriculture -->
+            <rect x="170" y="192" width="150" height="43" fill="#9ca3af"/>
+            <text x="245" y="182" text-anchor="middle" style="font:600 20px Inter,sans-serif;fill:#111827">1×</text>
+            <text x="245" y="258" text-anchor="middle" style="font:600 15px Inter,sans-serif;fill:#111827">Agriculture</text>
+            <text x="245" y="278" text-anchor="middle" style="font:400 13px Inter,sans-serif;fill:#6b7280">output per worker</text>
+            <!-- non-agriculture -->
+            <rect x="450" y="55" width="150" height="180" fill="#111827"/>
+            <text x="525" y="45" text-anchor="middle" style="font:600 20px Inter,sans-serif;fill:#111827">> 4×</text>
+            <text x="525" y="258" text-anchor="middle" style="font:600 15px Inter,sans-serif;fill:#111827">Non-agriculture</text>
+            <text x="525" y="278" text-anchor="middle" style="font:400 13px Inter,sans-serif;fill:#6b7280">output per worker</text>
+          </svg>
+        </div>
+        <figcaption>
+          <span class="fig-kicker">Figure 1</span>
+          <div class="fig-title">The prize: a fourfold gap in productivity</div>
+          <div class="fig-note">Output per worker outside agriculture exceeds output per worker inside it by more than four times — the return to moving a worker from farm to non-farm work.</div>
+          <div class="fig-source">Source: Gollin, Lagakos &amp; Waugh (2014); World Bank, World Development Indicators.</div>
+        </figcaption>
+      </figure>
+
+      <p>
+        And the returns to moving are not just theoretical. Tracking Ethiopian households that sent an internal
+        migrant against those that did not, one study recovers consumption gains on the order of 165% for the
+        migrant-sending households. If moving pays that well, why do so few move? The usual answer — that migration
+        itself is somehow blocked — turns out to be the wrong place to look.
+      </p>
+
+      <div class="statband">
+        <div class="cell">
+          <div class="num">+165%</div>
+          <div class="lbl">higher consumption for households that sent an internal migrant, versus those that did not.</div>
+          <div class="src">de Brauw, Mueller &amp; Woldehanna (2018)</div>
+        </div>
+        <div class="cell">
+          <div class="num">>4×</div>
+          <div class="lbl">the productivity gap between non-agricultural and agricultural work in Ethiopia.</div>
+          <div class="src">Gollin, Lagakos &amp; Waugh (2014)</div>
+        </div>
+      </div>
+
+      <p>
+        The roots of the divide run through the land. Ethiopia's regime is a direct legacy of the 1975 Derg reform,
+        which nationalised all rural land and administered it through local peasant associations whose periodic
+        redistributions left households perpetually unsure of holding on to their plots. The 2005 Land Act softened
+        this: it curtailed the redistributions and launched a low-cost programme certifying households' <em>usufruct</em>
+        rights — their right to use the land — and permitting them to rent it out. On paper, that is most of what a
+        functioning land market needs.
+      </p>
+
+      <p>
+        The catch is in the fine print, which varies region by region. Some regions cap the share of a holding that
+        may be rented out at a half; others limit contract length or require family consent and official approval. In
+        Tigray, a holder absent from the village for more than two years risks losing the plot altogether. The rights
+        exist — but they are <strong>conditional on staying and using the land</strong>.
+      </p>
+
+      <!-- II. THE MECHANISM -->
+      <h2>The market that <span class="accent">actually fails</span></h2>
+      <p>
+        Start from how the market should work. A household holding usufruct rights to a plot would rent or sell those
+        rights whenever someone else valued the land more highly — that is, whenever another farmer's expected output
+        on it exceeded the household's own. Land would flow from less to more productive cultivators, and the
+        household's labour would be freed for its best alternative use, very often a wage job in the city. Everyone
+        who transacts is better off; the planner is happy.
+      </p>
+
+      <p>
+        Ethiopia implements this logic only halfway. Certificates and rental rights exist, but the use-condition
+        quietly rewrites the household's problem. If being absent raises the chance of losing the plot, then keeping
+        the plot means keeping someone on it — so the household holds a member back on the farm even when that
+        member would earn far more in town. The distance between the labour the household chooses and the labour it
+        <em>would</em> choose under secure tenure is the implicit migration tax, made concrete.
+      </p>
+
+      <figure class="chart">
+        <div class="frame">
+          <svg viewBox="0 0 740 384" role="img" aria-label="Diagram comparing use-conditional tenure with tenure delinked from use.">
+            <!-- Column A: status quo -->
+            <text x="50" y="26" style="font:600 12px Inter,sans-serif;fill:#6b7280;letter-spacing:.03em">STATUS QUO · TENURE TIED TO USE</text>
+            <rect x="50" y="42" width="280" height="60" fill="#f9fafb" stroke="#d1d5db" stroke-width="1"/>
+            <text x="190" y="77" text-anchor="middle" style="font:600 14px Inter,sans-serif;fill:#111827">A household holds a plot</text>
+            <line x1="190" y1="102" x2="190" y2="132" stroke="#9ca3af" stroke-width="1.5"/>
+            <polygon points="190,140 185,130 195,130" fill="#9ca3af"/>
+            <rect x="50" y="140" width="280" height="74" fill="#f9fafb" stroke="#d1d5db" stroke-width="1"/>
+            <text x="190" y="170" text-anchor="middle" style="font:600 14px Inter,sans-serif;fill:#111827">Keeping the plot requires</text>
+            <text x="190" y="190" text-anchor="middle" style="font:600 14px Inter,sans-serif;fill:#111827">staying to farm it</text>
+            <line x1="190" y1="214" x2="190" y2="244" stroke="#9ca3af" stroke-width="1.5"/>
+            <polygon points="190,252 185,242 195,242" fill="#9ca3af"/>
+            <rect x="50" y="252" width="280" height="88" fill="#f9fafb" stroke="#d1d5db" stroke-width="1"/>
+            <text x="190" y="283" text-anchor="middle" style="font:600 14px Inter,sans-serif;fill:#111827">Labour is locked on the farm;</text>
+            <text x="190" y="303" text-anchor="middle" style="font:600 14px Inter,sans-serif;fill:#111827">low-productivity work,</text>
+            <text x="190" y="323" text-anchor="middle" style="font:600 14px Inter,sans-serif;fill:#111827">the gap persists</text>
+
+            <!-- Column B: reform -->
+            <text x="410" y="26" style="font:600 12px Inter,sans-serif;fill:#111827;letter-spacing:.03em">REFORM · TENURE DELINKED FROM USE</text>
+            <rect x="410" y="42" width="280" height="60" fill="#ffffff" stroke="#111827" stroke-width="1.5"/>
+            <text x="550" y="77" text-anchor="middle" style="font:600 14px Inter,sans-serif;fill:#111827">A household holds a plot</text>
+            <line x1="550" y1="102" x2="550" y2="132" stroke="#111827" stroke-width="1.5"/>
+            <polygon points="550,140 545,130 555,130" fill="#111827"/>
+            <rect x="410" y="140" width="280" height="74" fill="#ffffff" stroke="#111827" stroke-width="1.5"/>
+            <text x="550" y="170" text-anchor="middle" style="font:600 14px Inter,sans-serif;fill:#111827">The plot can be rented out,</text>
+            <text x="550" y="190" text-anchor="middle" style="font:600 14px Inter,sans-serif;fill:#111827">with tenure still secure</text>
+            <line x1="550" y1="214" x2="550" y2="244" stroke="#111827" stroke-width="1.5"/>
+            <polygon points="550,252 545,242 555,242" fill="#111827"/>
+            <rect x="410" y="252" width="280" height="88" fill="#ffffff" stroke="#111827" stroke-width="1.5"/>
+            <text x="550" y="283" text-anchor="middle" style="font:600 14px Inter,sans-serif;fill:#111827">Land consolidates with a more</text>
+            <text x="550" y="303" text-anchor="middle" style="font:600 14px Inter,sans-serif;fill:#111827">productive farmer; a worker</text>
+            <text x="550" y="323" text-anchor="middle" style="font:600 14px Inter,sans-serif;fill:#111827">migrates to higher-wage work</text>
+          </svg>
+        </div>
+        <figcaption>
+          <span class="fig-kicker">Figure 2</span>
+          <div class="fig-title">Why the use-condition binds — and what lifting it does</div>
+          <div class="fig-note">The same household under two tenure regimes. When the claim depends on presence, labour stays put; when tenure survives absence, land and labour both move to where they are worth more.</div>
+          <div class="fig-source">Schematic; framework after Adamopoulos et al. (2024).</div>
+        </figcaption>
+      </figure>
+
+      <p>
+        The crucial move is to see <strong>which</strong> market is broken. It is not the market for migration — nothing
+        stops a person from boarding a bus to Addis Ababa. It is the <strong>rental market for land</strong>. Regional
+        rules choke the supply of rental contracts directly, through caps and consent requirements, and indirectly, by
+        attaching the risk of losing the plot to being away. Because land cannot travel with its holder, a household
+        that cannot rent out its plot cannot leave without abandoning its single largest asset. Relax the restriction
+        on renting, and you relax the constraint on moving at the same time.
+      </p>
+
+      <div class="pullquote">
+        Nothing stops an Ethiopian from boarding a bus to the city. What stops them is that the land cannot come too —
+        and cannot safely be left behind.
+      </div>
+
+      <p>
+        This matters most precisely because migration is risky. Take-up of migration stays low even where average
+        returns are high, because the return is personal: a household only learns what moving pays <em>them</em> by
+        trying it, and for a family near subsistence a failed trial can be catastrophic. A working rental market is
+        exactly the insurance such a family needs — it turns the plot into a stream of income that can underwrite the
+        gamble of leaving.
+      </p>
+
+      <!-- III. EVIDENCE: MEXICO -->
+      <h2>The clean test: <span class="accent">Mexico's PROCEDE</span></h2>
+      <p>
+        The closest thing to a controlled experiment comes from Mexico. Between 1993 and 2006, the PROCEDE programme
+        issued ownership certificates to some 3.6 million households in <em>ejidos</em> — communities whose members
+        had held use-conditional rights of exactly the Ethiopian kind. Crucially, PROCEDE removed the cultivation
+        requirement and legalised renting, selling and bequeathing the land: a near-clean test of delinking tenure
+        from use.
+      </p>
+
+      <p>
+        The result matched the theory. Certification <strong>raised the probability that a household had a migrant
+        member by 28%</strong>. Cultivated area did not fall — the plots left behind were folded into the holdings of
+        those who stayed, exactly the consolidation the framework predicts — and non-food consumption rose, consistent
+        with money being sent home from higher-wage destinations. Delinking released labour and reallocated land in a
+        single move, with the rental market doing the work.
+      </p>
+
+      <div class="statband">
+        <div class="cell">
+          <div class="num">+28%</div>
+          <div class="lbl">rise in the probability that a household has a migrant member, after land certification in Mexico.</div>
+          <div class="src">De Janvry, Emerick, Gonzalez-Navarro &amp; Sadoulet (2015)</div>
+        </div>
+        <div class="cell">
+          <div class="num">3.6m</div>
+          <div class="lbl">households across Mexico's <em>ejidos</em> certified under PROCEDE, 1993&ndash;2006.</div>
+          <div class="src">De Janvry et al. (2015)</div>
+        </div>
+      </div>
+
+      <p>
+        Two cautions travel with that number. Internally, the estimate leans on a staggered rollout with no
+        never-treated group and a single certification dummy, which assumes the effect is the same across cohorts and
+        over time — an assumption the authors' own figures strain, since the earliest-certified communities lost
+        population faster than later ones. The authors defend the design with pre-trend and falsification tests, and
+        largely succeed; but modern staggered difference-in-differences methods would tell the story more cleanly.
+      </p>
+
+      <p>
+        The bigger question is whether Mexico transfers to Ethiopia at all. PROCEDE went <em>further</em> than anything
+        Ethiopia could do — it granted transferable ownership, full privatisation, which the Ethiopian constitution
+        forbids. Mexican households were also better placed to use their freedom: income per head was roughly four
+        times Ethiopia's today, and NAFTA-era Mexico offered abundant high-wage destinations at home and across the
+        US border, where Ethiopia's cities can absorb far less. The 28% is best read as an <strong>upper bound</strong>
+        on what an Ethiopian reform could achieve.
+      </p>
+
+      <!-- IV. EVIDENCE: ETHIOPIA -->
+      <h2>Ethiopia's own <span class="accent">evidence</span></h2>
+      <p>
+        Closer to home, a study of 1,170 rural Ethiopian youth across 27 <em>kebeles</em> in Amhara and Oromia asks a
+        neat question: does expecting to inherit more land change whether young people leave? Using an instrumental
+        variable built from the timing of past land redistributions, it finds that a 10% increase in expected
+        inheritance cuts long-distance permanent migration by 8.1 percentage points and rural-to-urban migration by
+        4.8, while raising agricultural employment by 6.2 — young people with more land coming to them stay, and farm.
+      </p>
+
+      <figure class="chart">
+        <div class="frame">
+          <svg viewBox="0 0 760 296" role="img" aria-label="Effect of a 10 percent increase in expected land inheritance: long-distance migration minus 8.1 points, rural-to-urban migration minus 4.8 points, agricultural employment plus 6.2 points.">
+            <text x="40" y="26" style="font:400 13px Inter,sans-serif;fill:#6b7280">Effect of a 10% increase in expected land inheritance (percentage points)</text>
+            <!-- zero axis -->
+            <line x1="430" y1="48" x2="430" y2="236" stroke="#111827" stroke-width="1.25"/>
+            <text x="430" y="256" text-anchor="middle" style="font:600 11px Inter,sans-serif;fill:#9ca3af">0</text>
+
+            <!-- Row 1: long-distance migration -8.1 -->
+            <text x="40" y="66" style="font:600 14px Inter,sans-serif;fill:#111827">Long-distance permanent migration</text>
+            <rect x="187" y="74" width="243" height="30" fill="#111827"/>
+            <text x="179" y="94" text-anchor="end" style="font:600 14px Inter,sans-serif;fill:#111827">−8.1</text>
+
+            <!-- Row 2: rural-urban migration -4.8 -->
+            <text x="40" y="130" style="font:600 14px Inter,sans-serif;fill:#111827">Rural-to-urban migration</text>
+            <rect x="286" y="138" width="144" height="30" fill="#111827"/>
+            <text x="278" y="158" text-anchor="end" style="font:600 14px Inter,sans-serif;fill:#111827">−4.8</text>
+
+            <!-- Row 3: agricultural employment +6.2 -->
+            <text x="40" y="194" style="font:600 14px Inter,sans-serif;fill:#111827">Agricultural employment</text>
+            <rect x="430" y="202" width="186" height="30" fill="#111827"/>
+            <text x="624" y="222" text-anchor="start" style="font:600 14px Inter,sans-serif;fill:#111827">+6.2</text>
+
+            <!-- direction annotations -->
+            <text x="250" y="284" text-anchor="middle" style="font:400 12px Inter,sans-serif;fill:#9ca3af">← less migration</text>
+            <text x="560" y="284" text-anchor="middle" style="font:400 12px Inter,sans-serif;fill:#9ca3af">more farming →</text>
+          </svg>
+        </div>
+        <figcaption>
+          <span class="fig-kicker">Figure 3</span>
+          <div class="fig-title">More land coming to you means less leaving — and more farming</div>
+          <div class="fig-note">Instrumental-variable estimates with household fixed effects. The pull of land onto the farm is about twice as strong in <em>kebeles</em> with poor rental markets — though that comparison is correlational, not causal.</div>
+          <div class="fig-source">Source: Kosec, Ghebru, Holtemeyer, Mueller &amp; Schmidt (2018).</div>
+        </figcaption>
+      </figure>
+
+      <p>
+        The instrument is carefully built, with a strong first stage and a placebo test that behaves as it should, so
+        the headline is credible. But the most policy-relevant part — that the pull of land is roughly twice as strong
+        where rental markets are thin — rests on a simpler correlation, because the instrument is too weak to apply in
+        sub-samples. And two gaps limit how far the result carries. The institutional setting it exploits has eroded
+        since 2014, as certification has strengthened, so today's effects are probably smaller. More fundamentally, the
+        study measures the pull of <em>inheriting</em> land, which is not quite the same lever as strengthening the
+        right to <em>rent it out</em>.
+      </p>
+
+      <!-- V. CONCLUSION -->
+      <h2>What it adds up to</h2>
+      <p>
+        The direction is clear; the magnitude is not. Both the Mexican experiment and Ethiopia's own data point the
+        same way — use-conditional tenure holds labour on the farm, and loosening it would let some of that labour
+        move to where it is worth more. What neither can pin down is how much. The Mexican figure is an upper bound,
+        inflated by full privatisation and a richer economy with better destinations. Much of the easy gain in
+        Ethiopia has arguably already been banked by the post-2005 reforms, leaving a smaller margin for further
+        delinking to capture.
+      </p>
+
+      <p>
+        Two things could even shrink the prize. In general equilibrium, a wave of migrants into Addis Ababa would bid
+        down urban wages and narrow the very gap the policy is chasing. And the accounting so far ignores what happens
+        to those left behind — remittances and word of urban wages that might lift origin households and pull more
+        migrants after them, set against the loss of the young and able whose departure could drag down what remains
+        of farm productivity. The existing studies control for none of this, so the net welfare effect cannot simply
+        be read off their estimates.
+      </p>
+
+      <p>
+        That points to where the research should go next: measuring misallocation directly, from what migrants
+        actually earn at their destinations rather than from whether they moved; and mapping the general-equilibrium
+        and spillover effects of moving people out of farming at scale. Until then, the honest conclusion is a
+        qualified yes — delinking tenure from use is the right direction for Ethiopia, pursued in the knowledge that
+        the gains are real but bounded.
+      </p>
+
+      <p class="text-sm text-gray-500 mt-12 pt-6 border-t border-gray-200">
+        This article adapts a policy essay on land tenure and labour mobility in Ethiopia. Figures 1 and 3 visualise
+        estimates reported in the cited studies; Figure 2 is a schematic of the argument. Key sources: Gollin, Lagakos
+        &amp; Waugh (2014); de Brauw, Mueller &amp; Woldehanna (2018); Adamopoulos et al. (2024); De Janvry et al.
+        (2015); Kosec et al. (2018).
+      </p>
+
+    </div>
+  </main>
+
+  <!-- Footer (identical to index.html) -->
+    <footer class="bg-white py-12 border-t border-gray-200">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div>
+          <div class="flex items-center gap-2 mb-3"><img src="/themetrician/themetrician-logo.png" alt="TheMetrician" class="h-8 w-auto"><span class="text-lg font-bold text-black">TheMetrician</span></div>
+          <p class="text-sm text-gray-500 max-w-xs">Data-driven investigations in economics and public policy.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Investigations</h4>
+          <ul class="space-y-2 text-gray-600 text-sm"><li><a href="/themetrician/articles/beyond-the-resource-curse/" class="hover:text-black">Beyond the resource curse</a></li><li><a href="/themetrician/articles/vietnam-growth-diagnostics/" class="hover:text-black">Vietnam has outgrown its roads</a></li><li><a href="/themetrician/articles/ethiopia-land-tenure/" class="hover:text-black">The tax on leaving</a></li><li><a href="/themetrician/articles/germany-health-insurance/" class="hover:text-black">When the healthy opt out</a></li><li><a href="/themetrician/articles/tube-strikes-cycling/" class="hover:text-black">Missing the tube, finding the bike</a></li><li><a href="/themetrician/articles/fake-news-detection/" class="hover:text-black">Style over substance</a></li><li><a href="/themetrician/articles/ocean-data/" class="hover:text-black">The ocean's blind spot</a></li></ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Explore</h4>
+          <ul class="space-y-2 text-gray-600 text-sm">
+            <li><a href="/themetrician/" class="hover:text-black">Home</a></li>
+            <li><a href="/themetrician/visuals.html" class="hover:text-black">Interactive map</a></li>
+            <li><a href="/themetrician/about.html" class="hover:text-black">About</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pt-8 border-t border-gray-200 text-center text-gray-600"><p>&copy; 2025 TheMetrician. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+</body>
+</html>
