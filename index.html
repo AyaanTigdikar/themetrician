@@ -66,55 +66,19 @@
 <body class="bg-white text-gray-900">
 
   <!-- Navbar -->
-  <nav class="bg-white border-b border-gray-200 fixed w-full top-0 z-40">
+    <nav class="bg-white border-b border-gray-200 fixed w-full top-0 z-40">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="/themetrician/" class="flex items-center gap-3"><img src="/themetrician/themetrician-logo.png" alt="TheMetrician logo" class="h-10 w-auto"><span class="text-2xl font-bold text-black">TheMetrician</span></a>
-      <div class="flex space-x-8">
+      <a href="/themetrician/" class="flex items-center gap-3">
+        <img src="/themetrician/themetrician-logo.png" alt="TheMetrician logo" class="h-10 w-auto">
+        <span class="text-2xl font-bold text-black">TheMetrician</span>
+      </a>
+      <div class="flex items-center space-x-8">
         <a href="/themetrician/" class="text-gray-700 hover:text-black font-medium transition">Home</a>
-        
-        <!-- Case Studies Dropdown -->
         <div class="dropdown relative">
-          <a href="#" class="text-gray-700 hover:text-black font-medium transition">
-            Case Studies ▾
-          </a>
-          <div class="dropdown-content">
-            <a href="/themetrician/case-studies/africa">Africa</a>
-            <a href="/themetrician/case-studies/asia">Asia</a>
-            <a href="/themetrician/case-studies/latin-america">Latin America</a>
-          </div>
+          <a href="/themetrician/#investigations" class="text-gray-700 hover:text-black font-medium transition">Investigations &#9662;</a>
+          <div class="dropdown-content" style="min-width:290px"><div style="padding:9px 16px 3px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;font-weight:600">Macro</div><a href="/themetrician/articles/beyond-the-resource-curse/">Beyond the resource curse</a><a href="/themetrician/articles/vietnam-growth-diagnostics/">Vietnam has outgrown its roads</a><a href="/themetrician/articles/ethiopia-land-tenure/">The tax on leaving</a><div style="padding:9px 16px 3px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;font-weight:600">Micro</div><a href="/themetrician/articles/germany-health-insurance/">When the healthy opt out</a><a href="/themetrician/articles/tube-strikes-cycling/">Missing the tube, finding the bike</a><div style="padding:9px 16px 3px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;font-weight:600">Data science</div><a href="/themetrician/articles/fake-news-detection/">Style over substance</a><div style="padding:9px 16px 3px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;font-weight:600">Comment</div><a href="/themetrician/articles/ocean-data/">The ocean's blind spot</a></div>
         </div>
-        
-        <!-- Methods Dropdown -->
-        <div class="dropdown relative">
-          <a href="#" class="text-gray-700 hover:text-black font-medium transition">
-            Methods ▾
-          </a>
-          <div class="dropdown-content">
-            <a href="/themetrician/methods/matching">Matching</a>
-            <a href="/themetrician/methods/random-forest">Random Forest</a>
-            <a href="/themetrician/methods/neural-networks">Neural Networks</a>
-            <a href="/themetrician/methods/text-analysis">Text Analysis</a>
-            <a href="/themetrician/methods/causal-inference">Causal Inference</a>
-          </div>
-        </div>
-        
-        <!-- Theories Dropdown -->
-        <div class="dropdown relative">
-          <a href="#" class="text-gray-700 hover:text-black font-medium transition">
-            Theories ▾
-          </a>
-          <div class="dropdown-content">
-            <a href="/themetrician/theories/microeconomics">Microeconomics</a>
-            <a href="/themetrician/theories/macroeconomics">Macroeconomics</a>
-            <a href="/themetrician/theories/trade">Trade</a>
-            <a href="/themetrician/theories/public-economics">Public Economics</a>
-            <a href="/themetrician/theories/growth-diagnostics">Growth Diagnostics</a>
-            <a href="/themetrician/theories/development">Development</a>
-          </div>
-        </div>
-        
-        <a href="/themetrician/news" class="text-gray-700 hover:text-black font-medium transition">News</a>
-        <a href="/themetrician/visuals.html" class="text-gray-700 hover:text-black font-medium transition">Visuals</a>
+        <a href="/themetrician/visuals.html" class="text-gray-700 hover:text-black font-medium transition">Map</a>
         <a href="/themetrician/about.html" class="text-gray-700 hover:text-black font-medium transition">About</a>
       </div>
     </div>
@@ -147,11 +111,11 @@
           Applying cutting-edge econometric and data science methods to address contemporary economic and political challenges. Finding compelling stories in data through rigorous analysis and clear visualization.
         </p>
         <div class="space-x-4">
-          <a href="#featured" class="inline-block bg-white text-black px-8 py-3 font-medium hover:bg-gray-100 transition">
-            Explore Research
+          <a href="#investigations" class="inline-block bg-white text-black px-8 py-3 font-medium hover:bg-gray-100 transition">
+            Read the investigations
           </a>
           <a href="/themetrician/visuals.html" class="inline-block border border-white text-white px-8 py-3 font-medium hover:bg-white hover:text-black transition">
-            Interactive Visuals
+            Explore the map
           </a>
         </div>
       </div>
@@ -159,7 +123,7 @@
   </section>
 
   <!-- ===== More Investigations (scalable card grid; links to article sub-pages) ===== -->
-  <section id="more-investigations" class="py-20 bg-gray-50 section-divider">
+  <section id="investigations" class="py-20 bg-gray-50 section-divider">
     <div class="container mx-auto px-6">
       <div class="max-w-3xl mb-12">
         <h2 class="text-4xl font-light mb-4">Investigations</h2>
@@ -216,7 +180,7 @@
       <a href="/themetrician/articles/beyond-the-resource-curse/" class="group block border border-gray-800 hover:border-gray-600 transition">
         <div class="grid md:grid-cols-2">
           <div class="relative min-h-[18rem]">
-            <img src="/themetrician/articles/beyond-the-resource-curse/thumb_eci.jpg"
+            <img src="/themetrician/articles/beyond-the-resource-curse/thumb_eci.png"
                  alt="Artisanal mining in a resource-rich economy"
                  class="absolute inset-0 w-full h-full object-cover">
           </div>
@@ -253,7 +217,7 @@
 
         <a href="/themetrician/articles/tube-strikes-cycling/" class="group bg-white border border-gray-100 shadow-sm card-hover block">
           <div class="h-44 overflow-hidden bg-gray-100">
-            <img src="/themetrician/articles/tube-strikes-cycling/thumb_cycle.png"
+            <img src="/themetrician/articles/tube-strikes-cycling/thumb_tube.jpg"
                  alt="London cycle hire" class="w-full h-full object-cover">
           </div>
           <div class="p-6">
@@ -277,47 +241,19 @@
           </div>
         </a>
 
-      </div>
-    </div>
-  </section>
+        <a href="/themetrician/articles/germany-health-insurance/" class="group bg-white border border-gray-100 shadow-sm card-hover block">
+          <div class="h-44 overflow-hidden bg-gray-100">
+            <img src="/themetrician/articles/germany-health-insurance/thumb_germany.jpg"
+                 alt="Health insurance" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <p class="text-xs font-semibold tracking-widest uppercase text-gray-500 mb-3">Micro &middot; Public Economics</p>
+            <h3 class="text-xl font-semibold mb-2 group-hover:text-black">When the healthy opt out</h3>
+            <p class="text-gray-600 mb-4">Germany lets high earners leave the public health system for private cover &mdash; draining the pool and loading the cost onto those left behind.</p>
+            <span class="text-black font-medium group-hover:underline">Read the investigation &rarr;</span>
+          </div>
+        </a>
 
-  <!-- Featured Research Section -->
-  <section id="featured" class="py-20 bg-white section-divider">
-    <div class="container mx-auto px-6">
-      <div class="max-w-3xl mx-auto text-center mb-16">
-        <h2 class="text-4xl font-light mb-4">Featured Research</h2>
-        <p class="text-lg text-gray-600">
-          Informing policymakers through data-driven insights and analytical tools
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-white p-8 card-hover shadow-sm border border-gray-100">
-          <div class="w-12 h-1 bg-black mb-6"></div>
-          <h3 class="text-xl font-semibold mb-3">International Trade</h3>
-          <p class="text-gray-600 mb-4">
-            Analysis of trade patterns, tariff impacts, and global supply chain dynamics using advanced econometric methods.
-          </p>
-          <a href="/themetrician/research/trade" class="text-black font-medium hover:underline">Learn more →</a>
-        </div>
-
-        <div class="bg-white p-8 card-hover shadow-sm border border-gray-100">
-          <div class="w-12 h-1 bg-black mb-6"></div>
-          <h3 class="text-xl font-semibold mb-3">Development Economics</h3>
-          <p class="text-gray-600 mb-4">
-            Evidence-based approaches to poverty reduction and sustainable development across emerging markets.
-          </p>
-          <a href="/themetrician/research/development" class="text-black font-medium hover:underline">Learn more →</a>
-        </div>
-
-        <div class="bg-white p-8 card-hover shadow-sm border border-gray-100">
-          <div class="w-12 h-1 bg-black mb-6"></div>
-          <h3 class="text-xl font-semibold mb-3">Public Policy</h3>
-          <p class="text-gray-600 mb-4">
-            Rigorous evaluation of policy interventions using causal inference and machine learning techniques.
-          </p>
-          <a href="/themetrician/research/policy" class="text-black font-medium hover:underline">Learn more →</a>
-        </div>
       </div>
     </div>
   </section>
@@ -325,7 +261,7 @@
 
 
   <!-- Interactive Visualizations Section -->
-  <section id="visualizations" class="py-20 bg-gray-50 section-divider">
+  <section id="visualizations" class="py-20 bg-white section-divider">
     <div class="container mx-auto px-6">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
@@ -372,60 +308,28 @@
     </div>
   </section>
 
-  <!-- Call to Action -->
-  <section class="py-20 bg-black text-white">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-4xl font-light mb-4">Stay Informed</h2>
-      <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-        Get the latest research and insights on economic policy and data science applications
-      </p>
-      <a href="/themetrician/subscribe" class="inline-block bg-white text-black px-8 py-3 font-medium hover:bg-gray-100 transition">
-        Subscribe to Updates
-      </a>
-    </div>
-  </section>
-
   <!-- Footer -->
-  <footer class="bg-white py-12 border-t border-gray-200">
+    <footer class="bg-white py-12 border-t border-gray-200">
     <div class="container mx-auto px-6">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
         <div>
-          <h4 class="font-semibold mb-4">Research</h4>
-          <ul class="space-y-2 text-gray-600">
-            <li><a href="/themetrician/research/case-studies" class="hover:text-black">Case Studies</a></li>
-            <li><a href="/themetrician/research/publications" class="hover:text-black">Publications</a></li>
-            <li><a href="/themetrician/research/working-papers" class="hover:text-black">Working Papers</a></li>
-          </ul>
+          <div class="flex items-center gap-2 mb-3"><img src="/themetrician/themetrician-logo.png" alt="TheMetrician" class="h-8 w-auto"><span class="text-lg font-bold text-black">TheMetrician</span></div>
+          <p class="text-sm text-gray-500 max-w-xs">Data-driven investigations in economics and public policy.</p>
         </div>
         <div>
-          <h4 class="font-semibold mb-4">Methods</h4>
-          <ul class="space-y-2 text-gray-600">
-            <li><a href="/themetrician/methods/econometrics" class="hover:text-black">Econometrics</a></li>
-            <li><a href="/themetrician/methods/data-science" class="hover:text-black">Data Science</a></li>
-            <li><a href="/themetrician/methods/visualization" class="hover:text-black">Visualization</a></li>
-          </ul>
+          <h4 class="font-semibold mb-4">Investigations</h4>
+          <ul class="space-y-2 text-gray-600 text-sm"><li><a href="/themetrician/articles/beyond-the-resource-curse/" class="hover:text-black">Beyond the resource curse</a></li><li><a href="/themetrician/articles/vietnam-growth-diagnostics/" class="hover:text-black">Vietnam has outgrown its roads</a></li><li><a href="/themetrician/articles/ethiopia-land-tenure/" class="hover:text-black">The tax on leaving</a></li><li><a href="/themetrician/articles/germany-health-insurance/" class="hover:text-black">When the healthy opt out</a></li><li><a href="/themetrician/articles/tube-strikes-cycling/" class="hover:text-black">Missing the tube, finding the bike</a></li><li><a href="/themetrician/articles/fake-news-detection/" class="hover:text-black">Style over substance</a></li><li><a href="/themetrician/articles/ocean-data/" class="hover:text-black">The ocean's blind spot</a></li></ul>
         </div>
         <div>
-          <h4 class="font-semibold mb-4">About</h4>
-          <ul class="space-y-2 text-gray-600">
-            <li><a href="/themetrician/about#mission" class="hover:text-black">Mission</a></li>
-            <li><a href="/themetrician/about#team" class="hover:text-black">Team</a></li>
-            <li><a href="/themetrician/contact" class="hover:text-black">Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="font-semibold mb-4">Connect</h4>
-          <ul class="space-y-2 text-gray-600">
-            <li><a href="/themetrician/newsletter" class="hover:text-black">Newsletter</a></li>
-            <li><a href="https://twitter.com/themetrician" class="hover:text-black">Twitter</a></li>
-            <li><a href="https://linkedin.com/company/themetrician" class="hover:text-black">LinkedIn</a></li>
+          <h4 class="font-semibold mb-4">Explore</h4>
+          <ul class="space-y-2 text-gray-600 text-sm">
+            <li><a href="/themetrician/" class="hover:text-black">Home</a></li>
+            <li><a href="/themetrician/visuals.html" class="hover:text-black">Interactive map</a></li>
+            <li><a href="/themetrician/about.html" class="hover:text-black">About</a></li>
           </ul>
         </div>
       </div>
-      <div class="pt-8 border-t border-gray-200 text-center text-gray-600">
-        <img src="/themetrician/themetrician-logo.png" alt="TheMetrician" class="h-8 w-auto mx-auto mb-3 opacity-80">
-        <p>&copy; 2025 TheMetrician. All rights reserved.</p>
-      </div>
+      <div class="pt-8 border-t border-gray-200 text-center text-gray-600"><p>&copy; 2025 TheMetrician. All rights reserved.</p></div>
     </div>
   </footer>
 
